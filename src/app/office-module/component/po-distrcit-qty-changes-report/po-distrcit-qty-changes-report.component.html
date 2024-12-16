@@ -1,0 +1,89 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">APPROVALS DISTRICT QUANTITY MINUS REPORT</h5>
+    </div>
+    <div class="card-body">
+       
+        <div   class="col-md-12 row">
+           
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="UninonId">SELECT PO/WO No AND DATE
+                    <span style="color: red">*</span></label>
+                   </div>
+                   </div> 
+                   <div class="col-md-3">
+                     <div class="form-group"> 
+     
+                  <select id="PMID"  class="form-control" [(ngModel)]="PMID" (change)="POBYPONUMBER()">                 
+                   <option disabled selected value="undefined">-- Select PO/WO No AND DATE --</option>
+                   <option  value="{{ obj.PMID }}"   *ngFor="let obj of Podetailslist"    > {{ obj.PONUMBER }}  </option>
+                 </select> 
+                </div>
+              </div> 
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="UninonId">District Wise Details
+                    <span style="color: red">*</span></label>
+                   </div>
+                   </div>
+
+              <div class="col-md-4" > 
+                <div class="form-group"> 
+                   
+             <select id="SLNO"  class="form-control" [(ngModel)]="SLNO" (change)="onDistrictwiseqtyChange()" >                
+              <option disabled selected value="undefined">-- Select PO/WO District Wise Details --</option>
+              <option  value="{{ obj.SLNO }}"   *ngFor="let obj of GridData"    > {{ obj.STATENAME +" - "+ obj.DISTRICTNAME   }}  </option>
+            </select>
+      
+      
+      
+          </div>
+         </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 row" >
+      <div class="col-md-12">
+        <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            Download Excel
+        </button>
+
+    </div>
+        <div   class="col-md-12">
+          <table  class="table table-striped ah-table text-center"
+                 datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                    <th class="tableheader_color"  style="width: 120px;">SLNO</th>
+                      <th class="tableheader_color" style="width: 80px;">PO_DISTRICT_QTY</th>
+                      <th class="tableheader_color"  style="width: 100px;">PO_DISTRICT_AMOUNT</th>  
+                      <th class="tableheader_color"  style="width: 120px;">UPDATED_QTY</th>
+                      <th class="tableheader_color"  style="width: 120px;">UPDATE_AMOUNT</th> 
+                  </tr>
+                  
+              </thead>
+              <tbody calss="table_cells_borders">
+                  <tr *ngFor="let obj of GridDatalist; let i=index;">                    
+                    <td calss="text-align: left;" >{{ i+1}}</td>
+                    <td calss="number_align" >{{ obj.PO_DISTRICT_QTY}}</td>
+                    <td calss="number_align" >{{ obj.PO_DISTRICT_AMOUNT}}</td>  
+                    <td calss="number_align" >{{ obj.UPDATED_QTY}}</td>
+                    <td calss="number_align" >{{ obj.UPDATE_AMOUNT}}</td> 
+                  </tr>
+              </tbody>
+               
+      
+          </table>
+      </div>
+       
+    
+       
+       
+     </div>
+
+
+</div>

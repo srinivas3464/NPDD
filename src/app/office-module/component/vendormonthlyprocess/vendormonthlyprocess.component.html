@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Vendor Monthly Process</h5>
+    </div>
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="fromDate">From Date : <span style="color: red">*</span></label>
+                     
+                </div>
+            </div>
+         
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    
+                    <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate" ></app-date-picker>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-sm mt-3" style="margin-top: 2px !important;" (click)="btnLoadReport()">
+                   
+                    Monthly Process Start
+                </button> 
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+ 

@@ -1,0 +1,297 @@
+<div class="col-md-12" align="right">
+  <button
+    type="button"
+    class="btn btn-primary btn-sm m-0 btn-rounded"
+    (click)="btnback()"
+  >
+    Back
+  </button>
+</div>&nbsp;
+
+
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">FARMER REGISTRATION APPROVAL</h5>
+    </div>
+    <div class="card-body">
+      <div class="row px-4">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >FARMER NAME :
+              <span class="text-success">
+                <b>{{ farmerName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              MOBILE NUMBER :
+            </label>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="mobileNo"
+            placeholder="Please Enter Mobile Number"
+            maxlength="10"
+            autocomplete="off"
+            NumbersOnly
+            [allowDecimals]="false"
+            [allowSign]="false"
+          />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >DISTRICT :
+              <span class="text-success">
+                <b>{{ districtName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >MANDAL NAME :
+              <span class="text-success">
+                <b>{{ mandalName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF BUFFALO (FEMALE) :
+              <span class="text-success">
+                <b>{{ personDetails.NOOFBUFFALOFEMALE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF BUFFALO (MALE) :
+              <span class="text-success">
+                <b>{{ personDetails.NOOFBUFFALOMALE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >BUFFALO MILK POTENTIAL :
+              <span class="text-success">
+                <b>{{ personDetails.MILK_POTENTIAL_BUFFALO }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              COW MILK POTENTIAL :
+              <span class="text-success">
+                <b>{{ personDetails.MILK_POTENTIAL_COW }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF MILCH ANIMALS (COW) :
+              <span class="text-success">
+                <b>{{ personDetails.NO_OF_MILCH_ANIMALS_COW }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF MILCH ANIMALS (BUFFALO) :
+              <span class="text-success">
+                <b>{{ personDetails.NO_OF_MILCH_ANIMALS_BUFFALO }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF WHITE CATTLE (FEMALE) :
+              <span class="text-success">
+                <b>{{ personDetails.NOOFWHITECALLTEFEMALE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>
+              NO OF WHITE CATTLE (MALE) :
+              <span class="text-success">
+                <b>{{ personDetails.NOOFWHITECATTLEMALE }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >RBK NAME :
+              <span class="text-success">
+                <b>{{ rbkName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >VILLAGE NAME :
+              <span class="text-success">
+                <b>{{ villageName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >PAN CARD NO :
+              <span class="text-success">
+                <b>{{ panCard === null ? "NA" : panCard }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+  
+        <div class="col-md-3" *ngIf="personDetails !== undefined && personDetails.PASSBOOK_IMG !== null">
+          <label
+          >BANK PASSBOOK IMAGE :</label>
+          <img
+        [src]="'data:image/jpeg;base64,' + passBookImg"
+        style="cursor: pointer"
+        class="img-thumbnail mr-3"
+        (click)="btnImage(passBookImg)"
+      />
+        </div>
+  
+        <div class="col-md-3">
+          <div class="form-group">
+            <label
+              >BANK PIN CODE :
+              <span class="text-success">
+                <b>{{ bankPinCode }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label> BANK ACCOUNT NUMBER :  </label>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="accountNo"
+            placeholder="Please Enter Account No"
+            maxlength="25"
+            autocomplete="off"
+            NumbersOnly
+            [allowDecimals]="false"
+            [allowSign]="false"
+          />
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>IFSC CODE :  </label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="ifscCode"
+                placeholder="Please Enter IFSC Code"
+                maxlength="15"
+                autocomplete="off"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary btn-sm m-0 btn-rounded"
+                  type="submit"
+                  (click)="btnVerifyIfscCode()"
+                  id="button-addon2"
+                >
+                  Verify
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 pt-4">
+          <div class="form-group">
+            <label
+              >BANK NAME :
+              <span class="text-success">
+                <b>{{ bankName }}</b>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-3 pt-4">
+          <div class="form-group">
+            <label
+              >BRANCH NAME :
+              <span class="text-success">
+                <b>{{ branchName }}</b>
+              </span>
+            </label>
+          </div>
+        </div> 
+        
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="passbookImgUpload"
+            >NEW BANK PASBOOK PHOTO UPLOAD
+          </label>
+          <input
+            type="file"
+            class="form-control p-0"
+            id="passbookImgUpload"
+            (change)="onpassbookImgChange($event)"
+            accept="image/*"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      
+      </div>
+      <div class="col-md-12" align="center">
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          (click)="btnFarmerUpdate('1')"
+        >
+          Approve
+        </button>
+        <button
+        type="button"
+        class="btn btn-danger btn-sm"
+        (click)="btnFarmerUpdate('2')"
+      >
+        Reject
+      </button>
+      </div>
+    </div>
+  </div>
+  

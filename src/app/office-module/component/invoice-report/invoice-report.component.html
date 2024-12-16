@@ -1,0 +1,101 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Invoice  Report</h5>
+    </div>
+    <div class="card-body">
+  
+        <div class="col-md-12 row" > 
+            <div class="col-md-4">.</div>
+            <div class="col-md-4">
+             <div class="form-group">
+               <label for="UninonId">Select Invoice & Date
+                 <span style="color: red">*</span></label>
+               <select id="INVID"  class="form-control" [(ngModel)]="INVID"  (change)="InvoiceByID()" >                
+                 <option disabled selected value="undefined">-- Select Invoice --</option>
+                 <option  value="{{ obj.INVID }}"    *ngFor="let obj of invdetailslist"> {{ obj.INVOICENO }}  </option>
+               </select>
+             </div> 
+           </div>
+           <div class="col-md-4">.</div>
+           <div class="col-md-12">
+           <HR style="height: 5px;color:brown;background-color: brown;">
+           </div>
+        </div>  
+
+        <div class="col-md-12">
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+          </button>
+
+      </div>
+        <div  class="col-md-12 row"   >
+             
+          <div class="table-responsive"  >
+            <!-- [hidden]="InvoiceReportsList?.length < 1" -->
+
+            <table  class="table table-striped ah-table text-center"
+            datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+               <thead class="bg-success text-white" style="border: 1px solid white;">
+                   <tr>
+                            <th class="tableheader_color" >S.NO</th> 
+                            <th class="tableheader_color" > INVOICE NUMBER</th> 
+                            <th class="tableheader_color" > INVOICEDATE</th> 
+                            <th class="tableheader_color" > FIRM NAME</th> 
+                            <th class="tableheader_color" > COMPONENT NAME</th>      
+                            <th class="tableheader_color" > PO NUMBER</th> 
+                            <th class="tableheader_color" > UOM NAME</th> 
+                            <th class="tableheader_color" > UNITS</th>     
+                            <th class="tableheader_color" > PRICES</th> 
+                            <th class="tableheader_color" > PRICE UNIT </th> 
+                            <th class="tableheader_color" > TOTAL </th>       
+                            <th class="tableheader_color" >DISCOUNT  </th>   
+                            <th class="tableheader_color" > COMMENTS </th>  
+                      </tr>
+                      <tr >             
+                        <th  class="tableheader_color"  >(1)</th>
+                        <th  class="tableheader_color" >(2)</th>
+                        <th  class="tableheader_color" >(3)</th>
+                        <th  class="tableheader_color" >(4)</th>
+                        <th  class="tableheader_color" >(5)</th>
+                        <th  class="tableheader_color"  >(6)</th>
+                        <th  class="tableheader_color" >(7)</th>
+                        <th  class="tableheader_color" >(8)</th>
+                        <th  class="tableheader_color" >(9)</th>
+                        <th  class="tableheader_color" >(10)</th>
+                        <th  class="tableheader_color" >(11)</th>
+                        <th  class="tableheader_color" >(12)</th>
+                        <th  class="tableheader_color" >(13)</th>
+                         
+                      </tr> 
+
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let objd of InvoiceReportsList; let i = index">
+                        <td  class="number_align">{{i+1}}</td>
+                        <td  class="number_align"><b>{{objd.INVOICENO}}</b></td>
+                        <td><b>{{objd.INVOICEDATE}}</b></td>
+                        <td class="text_align_color"><b>{{objd.FIRMNAME}}</b></td>
+                        <td class="text_align_color"><b>{{objd.COMPNAME}}</b></td>
+                        <td class="text_align_color"><b>{{objd.PONUMBER }}</b></td>
+                        <td class="text_align_color"><b>{{objd.UOMNAME }}</b></td> 
+                        <td class="text_align_color"><b>{{objd.UNITS }}</b></td>                                                        
+                        <td  class="number_align"><b>{{objd.PRICES}}</b></td>
+                        <td  class="number_align"><b>{{objd.PRICE_UNIT}}</b></td>
+                        <td  class="number_align"><b>{{objd.TOTAL}}</b></td>
+                        <td  class="number_align"><b>{{objd.DISCOUNT}}</b></td>
+                        <td  class="number_align"><b>{{objd.COMENTS}}</b></td>  
+                      </tr>
+                  </tbody>
+              </table>
+  
+          </div>
+        
+       
+  </div>
+
+
+
+    </div>
+</div>

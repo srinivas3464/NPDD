@@ -1,0 +1,26 @@
+<router-outlet></router-outlet>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+  [fullScreen]="true"
+  >
+  <p style="color: white;">Please wait...</p>
+  </ngx-spinner>
+
+
+  
+  <div class="popup-modal" *ngIf="noInterNetPopUp">
+    <div class="popup-content">
+        <div class="popup-body text-center">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-12 py-5">
+                    <!-- <img src="./../assets/img/no-internet.png"> -->
+                    <h5 class="mt-0 mb-md-3 text-danger"><b><i class="fa fa-times" aria-hidden="true"></i> No Internet Connection</b></h5>
+                    <h6 class="mb-md-4 text-muted">Internet Connection is lost. Trying to reconnecting...</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

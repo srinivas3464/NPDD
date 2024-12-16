@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; "> Today Tender Details </h5>
+  </div>
+  <div class="card-body">
+
+      <div class="col-md-12" [hidden]="checkList?.length < 1">
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i> 
+              Download Excel
+          </button>
+ 
+      </div>
+      <div class="col-md-12 row">
+          <div class="col-md-12 table-responsive" [hidden]="checkList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                      <tr>
+                          <th  class="borderwhitecolo">S.No</th>
+                          <th class="borderwhitecolo">Component ID</th>
+                          <th class="borderwhitecolo">Component Name</th>
+                          <th class="borderwhitecolo">Description</th>
+                          <th class="borderwhitecolo">Quantity</th>
+                          <th class="borderwhitecolo">Price</th>
+                      </tr>
+                      <tr>
+                          <th class="borderwhitecolo">(1)</th>
+                          <th class="borderwhitecolo">(2)</th>
+                          <th class="borderwhitecolo">(3)</th>
+                          <th class="borderwhitecolo">(4)</th>
+                          <th class="borderwhitecolo">(5)</th>
+                          <th class="borderwhitecolo">(6)</th>
+
+
+                      </tr>
+                  </thead>
+                  <tbody *ngIf="checkList?.length > 0">
+                      <tr *ngFor="let obj of checkList; let i = index">
+                          <td class="number_align">{{ i + 1 }}</td>
+                          <td class="number_align">{{ obj.COMPID }}</td>
+                          <td class="text_align_color">{{ obj.COMPNAME }}</td>
+                          <td class="text_align_color">{{ obj.DESCRIPTION }}</td>
+                          <td class="number_align">{{ obj.QTY }}</td>
+                          <td class="number_align">{{ obj.PRICE }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+<style>
+  table {
+      border-collapse: separate;
+  }
+</style>

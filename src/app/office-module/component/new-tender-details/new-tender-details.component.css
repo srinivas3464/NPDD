@@ -1,0 +1,29 @@
+.btn-link {
+    text-decoration: none !important;
+}
+
+
+
+#buttonHC {
+
+    margin-top: 30px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 100px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}

@@ -1,0 +1,125 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">BMCU Approval</h5>
+    </div>
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="Ditsrictid">Ditsrict
+                        <span style="color: red">*</span></label>
+                    <select id="Ditsrictid" class="form-control" [(ngModel)]="Ditsrictid" (change)="LoadMandal()">
+                        <option disabled selected value="undefined">--Select--</option>
+                        <option value="{{obj.DISTRICT_ID}}" *ngFor="let obj of DistrictList">{{obj.DISTRICT_NAME}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="Mandalid">Mandal
+                        <span style="color: red">*</span></label>
+                    <select id="Mandalid" class="form-control" [(ngModel)]="Mandalid" (change)="LoadBMCU()">
+                        <option disabled selected value="undefined">--Select--</option>
+                        <option value="{{obj.MANDALID}}" *ngFor="let obj of MandalList">{{obj.MANDAL_NAME}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="BMCUid">BMCU
+                        <span style="color: red">*</span></label>
+                    <select id="BMCUid" class="form-control" [(ngModel)]="BMCUid" (change)="LoadInvoice()">
+                        <option disabled selected value="undefined">--Select--</option>
+                        <option value="{{obj.BMCU_CODE}}" *ngFor="let obj of BMCUList">{{obj.BMCU_NAME}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="Invoiceid">Invoice
+                        <span style="color: red">*</span></label>
+                    <select id="Invoiceid" class="form-control" [(ngModel)]="Invoiceid">
+                        <option disabled selected value="undefined">--Select--</option>
+                        <option value="{{obj.INVID}}" *ngFor="let obj of InvoiceList">{{obj.INVOICENO}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-sm mt-3" (click)="LoadData()"> <i class="fa fa-arrow-right mr-2"
+                        aria-hidden="true"></i>Find</button>
+            </div>
+            <div class="col-md-1"></div> 
+        </div>
+        <div class="row">
+            <div class="col-md-12 table-responsive mt-2" [hidden]="GridList?.length < 1">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Equipment Name</th>
+                            <th>Calibration_Status</th>
+                            <th>Installation Status</th>
+                            <th>Manufature_Date</th>
+                            <th>Device Maker</th>
+                            <th>Capacity Value</th>
+                            <th>Serial Number</th>
+                            <th>Serial Number Img</th>
+                            <th>Device Img</th>
+                            <th>Final Status</th>
+                            <th>Invoice Path</th>
+                            <th>Record Status</th>
+                            <th>Appreg Status</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="GridList?.length > 0">
+                        <tr *ngFor="let obj of GridList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{obj.EQUIPMENT_NAME}}</td>
+                            <td>{{obj.CALIBRATION_STATUS}}</td>
+                            <td>{{obj.INSTALLATION_STATUS}}</td>
+                            <td>{{obj.MANUFACTURE_DATE.slice(0,10)}}</td>
+                            <td>{{obj.DEVICE_MAKER}}</td>
+                            <td>{{obj.CAPACITY_VALUE}}</td>
+                            <td>{{obj.SERIAL_NUMBER}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" (click)="btnViewPhoto(obj.SERIAL_NUMBER_IMG)">
+                                    VIEW
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" (click)="btnViewPhoto(obj.DEVICE_IMG)">
+                                    VIEW
+                                </button>
+                            </td>
+                            <td>{{obj.FINAL_STATUS}}</td>
+                            <td> <button type="button" class="btn btn-primary" (click)="btnViewPhoto(obj.INVOICE_PATH)">
+                                    VIEW
+                                </button></td>
+                            <td>{{obj.RECORD_STATUS}}</td>
+                            <td>{{obj.APPREG_STATUS}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-5 align-items-center" [hidden]="GridList?.length < 1">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"><button type="button" class="btn btn-success btn-sm" (click)="ApprovalSubData()">Approve</button></div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="Remarks">Remarks</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <textarea class="form-control" [(ngModel)]="Remarks"></textarea>
+            </div>
+            <div class="col-md-2"><button type="button" class="btn btn-danger  btn-sm" (click)="RejectSubData()">Reject</button></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,164 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: center;">
+      <h5 class="mb-0">OFFICE LOGINS</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- <div class="col-md-1"></div> -->
+            <div class="col-md-2" style="text-align: right;">
+                <div class="form-group">
+                <label >User Login<span style="color: red">*</span></label></div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">  
+                  <select
+                  id="userlogin"
+                  class="form-control"
+                  [(ngModel)]="officelogindetails.userlogin" 
+                 
+                > 
+                <!-- "
+                   (change)="onloginchange(officelogindetails.UNIQUE_ID)" -->
+                   <option  disabled selected value="undefined">-- Select User Login --</option>  
+                  <option value="{{ obj.UNIQUE_ID }}" *ngFor="let obj of LOGINLIST"> 
+                    {{ obj.NAME }}
+                  </option>
+                  
+                </select>
+                </div>
+             </div>  
+
+             <div class="col-md-2" style="text-align: right;">
+                <div class="form-group">
+                <label >Module Type<span style="color: red">*</span></label></div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">  
+                  <select
+                  id="moduletype"
+                  class="form-control"
+                  [(ngModel)]="officelogindetails.moduletype" 
+                  
+                >  
+                   <!-- <option value="">-- Select User Login --</option>  
+                  <option value="{{ obj.SCREEN_ID }}" *ngFor="let obj of COMPONENTLIST"> 
+                    {{ obj.COMPONENT_NAME }}
+                  </option> -->
+
+                  <option class="dropdown-item" disabled selected value="">-- Select Module Type --</option>
+                  <option value="1">OFFICE MODULE</option>
+                </select>
+                </div>
+             </div> 
+
+             <div class="col-md-2" align="center" style="position: relative;bottom: 8px;">
+                <button
+                type="button"
+                class="btn btn-success btn-sm"
+                (click)="btnfind()"
+              
+                >
+                  <!-- (change)="loadmenu()" -->
+                FIND
+                </button> 
+              </div>
+               
+              <br><br> 
+              <div class="col-md-12"> <hr style=" border: 2px solid maroon;"></div>
+             
+
+              <!-- <div class="col-md-12" style="overflow-x:auto;">  -->
+                <div
+                class="col-md-12 table-responsive"
+                [hidden]="COMPONENTLIST?.length < 1"
+              >
+
+                <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+
+
+                     <tr>
+                       <th >S.No.</th>
+                       <th >Screen ID</th> 
+                       <th>Component Name</th>
+                       <th>Display Name</th>
+                       <th>Assigned Status</th>
+                       <th> Assigned Menu</th>   
+                   </tr> 
+                   </thead>
+                   <!-- <tbody *ngFor="let obj of COMPONENTLIST; let i = index" >
+                     <tr  > -->
+
+                        <tbody *ngIf="COMPONENTLIST?.length > 0">
+                            <tr *ngFor="let obj of COMPONENTLIST; let i = index">
+
+                       <td>{{ i+1 }}</td> 
+                       <td> <a
+                       style="cursor: pointer;" 
+                      > 
+                     
+                       <b>{{obj.SCREEN_ID }}</b></a></td>                  
+                       <td class="text_alignleft"> {{obj.COMPONENT_NAME}} </td>
+                       <td  class="text_alignleft"> {{obj.DISPLAY_NAME}} </td>
+                       <td>
+
+
+                            <!-- style="width:50% ; height: 50% ;"   [(ngModel)]="{{obj.SCREEN_ID}}"-->
+                        <input      style="width: 20px;"
+                         type="checkbox" 
+                        id="checkbox_{{obj.SCREEN_ID}}"
+                         name="assignedstatus"  (change)="onSelectionChange(obj.SCREEN_ID)"  
+                         value=" {{obj.ASSIGNED_STATUS}}"
+                         [(ngModel)]="obj.ASSIGNED_STATUS"  
+                         > 
+                       </td>
+                       <td>  
+                        <div class="col-md-12">
+                            <div class="form-group"> 
+                            <select  style="font-size: 12px;"
+                                id="menu_{{obj.SCREEN_ID}}"
+                                class="form-control"
+                                placeholder="Select Menu"
+                                [(ngModel)]="obj.ASSIGNED_MENU"   
+                                (change)="onmenuchange(obj.SCREEN_ID)"
+                              >  
+                              <!-- 
+                                 (change)="onmenuchange(menu.SCREEN_ID)"
+                                officelogindetails. -->
+                                <option  disabled selected value="undefined">-- Select Menu --</option>  
+                                <option value="{{   obj.MENU_ID }}" *ngFor="let obj of MENULIST"> 
+                                  {{ obj.MENU_NAME }}  
+                                </option> 
+                                
+                              </select>
+                            </div>
+                        </div>
+                        </td>  
+                     </tr>
+                   </tbody> 
+                 </table> 
+                 
+                
+                
+                
+                </div>
+                <div class="col-md-6" align="center"  ></div>
+                <div class="col-md-2" align="center" style="position: relative;bottom: 8px;">
+                    <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="btnSubmit()">                      
+                    Submit
+                    </button> 
+                  </div>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="col-md-12" align="center" >
+
+  <img
+    *ngIf="image !== '' && image !== undefined && image !== null"
+    [src]="'data:image/jpeg;base64,' + image"
+    style="cursor: pointer"
+    class="img-thumbnail mr-3"
+  />
+</div>

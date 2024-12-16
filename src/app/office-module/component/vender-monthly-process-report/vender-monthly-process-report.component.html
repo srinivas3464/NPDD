@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Vendor Monthly Process Report</h5>
+    </div>
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="fromDate">Monthly Date <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="MonthlyDate"></app-date-picker>
+                </div>   
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="drid"> Vender Position Status<span style="color: red">*</span></label>
+                    <select id="drid" class="form-control" [(ngModel)]="drid">
+                        <option disabled selected value="undefined">-- Select --</option>
+                        <option value="{{ obj.id }}" *ngFor="let obj of dropdownList"> {{ obj.name }} </option>
+                    </select>
+ 
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+                    <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+                    GO
+                </button>
+            </div>
+        </div>
+        <!-- <div class="col-md-12" [hidden]="DataList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+        </div> -->
+        <label for="drid">  Component Name    :       {{ COMPONENTNAME }}</label>
+        
+
+        <div class="table-responsive" [hidden]="DataList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    
+
+                    <tr>
+                        <th class="borderwhitecolo" *ngFor="let column of displayedColumns; ">{{ column }}</th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let columnIndex of displayedColumns; let i = index" class="borderwhitecolo">({{ i + 1 }})</th>
+                    </tr>
+                </thead>
+                 <tbody calss="table_cells_borders"  *ngIf="DataList?.length > 0"    >
+
+                    <tr *ngFor="let row of DataList"> 
+                         
+                        <td *ngFor="let column of displayedColumns" style="text-align: left">{{ row[column] }}</td>
+
+                     
+                         
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

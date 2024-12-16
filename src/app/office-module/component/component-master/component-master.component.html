@@ -1,0 +1,160 @@
+<div class="row">
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('1')">
+
+            <div class="overlay"></div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>COMPONENTS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('2')">
+
+            <div class="overlay"></div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>SUB COMPONENTS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card" *ngIf="clickone">
+    <div style="text-align: center;">
+        <h5><u>COMPONENTS</u></h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2"><label for="ComponentCode">Component Code<span style="color: red">*</span></label></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" [(ngModel)]="ComponentCode" placeholder="Enter Component Code">
+
+
+                </div> 
+            </div>
+            <div class="col-md-2"><label for="ComponentName">Component Name<span style="color: red">*</span></label></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" [(ngModel)]="ComponentName" placeholder="Enter Component Name">
+                </div>
+            </div>
+          
+        </div>
+ 
+
+        <div class="row">
+            <div class="col-md-2">  <label for="Description">Description<span style="color: red">*</span></label></div>
+            <div class="col-md-10">
+                <div class="form-group">
+                  
+                    <textarea type="text" class="form-control" [(ngModel)]="Description" placeholder="Enter Description"></textarea>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" (click)="ComponentsSubmit()">Submit</button>
+            </div>
+
+            <div class="col-md-5"></div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="card" *ngIf="clickTwo">
+    <div style="text-align: center;">
+        <h5><u>SUB COMPONENTS</u></h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">  <label for="Components">Components<span style="color: red">*</span></label></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  
+                    <!-- <select [(ngModel)]="Components" class="form-control">
+                        <option disabled selected value="undefined">--Select--</option>
+                        <option>1</option>
+                    </select> -->
+                    <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" (change)="componentChange();"  >                
+                        <option disabled selected value="undefined">-- SELECT COMPONENT --</option>
+                        <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+                      </select>
+                </div>
+            </div>
+            <!-- <div class="col-md-5" style="display: none;">
+                <div class="form-group">
+                    <label for="SubComponentCode">Component Code<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" [(ngModel)]="SubComponentCode" placeholder="Enter Component Code">
+                </div>
+            </div>
+            <div class="col-md-1"></div> -->
+
+            <div class="col-md-2"><label for="SubComponentName">Sub Component Name<span style="color: red">*</span></label></div>
+          
+            <div class="col-md-4">
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" [(ngModel)]="SubComponentName" placeholder="Enter Sub Component Name">
+                </div>
+            </div>
+            
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2"> <label for="SubDescription">Description<span style="color: red">*</span></label></div>
+            <div class="col-md-10">
+                <div class="form-group">
+                   
+                    <textarea type="text" class="form-control" [(ngModel)]="SubDescription" placeholder="Enter Description"></textarea>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" (click)="SubComponentsSubmit()">Submit</button>
+            </div>
+
+            <div class="col-md-5"></div>
+        </div>
+
+
+    </div>
+</div>
+ 

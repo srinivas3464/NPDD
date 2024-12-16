@@ -1,0 +1,425 @@
+
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">PROFORMA INVOICE DETAILS </h5>
+    </div>
+    <div class="card-body">
+
+        <div class="col-md-12 row">
+            <div class="col-md-2">.</div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="UninonId">SELECT PO/WO No AND DATE
+                        <span style="color: red">*</span></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    <select id="PMID" class="form-control" [(ngModel)]="PMID" (change)="POBYPONUMBER()">
+                        <option disabled selected value="undefined">-- Select PO/WO No AND DATE --</option>
+                        <option value="{{ obj.PMID }}" *ngFor="let obj of Podetailslist"> {{ obj.PONUMBER }} </option>
+                    </select>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-4">.</div>
+            <div class="col-md-12">
+                <HR style="height: 1px;color:brown;background-color: brown;">
+            </div>
+        </div>
+        <div *ngIf="invtbl">
+
+            <div class="col-md-12 row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2" style="text-align: right;">Proforma Invoice Date :</div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <app-date-picker [PlaceHolder]="'Select invoice Date'" [(selectedDate)]="invoicedate" [minDate]="minDate"
+                            [(ngModel)]="invoicedate" [maxDate]="maxDate"></app-date-picker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 row">
+                <div class="col-md-1">FROM</div>
+                <div class="col-md-5"><input type="text" id="faddress1" value="{{faddress1}}" placeholder="Enter Address1"
+                        class="form-control" readonly  ></div>
+
+
+                <div class="col-md-2"></div>
+                <div class="col-md-2" style="text-align: right;">Proforma Invoice No:</div>
+                <div class="col-md-2">
+                    <div class="form-group" style="width: 100%;">
+                        <input type="text" id="invoiceNo" [(ngModel)]="invoiceNo" class="form-control" style="width: 186px;"
+                       
+                          >
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5"><input type="text" id="faddress2" value="{{faddress2}}" placeholder="Enter Address2"
+                        class="form-control" readonly  ></div>
+
+                <div class="col-md-2"></div>
+                <div class="col-md-2" style="text-align: right;">FIRM Name :</div>
+                <div class="col-md-2"><input type="text" id="FIRMNAME" value="{{FIRMNAME}}" readonly class="form-control"
+                        style="width: 186px;"> </div>
+            </div>
+            <div class="col-md-12 row">
+                <div class="col-md-1">.</div>
+                <div class="col-md-5"><input type="text" id="faddress3" value="{{faddress3}}" placeholder="Enter Address3"
+                        class="form-control" readonly  ></div> <div class="col-md-6"></div>
+
+            </div>
+
+
+            <div class="col-md-12 row">
+                <div class="col-md-1">To</div>
+                <div class="col-md-5"><input type="text" id="paddress1" value="{{paddress1}}" class="form-control"
+                        placeholder="Enter Address1" readonly  ></div><div class="col-md-6"></div>
+            </div>
+            <div class="col-md-12 row">
+                <div class="col-md-1">.</div>
+                <div class="col-md-5"><input type="text" id="paddress2" value="{{paddress2}}" class="form-control"
+                        placeholder="Enter Address2" readonly  ></div><div class="col-md-6"></div>
+            </div>
+            <!-- <div class="col-md-12 row" > <div class="col-md-12"><input type="text" id="paddress3"  value="{{paddress3}}" placeholder="Enter Address3" readonly></div>   </div> -->
+
+            <br />
+            <div class="col-md-12 row" style="display: none;">
+
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="POD">District Wise Details <span style="color: red">*</span></label>
+                        <select id="SLNO" class="form-control" [(ngModel)]="SLNO" (change)="onDistrictwiseqtyChange()">
+                            <option disabled selected value="undefined">-- Select PO/WO District Wise Details --</option>
+                            <option value="{{ obj.SLNO }}" *ngFor="let obj of GridData"> {{ obj.STATENAME +" - "+ obj.DISTRICTNAME }}
+                            </option>
+                        </select>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="mt-5">
+                    <table class="table table-striped ah-table text-center"   *ngIf="GridData1?.length > 0">
+
+
+                        <thead class="bg-success text-white" style="border: 1px solid white;">
+                            <tr>
+                                <th class="tableheader_color" style="width: 150px;">S.No.</th>
+                                <!-- <th class="tableheader_color">District</th> -->
+                                <th class="tableheader_color" style="width: 150px;">Quantity</th>
+                                <th class="tableheader_color" style="width: 150px;">Amount</th>
+                                <th class="tableheader_color" style="width: 150px;">Advance<br /> Per %</th>
+                                <th class="tableheader_color" style="width: 150px;">Advance<br /> Amount</th>
+
+                                <!-- <th class="tableheader_color">Delivery<br /> Per %</th>
+                                <th class="tableheader_color">Delivery<br /> Amount</th> -->
+
+                            </tr>
+                            <tr>
+                                <th class="tableheader_color">(1)</th>
+                                <th class="tableheader_color">(2)</th>
+                                <th class="tableheader_color">(3)</th>
+                                <th class="tableheader_color">(4)</th>
+                                <th class="tableheader_color">(5)</th>
+                                <!-- <th class="tableheader_color">(6)</th> -->
+                                <!-- <th class="tableheader_color">(7)</th>
+                                <th class="tableheader_color">(8)</th> -->
+                            </tr>
+                        </thead>
+                        <tbody calss="table_cells_borders">
+                            <tr *ngFor="let obj of GridData1; let i=index;">
+                                <td class="number_align">{{ i + 1 }}</td>
+                                <!-- <td style="text-align: left;" class="table_cells_borders">{{obj.DISTRICTNAME}}</td> -->
+                                <td class="number_align">{{obj.QUANTITY}}</td>
+                                <td class="number_align">{{obj.AMOUNT}}</td>
+                                <td class="number_align">
+                                    <span *ngIf="obj.ADV_PER !== '0'">
+                                        <table>
+                                            <tr>
+                                                <!-- <td style="text-align: right !important;">
+                                                    <input type="checkbox"
+                                                        (change)="onSelectionChange('1',obj.ADV_PER,obj.ADV_AMOUNT,obj.QUANTITY)"
+                                                        style="cursor: pointer;" name="radio" id="rbtn1" ng-model="rbtn1"
+                                                        value="0,{{ obj.SLNO }}" />
+                                                </td> -->
+                                                <td style="text-align: right !important;">
+
+
+
+                                                    <input type="text" id="ADV_PER" name="ADV_PER" style=" width:150px;text-align: right"
+                                                        NumbersOnly readonly ng-model="ADV_PER" value=" {{obj.ADV_PER }}">
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </span>
+                                    <span *ngIf="obj.ADV_PER === '0'" style="text-align: center;"> -- </span>
+                                </td>
+                                <td class="number_align">
+                                    <span *ngIf="obj.ADV_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                        <input type="text" ngModel="{{obj.ADV_AMOUNT }}" id="advamt"
+                                            style=" width:150px;text-align: right" value="{{obj.ADV_AMOUNT  }}" NumbersOnly readonly />
+
+                                    </span>
+                                    <span *ngIf="obj.ADV_AMOUNT === '0'" style="text-align: center;"> -- </span>
+                                </td>
+
+                                <!-- <td class="number_align">
+                                    <span *ngIf="obj.ADV_PER_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                        <input type="text" ngModel="{{obj.ADV_PER_AMOUNT }}" id="advamt"
+                                            style=" width:150px;text-align: right" value="{{obj.ADV_PER_AMOUNT  }}" NumbersOnly readonly />
+
+                                    </span>
+                                    <span *ngIf="obj.ADV_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>
+                                </td> -->
+
+
+                                <td  class="number_align"  style="display: none;"> 
+                                    <span *ngIf="obj.DELIVERY_PER !== '0'"   > 
+                                      <table  style="text-align: right !important;"><tr><td  style="text-align: right !important;"> 
+                                      <input type="checkbox" (change)="onSelectionChange('2',obj.DELIVERY_PER,obj.DEL_PER_AMOUNT,obj.QUANTITY)"  style="cursor: pointer;"    name="radio" id="rbtn2" ng-model="rbtn2"    value="0,{{ obj.SLNO }}"     />
+                                    </td><td  style="text-align: right !important; width:100px;">
+                                       
+                
+                                      <input type="text" id="DELIVERY_PER"   name="DELIVERY_PER" style=" width:50px;text-align: right"  NumbersOnly  readonly  ng-model="DELIVERY_PER" value=" {{obj.DELIVERY_PER }}">
+                
+                                    </td></tr></table>
+                                    </span >
+                                    <span *ngIf="obj.DELIVERY_PER === '0'"  style="text-align: center;"> -- </span>
+                
+                                  
+                                  </td>
+                                  <td  class="number_align" style="display: none;"> 
+                                    <span *ngIf="obj.DEL_PER_AMOUNT !== '0'"  style="cursor: pointer;" class="text-primary" > 
+                                        
+                                    <input type="text" ngModel="{{obj.DEL_PER_AMOUNT }}" id="deleamt"   style=" width:100px;text-align: right"  value="{{obj.DEL_PER_AMOUNT }}" NumbersOnly  readonly /> 
+                                    
+                                    </span >
+                                    <span *ngIf="obj.DEL_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>       
+                
+                                  </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td style="text-align: right;" colspan="2">Total:</td>
+                                <td style="text-align: right;"> {{ Totalobj.QUANTITY }}</td>
+                                <td style="text-align: right;"> {{ Totalobj.AMOUNT }}</td>
+                                <td style="text-align: right;" colspan="7"></td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <br />
+            <div class="col-md-12 row">
+                <div class="col-md-10" style="text-align: right;">Advance Amount </div>
+                <div class="col-md-2"><input type="text" id="PRICE" [(ngModel)]="PRICE" class="form-control" style="width: 186px;" readonly
+                        onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+
+            </div>
+
+
+            <br />
+            <div>
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th style="width:50px;">S.No.</th>
+                            <th>Component Name</th>
+                            <th>Description</th>
+                            <th>UNITS</th>
+                            <th>PRICES</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="purchasedetailsList?.length > 0">
+                        <tr *ngFor="let obj of purchasedetailsList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>
+                                <b>{{ obj.COMPNAME }}</b>
+                            </td>
+                            <td>{{ obj.DESCE }}</td>
+                            <td  >{{ obj.UNITS }}</td>
+                            <td >{{ obj.PRICES }}</td>
+                        </tr>
+
+                    </tbody>
+
+
+                    <tfoot>
+                        <tr>
+                            <td style="text-align: right;" colspan="4">Total:</td>
+                            <td class="right"> {{ totalamt }}</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+
+            <div style="display: none;">
+                <div class="col-md-12 row">
+                    <div class="col-md-2">Comments</div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="text-align: right;">Tax1-0 % :</div>
+                    <div class="col-md-2"><input type="text" id="tax1" [(ngModel)]="Tax1" readonly> </div>
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-1"> </div>
+                </div>
+
+                <div class="col-md-12 row">
+                    <div class="col-md-4">
+
+                        <input type="text" id="comments" value="{{Tax}}" style="width: 500px;">
+
+
+
+                    </div>
+
+
+                    <div class="col-md-4" style="text-align: right;">Tax2-0 % :</div>
+                    <div class="col-md-2"><input type="text" id="tax2" [(ngModel)]="Tax2" readonly> </div>
+                    <div class="col-md-2"> </div>
+                    <div class="col-md-2"> </div>
+                </div>
+
+                <div class="col-md-12 row">
+                    <div class="col-md-2"> </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="text-align: right;">Total Tax :</div>
+                    <div class="col-md-2"><input type="text" id="taxtotal" [(ngModel)]="Tax3" readonly> </div>
+                    <div class="col-md-2"> </div>
+                    <div class="col-md-2"> </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-12 row" style="display: none;">
+                <div class="col-md-2" style="text-align: right;">Mode : </div>
+                <div class="col-md-4">
+                    <select id="PAYMODEID" class="form-control" [(ngModel)]="PAYMODEID" (change)="PayModechange()">
+                        <option disabled selected value="undefined">-- Select PayMode --</option>
+                        <option value="{{ obj.PAYMODEID }}" *ngFor="let obj of paymodesist"> {{ obj.PAYMODE }} </option>
+                    </select>
+
+                </div> <br><br>
+            </div> <br>
+
+            <div class="col-md-12 row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="StampReceiptUpload"> Attach Stamp Receipt (PDF) <span style="color: red">*</span>
+                        </label>
+                        <input [(ngModel)]="StampReceiptUpload" type="file" class="form-control p-0" id="StampReceiptUpload"
+                            (change)="onStampReceipt($event)" accept="application/pdf" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="allotmentOrderUpload"> Attach Profarma Inovice (PDF) <span style="color: red">*</span>
+                        </label>
+                        <input [(ngModel)]="allotmentAlienationUpload" type="file" class="form-control p-0" id="allotmentAlienationUpload"
+                            (change)="onInvoiceChange($event)" accept="application/pdf" autocomplete="off" />
+                    </div>
+                </div>
+
+
+                 <!-- </div> 
+        
+        
+         <div class="col-md-12 row"    >  -->
+            
+              <div class="col-md-4" *ngIf="PAYMODEID1">
+                <div class="form-group">
+                  <label for="bankguaranteeUpload"
+                    > Attach Bank Guarantee (PDF) <span style="color: red">*</span>
+                  </label>
+                  <input   [(ngModel)]="bankguaranteeUpload"
+                    type="file"
+                    class="form-control p-0"
+                    id="bankguaranteeUpload"
+                    (change)="onbankguarantee($event)"
+                    accept="application/pdf"
+                    autocomplete="off" />
+                </div>
+              </div> 
+            <!-- </div> 
+ 
+          <div class="col-md-12 row"       > -->
+            <div class="col-md-4" *ngIf="PAYMODEID2" >
+              <div class="form-group">
+                <label for="WayBillUpload"
+                  > Attach Way Bill (PDF) <span style="color: red">*</span>
+                </label>
+                <input   [(ngModel)]="WayBillUpload"
+                  type="file"
+                  class="form-control p-0"
+                  id="WayBillUpload"
+                  (change)="onWayBill($event)" 
+                  accept="application/pdf"
+                  autocomplete="off" />
+              </div>
+            </div> 
+            <!-- </div>
+   
+            <div class="col-md-12 row"    > -->
+              <div class="col-md-4"  *ngIf="PAYMODEID3" >
+                <div class="form-group">
+                  <label for="CalibrationUpload"
+                    > Attach Calibration (PDF) <span style="color: red">*</span>
+                  </label>
+                  <input   [(ngModel)]="CalibrationUpload"
+                    type="file"
+                    class="form-control p-0"
+                    id="CalibrationUpload"
+                    (change)="onCalibration($event)"
+                    accept="application/pdf"
+                    autocomplete="off" />
+                </div>
+              </div> 
+              
+              
+            </div> 
+            <div class="col-md-12 row">
+
+                <div class="col-md-4" style="text-align: right;"> Comments :</div>
+                <div class="col-md-3">
+
+                    <textarea id="comments" class="form-control" [(ngModel)]="comments" placeholder="Please Enter comments" maxlength="200"
+                        style="width: 400px;"   autocomplete="off" rows="2" cols="100"></textarea>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-success btn-sm" id="btnsubmit" style="margin-bottom: -20%;" value="SUBMIT"
+                        (click)="btnSubmitDetails()">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

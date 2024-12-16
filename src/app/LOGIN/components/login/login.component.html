@@ -1,0 +1,200 @@
+<nav class="navbar navbar-expand-lg navbar-dark login-nav">
+  <!-- Navbar brand -->
+  <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+    <img
+      class="brand-logo"
+      src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+      style="width: 50px"
+    />
+    <h6 class="brand-text text-white mb-0 font-weight-bold ml-1">
+      Andhra Pradesh Dairy Development <br />Cooperative Federation
+      Limited(APDDCF)
+    </h6>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<div class="login-container">
+  <div class="login-slider">
+    <div
+      id="carouselExampleSlidesOnly"
+      class="carousel slide carousel-fade"
+      data-ride="carousel"
+      data-interval="5000"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- <img
+            class="d-block w-100"
+            src="https://apddcf.ap.gov.in/cdn/img/slide-1_empty.png"
+          /> -->
+        </div>
+        <div class="carousel-item">
+          <!-- <img
+            class="d-block w-100"
+            src="https://apddcf.ap.gov.in/cdn/img/slide-2_empty.png"
+          /> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="login-body h-100">
+    <div class="row m-0">
+      <div class="col-md-10 mx-auto">
+        <div class="d-md-flex justify-content-end align-items-center h-100">
+          <div class="col-md-4 mt-5 login-form-card">
+            <div class="d-flex text-center mb-md-3 mb-2 login-header">
+              <img
+                src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+                class="mb-2"
+                style="width: 80px"
+              />
+              <h4 class="text-white login-main-title">
+                <br />
+                <span style="color: blue;
+                margin-left: 50px;
+                font-size: larger;">
+                APDDCFL NPDD
+            </span>
+              </h4>
+            </div>
+            <div class="text-center text-white mb-3">
+              <h5  style="color: brown;">Please Enter Your Credentials</h5>
+            </div>
+
+            <div class="px-md-3">
+              <div class="form-group">
+                <div class="input-group">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="tempLoginType"
+                    (change)="loginTypeChange()"
+                  >
+                    <!-- <option value="0"> DISTRICT COLLECTOR </option>
+                    <option value="1">JC LOGIN</option>
+                    <option value="2">DISTRICT COORDINATOR</option>
+                    <option value="3">RIC/MENTOR LOGIN</option>
+                    <option value="4">DA/VA/WEA/WWDS LOGIN</option>
+                    <option value="5">TECHNICIAN LOGIN</option>
+                    <option value="7">AH LOGIN</option>
+                    <option value="6">BANKER LOGIN</option>
+                    <option value="8">
+                      SECRETARY / ASSISTANT SECRETARY LOGIN
+                    </option>
+                    <option value="9">DISTRICT CORE TEAM</option>
+                    <option value="10">DISTRICT HO</option>
+                    <option value="11">DLCO</option>
+                    <option value="12">DCO</option>
+                    <option value="13">GM</option>
+                    <option value="14">COMMISSIONER</option> -->
+                      <!-- <option value="0">PROJECTS</option>  
+                      <option value="1">MANAGER</option> 
+                      <option value="2">ACCOUNTS</option>  -->
+                      <option value="0" style="font-weight: bold;color: black;">Select Department</option>
+                      <option value="60" style="color: black;">Accounts Department</option>
+                      <option value="10" style="color: black;">Admin</option>
+                      <option value="40" style="color: black;">Civil Department</option>
+                      <option value="80" style="color: black;">District Incharge</option> 
+                      <option value="50" style="color: black;">Mechanical Department</option>
+                      <option value="20" style="color: black;">Projects</option>
+                      <option value="30" style="color: black;">Quality Department</option>  
+                      <option value="70" style="color: black;">Vendors</option> 
+                   
+
+
+                      
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </div>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Username"
+                    maxlength="15"
+                    [(ngModel)]="username"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-lock"></i>
+                    </div>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter Password"
+                    maxlength="15"
+                    [(ngModel)]="password"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group form-row align-items-center">
+                <div
+                  class="
+                    col-sm-7
+                    d-flex
+                    justify-content-md-between
+                    align-items-center
+                  "
+                >
+                  <img height="40" width="128" [src]="captchaEncoded" />
+                  <a
+                    class="btn bg-primary btn-round mt-1"
+                    (click)="refreshCaptcha()"
+                    ><i class="fa fa-repeat text-white" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Captcha"
+                    [(ngModel)]="captchaData"
+                    name="captcha"
+                    autocomplete="off"
+                    maxlength="4"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-12 text-center px-0 mt-5">
+                <button
+                  type="submit"
+                  class="btn btn-md btn-block btn-success login-btn"
+                  (click)="btnLogin()"
+                >
+                  <i class="fas fa-sign-in-alt"></i> Signin
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

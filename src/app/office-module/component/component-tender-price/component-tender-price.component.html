@@ -1,0 +1,247 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">COMPONENT SANCTIONED PRICE     </h5>
+    </div>
+    <div class="card-body">
+
+
+      <div class="col-md-12 row" >
+      <div class="col-md-2"   style="text-align: right;">
+        <label for="UninonId">  Financial Year
+          <span style="color: red">*</span></label>
+      </div> 
+    <div class="form-group col-md-2" >
+     
+    <select id="fyID"  class="form-control" [(ngModel)]="fyID"     (change)="fyIDChange();">                
+      <option disabled selected value="undefined">-- Financial Year --</option>
+      <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+    </select>
+      </div>
+
+
+
+      <div class="col-md-1"   style="text-align: right;">
+        <label for="UninonId">Type
+          <span style="color: red">*</span></label>
+      </div> 
+    <div class="form-group col-md-2" >
+     
+    <select id="ttID"  class="form-control" [(ngModel)]="tID"      >                
+      <option disabled selected value="undefined">--  Type --</option>
+      <option  value="{{ obj.ID }}"   *ngFor="let obj of tenderdata"    > {{ obj.PAYMODE }}  </option>
+    </select>
+      </div>
+
+
+      <div class="col-md-2"   style="text-align: right;">
+        <label for="UninonId">Tender Type 
+          <span style="color: red">*</span></label>
+      </div> 
+    <div class="form-group col-md-2" >
+     
+    <select id="ttID"  class="form-control" [(ngModel)]="ttID"      >                
+      <option disabled selected value="undefined">--  Tender Type --</option>
+      <option  value="{{ obj.ID }}"   *ngFor="let obj of tendertypedata"    > {{ obj.PAYMODE }}  </option>
+    </select>
+      </div>
+
+
+     </div>
+
+        <div class="col-md-12 row" >
+
+         
+
+
+            <!-- <div class="col-md-1" style="text-align: right;margin-left: 40px;" onclick="handleChange1()" >
+            <input type="radio" id="COMPONENT" name="Component" value="COMPONENT" [checked]="COMPONENTisChecked" (change)="handleChange($event)"   >
+          </div> 
+            <div class="col-md-1"      style="margin-top: 5px;" >
+            <label><span> Component</span>
+          </label>
+             
+                </div> 
+
+
+
+
+
+                <div class="col-md-1" style="text-align: right;margin-left: 40px;">
+                  <input type="radio" name="Component" value="SUBCOMPONENT" [checked]="SUBCOMPONENTisChecked" (change)="handleChange($event)">  
+                </div> 
+                <div class="col-md-1"      style="margin-top: 5px;" >
+                  <label><span> SubComponent</span>
+                </label>
+              </div>  -->
+              
+                <div class="col-md-2" style="text-align: right;margin-top: 11px;" >
+                  <label for="UninonId">Component Name
+                    <span style="color: red">*</span></label>
+                </div> 
+               
+            <div class="form-group col-md-5" style="margin-top: 11px;">
+             
+              <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" (change)="comptypeChangeevent();"  >                
+                <option disabled selected value="undefined">-- SELECT COMPONENT --</option>
+                <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+              </select>
+            </div>
+           
+            <div class="col-md-2" >
+              <label><span> Component/SubComponent</span>
+            </label>
+          </div> 
+          <div class="form-group col-md-2"  >
+               
+            <select id="comptype"  class="form-control" [(ngModel)]="comptype"   (change)="comptypeChange();"  >                
+              <!-- <option   disabled selected value="undefined">-- SELECT Component/SubComponent --</option> -->
+              <option      selected value="1">--  Component --</option>
+              <option     value="2">--  SubComponent --</option>
+             
+            </select>
+          </div>
+
+        </div>
+
+       
+        <div class="col-md-12 row" >
+            <div class="col-md-12 table-responsive"  [hidden]="checkList?.length < 1">  
+                <!--  -->
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger" data-page-length='25' >
+                <thead class="bg-success text-white">
+                  <tr >
+                    <th>S.No</th>
+                    <th>Component ID</th>
+                    <th>Component Name</th> 
+                    <!-- <th>Description</th> -->
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Ref BudgetID</th>
+                    <!--Price <th>Total</th> -->
+
+                    <!-- <th>ACTION</th> -->
+                  </tr>
+                </thead>
+                <!-- *ngIf="checkList?.length > 0"  -->
+                <tbody >
+                  <tr *ngFor="let obj of checkList; let i = index" >
+                    <td >{{ i + 1 }}</td>
+                    <td style="text-align: center;" name="{{obj.COMPID}}"  id="{{ i + 1 }}">{{ obj.COMPID }}</td>
+                    <td style="text-align: left;">{{ obj.COMPNAME }}</td>
+
+                    <!-- <td style="text-align: left;">{{ obj.DESCRIPTION }}</td> -->
+                    <td style="text-align: right;">
+                        <!-- {{ obj.QTY }} -->
+                        <input type="text" style="text-align: right;" name="txt_{{obj.COMPID}}" id="txtqty_{{ i + 1 }}" value="{{ obj.QTY }}" />
+                    </td>
+                    <td style="text-align: right;">
+                        <!-- {{ obj.PRICE }} -->
+                        <input type="text" style="text-align: right;" name="txt_{{obj.COMPID}}" id="txtprice_{{ i + 1 }}" value="{{ obj.PRICE }}" />
+                    </td>
+                   
+                    <td style="text-align: right;width:50px;"   > 
+                      <input type="text" style="text-align: right;width:50px;" name="txt_{{obj.COMPID}}" id="bid_{{ i + 1 }}" readonly value="{{ obj.BID }}" />
+                    </td>
+                    <!-- <td style="text-align: center;"> 
+                      <input type="checkbox" (change)="onSelectionChange(obj.COMPID)"  
+                      name="checkbox_{{obj.COMPID}}" id="checkbox_{{obj.COMPID}}"
+                      value="0,{{ obj.COMPID }}"     />
+
+                       
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table> 
+       
+          </div>
+      
+        </div>
+
+        <div class="col-md-12"  style="text-align: right;">
+            <div class="popup-footer justify-content-center"  >
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  (click)="btnSubmitDetails()"
+                >
+               
+                  
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-12 row" >
+              <div class="col-md-12 table-responsive"  [hidden]="priceList?.length < 1">  
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger" data-page-length='25' >
+                  <thead class="bg-success text-white">
+                    <tr   >
+                      <th   class="tableheader_color"  >S.No</th> 
+                      <!-- <th class="tableheader_color" >ID</th> -->
+
+                      
+                      <th class="tableheader_color" >FINANCIAL YEAR</th>
+                      <th class="tableheader_color" >TYPE</th>
+                      <th class="tableheader_color" >TENDER TYPE</th>
+                      
+
+                      <th class="tableheader_color" >Component Name</th>  
+                      <th class="tableheader_color" >Quantity</th>
+                      <th class="tableheader_color" >Price</th>
+                      <th class="tableheader_color" >Delete</th>                       
+                    </tr>
+                    <tr >             
+                      <th  class="tableheader_color"  >(1)</th>
+                      <th  class="tableheader_color" >(2)</th>
+                      <th  class="tableheader_color" >(3)</th>
+                      <th  class="tableheader_color" >(4)</th>
+                      <th  class="tableheader_color" >(5)</th>
+                       <th  class="tableheader_color" >(6)</th> 
+                       <th  class="tableheader_color" >(7)</th> 
+                       <th  class="tableheader_color" >(8)</th> 
+                    </tr> 
+
+                  </thead>
+                   
+                  <tbody >
+                    <tr *ngFor="let obj of priceList; let i = index" >
+                      <td >{{ i + 1 }}</td>
+                      <!-- <td style="text-align: center;" name="{{obj.COMPID}}"  id="{{ i + 1 }}">{{ obj.ID }}</td> -->
+                     
+                     
+                      
+                      
+                       
+                      <td style="text-align: left;">{{ obj.FINANCIAL_YEAR }}</td>  
+                      <td style="text-align: left;">{{ obj.TYPE }}</td>  
+                      <td style="text-align: left;">{{ obj.TENDER_TYPE }}</td>  
+                      
+
+                      <td style="text-align: left;">{{ obj.COMPNAME }}</td>   
+                      <td style="text-align: right;"> {{ obj.QTY }}    </td>
+                      <td style="text-align: right;"> {{ obj.PRICE }}   </td> 
+                      <td><input type="button" class="fa fa-trash btn btn-danger" (click)="Deletepacket(obj.ID);" value="Remove"/></td>
+    
+                    </tr>
+                  </tbody>
+                </table> 
+         
+            </div>
+        
+          </div>
+
+
+    </div>
+
+</div>
+<style>
+table { border-collapse: separate; }
+
+
+</style>

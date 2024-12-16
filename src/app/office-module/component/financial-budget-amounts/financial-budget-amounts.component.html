@@ -1,0 +1,94 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Financial Budget Amounts</h5>
+    </div>
+
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select id="ComonentId" class="form-control" [(ngModel)]="ComonentId">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{ obj.COMPID }}" *ngFor="let obj of componentListdata"> {{ obj.COMPNAME }} </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 row">
+            <div class="col-md-3"></div>
+            <div class="col-md-8 table-responsive">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S No</th>
+                            <th class="tableheader_color">District Code</th>
+                            <th class="tableheader_color">District</th>
+                            <th class="tableheader_color">1 Year</th>
+                            <th class="tableheader_color">2 Year</th>
+                            <th class="tableheader_color">3 Year</th>
+                            <th class="tableheader_color">Action</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of DitsData let i=index;">
+                            <td class="number_align" style="width: 50px;">{{i+1}}</td>
+                            <td class="number_align" style="width: 100px;">{{obj.DISTRICTID}}</td>
+                            <td class="text_alignleft">{{obj.DISTRICTNAME}}</td>
+                            <td style="width: 100px;">
+                                <div class="form-group">
+                                    <input type="text" id="F_{{i}}" class="form-control number_align"  [disabled]='toggleButton'  [(ngModel)]="obj.FirstYear">
+                                </div>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="form-group">
+                                    <input type="text" id="S_{{i}}" class="form-control number_align"  [disabled]='toggleButton'  [(ngModel)]="obj.SecondYear" />
+                                </div>
+                            </td>
+                            <td style="width: 100px;">
+                                <div class="form-group">
+                                    <input type="text" id="T_{{i}}" class="form-control number_align"  [disabled]='toggleButton'  [(ngModel)]="obj.ThirdYear" />
+                                </div>
+                            </td>
+
+
+                            <td style="width: 100px;">
+                                <div class="form-group">
+                                    <button class="btn btn-success" (click)="FinancialBudgetSub(obj)"  >Submit</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+         
+    </div>
+</div>
+
+<script>
+    function myFunction(id) {
+        alert(id);
+        document.getElementById("F_"+id).readOnly;
+      //document.getElementById("demo").innerHTML = x;
+
+       document.getElementById("S_"+id).readOnly;
+     // document.getElementById("demo").innerHTML = y;
+
+        document.getElementById("T_"+id).readOnly;
+     // document.getElementById("demo").innerHTML = z;
+
+    }
+    </script>   

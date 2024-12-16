@@ -1,0 +1,64 @@
+<div class="card">
+    <div style="text-align: center;">
+        <h5><u>FINANCIAL YEAR BUDGET REPORT</u></h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12" [hidden]="DataList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+        <div class="col-md-12 row" [hidden]="DataList?.length < 1"> 
+            <div class="col-md-12 table-responsive">
+
+
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">From Financial Year</th>
+                            <th class="borderwhitecolo">To Financial Year</th>
+                            <th class="borderwhitecolo">Component Name</th>
+                            <th class="borderwhitecolo">Sub Component Name</th>
+                            <th class="borderwhitecolo">Units</th>
+                            <th class="borderwhitecolo">Amount</th> 
+
+                            <th class="borderwhitecolo">Process Date</th>
+                            <th class="borderwhitecolo">Inserted Date</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th> 
+                            <th class="borderwhitecolo">(4)</th>
+                            <th class="borderwhitecolo">(5)</th>
+                            <th class="borderwhitecolo">(6)</th>
+                            <th class="borderwhitecolo">(7)</th>
+
+                            <th class="borderwhitecolo">(8)</th>
+                            <th class="borderwhitecolo">(9)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders" *ngIf="DataList?.length > 0">
+                        <tr *ngFor="let obj of DataList let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="number_align">{{obj.FROM_FINANCIAL_YEAR}}</td>
+                            <td class="number_align">{{obj.TO_FINANCIAL_YEAR}}</td>
+                            <td class="text_alignleft">{{obj.COMPNAME}}</td>
+                            <td class="text_alignleft">{{obj.SUB_COMPONENT_NAME}}</td>
+                            <td class="number_align">{{obj.BUDGET_UNITS}}</td>
+                            <td class="number_align">{{obj.BUDGET_AMOUNT}}</td>
+
+                            <td class="number_align">{{obj.TRANS_DATE}}</td>
+                            <td class="number_align">{{obj.INSERTED_ON}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

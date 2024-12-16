@@ -1,0 +1,118 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">Component Wise Tender Process  Start  </h5>
+    </div>
+    <div class="card-body">
+
+
+        <div class="col-md-12 row" >
+
+            <!-- <div class="col-md-3">
+                <div class="form-group">
+                  <label  >District Name
+                    <span style="color: red">*</span></label> 
+                  <select   aria-sort="ascending"  
+                  id="RBKDDSelected"
+                  class="form-control"
+                  [(ngModel)]="RBKDDSelected"    (change)="RBKDDChange();" >             
+                  <option class="dropdown-item" disabled selected value="undefined">-- SELECT DISTRICT--</option>
+                  <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                    {{ obj.DISTRICTNAME }} 
+                  </option>
+                </select> 
+                </div> 
+            </div> -->
+            
+              <div class="col-md-4" style="text-align: right;">
+                <label for="UninonId">Component Name
+                  <span style="color: red">*</span></label>
+              </div>  
+           
+            <div class="form-group col-md-6">
+             
+              <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" (change)="RBKDDChange();" >                
+                <option disabled selected value="undefined">-- SELECT COMPONENT --</option>
+                <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+              </select>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-12 row">
+            <div class="col-md-12 table-responsive"  [hidden]="checkList?.length < 1">  
+                <!-- [hidden]="checkList?.length < 1" -->
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger" data-page-length='25' >
+                <thead class="bg-success text-white">
+                  <tr >
+                    <th>S.No</th> 
+                    <!-- <th>Component Id</th> -->
+                    <th>Component Name</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price Amount</th>
+                    <!-- <th>Total</th> -->
+
+                    <th>Action</th>
+                  </tr>
+                  <tr >             
+                    <th  class="tableheader_color"  >(1)</th>
+                    <th  class="tableheader_color" >(2)</th>
+                    <th  class="tableheader_color" >(3)</th>
+                    <th  class="tableheader_color" >(4)</th>
+                    <th  class="tableheader_color" >(5)</th>
+                    <th  class="tableheader_color" >(6)</th>
+                    
+                  </tr> 
+
+                </thead>
+                <tbody *ngIf="checkList?.length > 0" >
+                  <tr *ngFor="let obj of checkList; let i = index" >
+                    <td >{{ i + 1 }}</td>
+                    <!-- <td style="text-align: center;">{{ obj.COMPID }}</td> -->
+                    <td style="text-align: left;">{{ obj.COMPNAME }}</td>
+
+                    <td style="text-align: left;">{{ obj.DESCRIPTION }}</td>
+                    <td style="text-align: right;">{{ obj.QTY }}</td>
+                    <td style="text-align: right;">{{ obj.PRICE }}</td>
+                    <!-- <td style="text-align: right;">{{ obj.QTY*obj.PRICE }}</td> -->
+
+                    <td style="text-align: center;"> 
+                      <input type="checkbox" (change)="onSelectionChange(obj.COMPID)"  
+                      name="checkbox_{{obj.COMPID}}" id="checkbox_{{obj.COMPID}}"
+                      value="0,{{ obj.COMPID }}"     />
+
+                       
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+       
+          </div>
+      
+        </div>
+
+        <div class="col-md-12"  style="text-align: right;">
+            <div class="popup-footer justify-content-center"  >
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  (click)="btnSubmitDetails()" 
+                >
+                  
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+
+
+
+    </div>
+
+</div>
+<style>
+table { border-collapse: separate; }
+
+
+</style>

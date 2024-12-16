@@ -1,0 +1,418 @@
+<!-- <app-common-dynamic-menu>
+  
+</app-common-dynamic-menu> -->
+
+<!-- STATIC Dynamic START-->
+<!-- <app-common-dynamic-menu></app-common-dynamic-menu>  -->
+<!-- STATIC Dynamic END-->
+
+<!-- STATIC MENU START-->
+
+ <!--Navbar-->
+ <nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient headstick">
+    <!-- Navbar brand -->
+    <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+      <img
+        class="brand-logo"
+        src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+        style="width: 50px"
+      />
+      <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+        Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+      </h5>
+    </a>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item text-right">
+          <a
+            class="navbar-brand d-flex align-items-center"
+            style="cursor: pointer"
+          >
+          <img
+          class="brand-logo"
+          src="https://apddcf.ap.gov.in/cdn/img/CM.png"
+          style="width: 50px"
+        />
+        <div class="text-center">
+          <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+            Sri Nara Chandrababu Naidu
+          </h6>
+              <p style="font-size: 12px; margin-bottom: 0; color: #fff">
+                Hon’ble Chief Minister, <br />
+                Andhra Pradesh
+              </p>
+            </div>  
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Collapsible content -->
+  </nav>
+  <!--/.Navbar-->
+   <!--Menu-Navbar -->
+   <nav
+   class="
+     menu-navbar
+     navbar navbar-expand-lg navbar-dark
+     primary-color-dark
+     py-md-0
+     text-white     menustick
+     "
+     style="margin-bottom: 50px;"
+ 
+  >
+  
+  <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+  <button
+  class="navbar-toggler"
+  type="button"
+  data-toggle="collapse"
+  data-target="#navbarSupportedContent-333"
+  aria-controls="navbarSupportedContent-333"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+  >
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <!-- menu 1 design start  *ngIf="menu1list?.length > 0"-->
+  <div >
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu </a>
+                     
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                             
+<!--                              
+                              <div  *ngFor="let obj of menu1list; let i = index"> 
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  
+                            {{ obj.DISPLAY_NAME}}  </a> 
+                            </div> --> 
+ <a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+routerLink="FirmDetails" > <span style="font-size: x-small;">  VR1-</span> Firm Registration  </a> 
+<a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+routerLink="FirmSecuirtyDeposites" >  <span style="font-size: x-small;">  VR2-</span>Firm Security Deposite  </a>
+<a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+routerLink="InvoiceDetails" >  <span style="font-size: x-small;">  VR3-</span>Invoice Details  </a>
+<a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+routerLink="ProformaInvoice" >  <span style="font-size: x-small;">  VR4-</span>Proforma Invoice Details  </a>
+
+
+
+                        </div>  
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 1 design end -->
+  
+  <!-- menu 2 design start -->
+  <div *ngIf="menu2list?.length > 0">
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu2 </a>
+                        
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div  *ngFor="let obj of menu2list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 2 design end -->
+  
+  <!-- menu 3 design start -->
+  <div *ngIf="menu3list?.length > 0">
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu3 </a>
+                       
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                          
+                              <div  *ngFor="let obj of menu3list; let i = index">
+                                    <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 3 design end -->
+  
+  <!-- menu 4 design start -->
+  <div *ngIf="menu4list?.length > 0">
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu4 </a>
+                      
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div  *ngFor="let obj of menu4list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 4 design end -->
+
+   <!-- menu 5 design start -->
+   <div *ngIf="menu5list?.length > 0">
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu5 </a>
+                      
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div  *ngFor="let obj of menu5list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 4 design end -->
+  
+  
+  
+  
+  <!-- Report 1 design start *ngIf="Report1list?.length > 0"-->
+  <div >
+    <div >
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Report </a>
+                        
+                             <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                            <!--  <div *ngFor="let obj of Report1list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div> --> 
+                        <a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+                        routerLink="FirmDetailsReport" > <span style="font-size: x-small;">  VR11-</span> Firm Details Report  </a> 
+
+                        <a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+                        routerLink="FirmSecuDepositFromTodateReport" > <span style="font-size: x-small;">  VR12-</span>  Firm Security Deposite From To Date  Report  </a> 
+
+                        <a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+                        routerLink="InvoiceDocumentReport" > <span style="font-size: x-small;">  VR13-</span> Invoice Documents Report  </a> 
+
+                        <a  class="dropdown-item"  routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }"
+                        routerLink="InvoiceReports" > <span style="font-size: x-small;">  VR14-</span> Invoice Report  </a> 
+
+
+                         
+                      </div>
+  
+  
+
+
+
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- Report 1 design end -->
+  
+  
+  <!-- Report 2 design start -->
+  <div *ngIf="Report2list?.length > 0">
+    <div >
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Report 2</a>
+                        
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div *ngFor="let obj of Report2list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- Report 2 design end -->
+  
+  
+  <ul class="navbar-nav ml-auto nav-flex-icons">
+    <li class="nav-item dropdown" routerLinkActive="active">
+      <a
+        class="nav-link dropdown-toggle d-flex align-items-center"
+        id="navbarDropdownMenuLink-333"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="cursor: pointer"
+      >
+        <h6 class="mb-0 mr-1">
+          Welcome <b>{{ userName }}</b>
+        </h6>
+        <i class="fas fa-user"></i>
+      </a>
+      <div
+        class="dropdown-menu dropdown-menu-right dropdown-primary"
+        aria-labelledby="navbarDropdownMenuLink-333"
+      >
+        <!-- <a class="dropdown-item" href="#" routerLink="">Profile</a> -->
+        <!-- <a
+        class="dropdown-item"
+        style="cursor: pointer"
+        (click)="btnForgetPassword()"
+      >
+          <i class="fas fa-key"></i> Forget Password
+        </a> -->
+        <a
+        class="dropdown-item"
+        style="cursor: pointer"
+        routerLink="PasswordUpdate"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="btnForgetPassword()"
+        
+      >
+        <i class="fas fa-key"></i> Update Password
+      </a>
+      
+        <a class="dropdown-item" style="cursor: pointer" (click)="btnLogout()"
+        ><i class="fas fa-sign-out-alt"></i> Logout</a
+      >
+        <hr class="my-1" />
+        <a class="dropdown-item text-center" style="cursor: pointer">
+          <span
+            >Last logged in: <br />
+            <b class="text-danger">{{ lastLoginTime }}</b></span
+          >
+        </a>
+      </div>
+    </li>
+  </ul>
+  
+  </nav>
+  <!--/.Menu-Navbar -->
+  
+  <!--Main Content -->
+  <div id="page-container">
+  <div id="content-wrap">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-11 mx-auto"  style="margin-top: 105px;margin-bottom: 100px;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <!--Footer Content -->
+  <footer class="page-footer font-small blue footerstick">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center pt-3">
+      <a style="cursor: pointer; color: #fff">
+        <img
+          src="https://apddcf.ap.gov.in/cdn/img/apddcf-circle.png"
+          style="width: 30px"
+        />
+        Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+      </a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!--/.Footer-Content -->
+  </div>
+  <!--/.Main-Content -->
+  
+  
+
+<!-- STATIC MENU END-->

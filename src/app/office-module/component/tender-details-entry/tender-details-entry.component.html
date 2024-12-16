@@ -1,0 +1,355 @@
+<div class="card" >
+    <div class="card-header p-2">
+       
+      <h5 class="mb-0" style="color: brown;text-align: center; ">TENDER ENTRY DETAILS  </h5>
+    </div>
+    <div class="card-body"> 
+
+        <div class="col-md-12 row" > 
+            <div class="col-md-2">
+                <div class="form-group">
+                  <label for="tenderdate" >Tender Date <span style="color: red">*</span></label> 
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                  <label for="tenderdate" >Tender Notice number 
+                    <span style="color: red">*</span></label> 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group" style="text-align: center;">
+                    <label for="tenderdate" ><u><b> Bid Document Download </b>  </u></label> 
+                    </div> 
+            </div>
+        </div>
+
+        <div class="col-md-12 row" >  
+            <div class="col-md-2">
+                <div class="form-group"> 
+                    <app-date-picker
+                    [PlaceHolder]="'Select Tender Date'"
+                    [(selectedDate)]="tenderdate"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    ></app-date-picker>
+                </div>
+            </div>  
+            <div class="col-md-2">
+                <div class="form-group"> 
+            <input
+            id="tendernoticeno"
+            type="text"
+            class="form-control"
+            [(ngModel)]="tendernoticeno" onkeypress="return  (  (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)|| (event.charCode ==45) ) "
+            placeholder="Please Enter Tender Notice number"    
+            (change)="tendernoticenochange()"    
+            autocomplete="off" />   
+            <!-- maxlength="25"  style="width: 190px;" -->
+        </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                  
+                </div>
+            </div>
+
+            
+                 
+
+                    <div class="col-md-2">
+                    <div class="form-group" style="text-align: right;">
+                        <label for="tenderdate" >Start Date & Time:</label> 
+                        </div>  
+                    </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                    <app-date-picker
+                    [PlaceHolder]="'Select Tender Date'"
+                    [(selectedDate)]="biddocstartdate"
+                    [minDate]="minDate1"
+                    [maxDate]="maxDate1"
+                    ></app-date-picker>
+                    </div>
+                    </div> 
+
+                    <div class="col-md-2">
+                        <div class="form-group"  >
+                            
+                      <input  
+                    id="tenderendtime"
+                    type="time"
+                    class="form-control"
+                    [(ngModel)]="tenderstarttime"
+                    placeholder="Please Enter Tender end Time"
+                   
+                    autocomplete="off"
+                  />
+                    </div> 
+                  </div>
+                 
+              
+        </div> 
+        <div class="col-md-12 row" > 
+
+
+            <div class="col-md-2">
+            <div class="form-group">
+            <label for="tenderdate" >  Nature of Work 
+            <span style="color: red">*</span></label> 
+            </div>
+            </div>
+
+            <div class="col-md-4">
+            <div class="form-group">
+            <input
+            id="NatureofWork"
+            type="text"
+            class="form-control"
+            [(ngModel)]="NatureofWork" onkeypress="return  (  (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)|| (event.charCode ==45) ) "
+            placeholder="Please Enter Nature of Work "             
+            autocomplete="off" />   
+             
+
+            </div>
+            </div> 
+
+            <div class="col-md-2">
+            <div class="form-group"  style="text-align: right;">
+            <label for="tenderdate" >End Date & Time</label> 
+            </div>
+            </div>
+
+            <div class="col-md-2">
+            <div class="form-group">
+            <app-date-picker
+            [PlaceHolder]="'Select Tender End Date'"
+            [(selectedDate)]="biddocendate"
+            [minDate]="minDate2"
+            [maxDate]="maxDate2"
+            ></app-date-picker>
+            </div>
+        </div>
+
+            <div class="col-md-2">
+            <div class="form-group"> 
+            <input
+            id="tenderendtime"
+            type="time"
+            class="form-control"
+            [(ngModel)]="tenderendtime"
+            placeholder="Please Enter Tender end Time"
+            autocomplete="off"   />
+
+
+            </div> 
+            </div>
+            
+
+
+         </div>
+ 
+        
+        
+
+
+         <div class="col-md-12 row" > 
+          <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <div class="form-group">
+                  <label for="UninonId">Mode Of Payment
+                    <span style="color: red">*</span></label> 
+                  <select id="paymentmode"  class="form-control" [(ngModel)]="paymentmode"  >                
+                    <option disabled selected value="undefined">-- Select  Mode--</option>
+                    <option  value="{{ obj.ID }}"   *ngFor="let obj of paymentdata"    > {{ obj.PAYMODE }}  </option>
+                  </select>  
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                    <div class="form-group">
+                    <label for="sddate" >Date <span style="color: red">*</span></label> 
+
+                        <app-date-picker
+                        [PlaceHolder]="'Select Payment Date'"
+                        [(selectedDate)]="paydate"
+                        [minDate]="minDate3"
+                        [maxDate]="maxDate3"></app-date-picker>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="UninonId">Online/Cheque/DD/BG No
+                        <span style="color: red">*</span></label>
+                        <input
+                        id="paymentdetailsNo"
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="paymentdetailsNo" onkeypress="return  (  (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)|| (event.charCode ==45) ) "
+                        placeholder="Please Enter Txn/Bank/Cheque No"  
+                        
+                        autocomplete="off" />                     
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="UninonId">Deposit Amount
+                        <span style="color: red">*</span></label>
+                        <input
+                        id="deptamount"
+                        type="text"
+                        class="form-control"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                        [(ngModel)]="deptamount"
+                        placeholder="Deposite Amount"
+                        maxlength="10"  style="width: 190px;"
+                        autocomplete="off" />                     
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                  <button
+               type="button"
+               class="btn btn-success btn-sm"
+                (click)="btnAddDetails()">
+             
+               Add
+             </button>
+            </div>
+        </div>
+
+        </div>
+
+
+       
+         
+        <div class="col-md-12 row" > 
+            <div class="col-md-12"> 
+                <div class="form-group"><hr style="background-color: brown;height: 2px;" /> 
+                </div>  
+           </div>
+         </div>
+        
+ 
+
+
+        <div class="col-md-12 row" > 
+           <div class="col-md-4"  >
+            <div class="form-group">
+            <label for="UninonId">Firm Name
+              <span style="color: red">*</span></label>
+            <!-- </div>
+          </div> 
+          <div class="col-md-3">
+            <div class="form-group"> -->
+            <select id="FIRMID"  class="form-control" [(ngModel)]="FIRMID"  >                
+              <option disabled selected value="undefined">-- Select Firm Name--</option>
+              <option  value="{{ obj.FIRMID }}"   *ngFor="let obj of formdata"    > {{ obj.FIRMNAME }}  </option>
+            </select> 
+            </div>
+        </div>
+      
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="UninonId">Quote Price
+              <span style="color: red">*</span></label>
+              <input
+              id="quotepriceamount"
+              type="text"
+              class="form-control"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+              [(ngModel)]="quotepriceamount"
+              placeholder="Quote Price Amount"
+              maxlength="10"  style="width: 190px;"
+              autocomplete="off" />                     
+          </div>
+        </div>
+      
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="UninonId">Rating
+              <span style="color: red">*</span></label> 
+              <select id="rating"  class="form-control" [(ngModel)]="rating"  >                
+                <option disabled selected value="undefined">-- Select Rating--</option>
+                <option  value="{{ obj.ID }}"   *ngFor="let obj of ratinglist"    > {{ obj.PAYMODE }}  </option>
+              </select>  
+          </div>
+        </div>
+
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="btnsubmitDetails()">
+              SUBMIT
+            </button>
+          </div>
+        </div>
+
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btnclearDetails btn-sm" style="font-size: larger;"
+              (click)="btnclearDetails()">
+              Clear /<br /> New Tender
+            </button>
+          </div>
+        </div>      
+      </div>
+
+
+      <div class="col-md-12 row" > 
+        <div class="col-md-12"> 
+            <div class="form-group"><hr style="background-color: brown;height: 2px;" /> 
+            </div>  
+       </div>
+     </div>
+
+
+     <div class="col-md-12 row"   >  
+      
+      <div class="table-responsive"  >
+        <table class="table table-striped ah-table text-center table-bordered" datatable [dtOptions]="dtOptions"  
+        [dtTrigger]="dtTrigger" data-page-length='25' >
+        <thead class="bg-success text-white">
+                  <tr  >
+                      <th>ID</th>
+                        <th>PAYMENT MODE </th>
+                        <th>DATE </th>
+                        <th>DETAILS</th>  
+                        <th>AMOUNT </th>  
+                  </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let objd of paymentList; let i = index">
+                      <td>{{objd.PAYMENTMODEID}}</td>
+                      <td><b>{{objd.PAYMODE}}</b></td>
+                      <td><b>{{objd.PAYMENTDATE}}</b></td>
+                      <td><b>{{objd.PAYMENTDETAILS}}</b></td>
+                      <td><b>{{objd.PAYMENTAMOUNT}}</b></td> 
+
+                  </tr>
+              </tbody>
+          </table>
+
+      </div>
+    
+    
+    </div>
+     </div> 
+ </div>

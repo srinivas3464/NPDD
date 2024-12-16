@@ -1,0 +1,122 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; "> Budget Slip Report </h5>
+    </div>
+
+    <div class="col-md-2" > <input type="button"  style="display: none;"
+      class="btn btn-success btn-sm" id="btnsubmit" value="SUBMIT1"  (click)="downloadAsPDFgrid()">  </div>
+
+    <div class="card-body" > 
+     
+
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+    
+        </div>
+            <div class="col-md-12 table-responsive" [hidden]="checkList?.length < 1" >  
+
+<h1 style="text-align: center;display: none;">Budget Slip Report</h1> 
+                   
+                      <table
+                        class="table table-striped ah-table text-center"
+                        datatable
+                        [dtOptions]="dtOptions"
+                        [dtTrigger]="dtTrigger"
+                      >
+                        <thead class="bg-success text-white">
+                          <tr>
+
+
+                  <tr   class="thclr">
+                    <th  class="thclr">S.No</th>
+                    <th  class="thclr">Budget SlNo</th>
+                    <th  class="thclr">Transaction Date</th>
+                    <th  class="thclr"  style="width: 600px;">Component Name</th>
+                    <th   class="thclr"style="width: 600px;">SubComponent Name</th>
+                    <th  class="thclr">Sanction Year</th>
+                    <th  class="thclr">District Name</th>
+                    <th  class="thclr">Section</th>  
+                    <th  class="thclr"> Budget Sanction Amount</th> 
+                    <th  class="thclr"> Add Budget Amount</th> 
+                    <th  class="thclr"> Expe inc</th> 
+                    <th  class="thclr"> Present Amount Bill</th> 
+                    <th  class="thclr"> Progressive Exp</th> 
+                    <th  class="thclr"> Balance After Exp</th> 
+                    <th  class="thclr"> Budget Provision</th> 
+                    <th  class="thclr"> Admin Approved Status</th> 
+                    <th  class="thclr"> Doc Status</th> 
+                    <th  class="thclr">Mode of work</th> 
+                    <th  class="thclr">PDF Download</th>  
+                  </tr> 
+                  <tr  class="thclr" >             
+                    <th   class="thclr">(1)</th>
+                    <th   class="thclr">(2)</th>
+                    <th   class="thclr">(3)</th>
+                    <th   class="thclr">(4)</th>
+                    <th   class="thclr">(5)</th>
+                    <th   class="thclr">(6)</th>
+                    <th   class="thclr">(7)</th>
+                    <th   class="thclr">(8)</th>
+                    <th   class="thclr">(9)</th>
+                    <th   class="thclr">(10)</th>
+                    <th   class="thclr">(11)</th>
+                    <th   class="thclr">(12)</th>
+                    <th  class="thclr" >(13)</th>
+                    <th   class="thclr">(14)</th>
+                    <th  class="thclr" >(15)</th>
+                    <th   class="thclr">(16)</th>
+                    <th   class="thclr">(17)</th>
+                    <th   class="thclr">(18)</th>
+                    <th   class="thclr">(19)</th>
+                  </tr>
+
+                </thead> 
+
+                    <tbody *ngIf="checkList?.length > 0">
+                      <tr *ngFor="let obj of checkList; let i = index">
+
+                    <td >{{ i + 1 }}</td>
+                    <td  class="numbrs">{{ obj.BUDSNO }}</td>
+                    <td  class="numbrs">{{ obj.TXNDATE }}</td>
+                    <td class="txtleft">{{ obj.COMPNAME }}</td>
+                    <td class="txtleft">{{ obj.SUBCOMPNAME }}</td>
+                    <td class="txtleft">{{ obj.YEARS }}</td>
+                    <td class="txtleft">{{ obj.DISTRICTNAME }}</td>
+                    <td class="txtleft">{{ obj.SECTION }}</td>
+
+                    <td  class="numbrs">{{ obj.BUDGETAMOUNT}}</td>
+                    <td class="numbrs">{{ obj.ADDLBUDAMOUNT}}</td>
+                    <td  class="numbrs">{{ obj.EXPINC}}</td>
+                    <td  class="numbrs">{{obj.PRESENTAMTBILL}}</td>
+                    <td  class="numbrs">{{ obj.PROGEXP}}</td>
+                    <td  class="numbrs">{{ obj.BALANCEAFTEREXP}}</td> 
+                    <td  class="numbrs">{{ obj.BUDPROVISSION}}</td>
+                    <td  class="numbrs">{{ obj.ADMAPPROVEDSTATUS}}</td>
+                    <td  class="numbrs">{{ obj.DOCUSTATUS}}</td>
+                    <td  class="numbrs">{{obj.MODEOFWORKAWARDSHIP}}</td>
+ 
+                    <td>  
+                      
+                        <input type="button" class="fa fa-trash btn btn-info" (click)="DOWNLOADBUDGET(obj.BUDID);" value="Download"/>  
+                   </td>
+                    
+                  </tr>
+                </tbody>
+              </table> 
+       
+          </div>
+      
+        </div>
+
+    </div>
+
+</div>
+  <style>
+table { border-collapse: separate; }
+
+
+</style> 

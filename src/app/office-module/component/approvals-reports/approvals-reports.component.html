@@ -1,0 +1,281 @@
+<div class="card">
+<div class="col-md-12 row" > 
+
+    <div style="text-align: center;">
+        <h5><u>APPROVALS REPORT</u></h5>
+    </div>
+</div>
+     
+    <div class="col-md-12 row" >   
+        <div class="col-md-12 table-responsive">
+
+        <table  class="table table-striped ah-table text-center"
+        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+           <thead class="bg-success text-white" style="border: 1px solid white;">
+               <tr>
+                <th class="thclr"   >PROID</th>
+                  <th  class="thclr" >AMOUNT</th>
+                  <th  class="thclr" >QTY</th>  
+                  <th  class="thclr"   >ADV_PER</th>
+                  <th  class="thclr"  >ADV_PER_AMOUNT</th>
+                  <th class="thclr"  >DELIVERY_PER</th>
+                  <th class="thclr"  > DELIVERY_PER_AMOUNT</th>
+                  <th class="thclr"  >INSTALL_PER</th>
+                  <th class="thclr"  >INSTALL_PER_AMOUNT</th> 
+                  <th class="thclr"  >FINAL_PER</th>
+                  <th class="thclr"  >FINAL_PER_AMOUNT</th>
+                  <th class="thclr"  >TOTAL_PER</th>
+                  <th class="thclr"  >TOTAL_PER_AMOUNT</th>  
+                  <th class="thclr">INVID</th>                    
+                  <th class="thclr">FINID</th>
+                  <th class="thclr"  >SLNO</th>
+                  <th class="thclr"  >PR_INVID</th>  
+                 
+                  <th class="thclr"  >DISTRICTID</th>
+                  <th class="thclr"  >INVOICEPATH</th>
+                  <th class="thclr"  >DISCOUNT</th>
+                  <th class="thclr"  >COMENTS</th>
+                  <th class="thclr"  >TOTAL</th>
+                  <th class="thclr"  >PRICE_UNIT</th>
+                  <th class="thclr"  >COMPID</th>
+                  <th class="thclr"  >PRICES</th>
+                  <th class="thclr"  >UNITS</th>
+                  <th class="thclr"  >FIRMID</th>
+                  <th class="thclr"  >PONUMBER</th>
+                  <th class="thclr"  >PMID</th>
+                  <th class="thclr"  >INVOICEDATE</th>
+                  <th class="thclr"  >INVOICENO</th>
+                  
+                   
+              </tr>
+              
+          </thead>
+          <tbody calss="table_cells_borders">
+              <tr *ngFor="let obj of GridDataold; let i=index;">
+                
+                <td style="text-align: left;" >{{ obj.PROID}}</td>
+                <td style="text-align: left;" >{{ obj.AMOUNT}}</td>
+                <td style="text-align: left;" >{{ obj.QTY}}</td>  
+                <td style="text-align: left;" >{{ obj.ADV_PER}}</td>
+                <td style="text-align: left;" >{{ obj.ADV_PER_AMOUNT}}</td>
+                <td style="text-align: left;" >{{ obj.DELIVERY_PER}}</td>
+                <td style="text-align: left;" >{{ obj. DELIVERY_PER_AMOUNT}}</td>
+                <td style="text-align: left;" >{{ obj.INSTALL_PER}}</td>
+                <td style="text-align: left;" >{{ obj.INSTALL_PER_AMOUNT}}</td>  
+                <td style="text-align: left;" >{{ obj.FINAL_PER}}</td>
+                <td style="text-align: left;" >{{ obj.FINAL_PER_AMOUNT}}</td>
+                <td style="text-align: left;" >{{ obj.TOTAL_PER}}</td>
+                <td style="text-align: left;" >{{ obj.TOTAL_PER_AMOUNT}}</td>  
+
+                <td style="text-align: left;" >{{ obj.INVID}}</td>                    
+                <td style="text-align: left;" >{{ obj.FINID}}</td>
+                <td style="text-align: left;" >{{ obj.SLNO}}</td>
+                <td style="text-align: left;" >{{ obj.PR_INVID}}</td>  
+              
+                
+              
+               
+               
+               
+              
+                
+                
+                <td style="text-align: left;" >{{ obj.DISTRICTID}}</td>
+                <td style="text-align: left;" >{{ obj.INVOICEPATH}}</td>
+                <td style="text-align: left;" >{{ obj.DISCOUNT}}</td>
+                <td style="text-align: left;" >{{ obj.COMENTS}}</td>
+                <td style="text-align: left;" >{{ obj.TOTAL}}</td>
+                <td style="text-align: left;" >{{ obj.PRICE_UNIT}}</td>
+                <td style="text-align: left;" >{{ obj.COMPID}}</td>
+                <td style="text-align: left;" >{{ obj.PRICES}}</td>
+                <td style="text-align: left;" >{{ obj.UNITS}}</td>
+                <td style="text-align: left;" >{{ obj.FIRMID}}</td>
+                <td style="text-align: left;" >{{ obj.PONUMBER}}</td>
+                <td style="text-align: left;" >{{ obj.PMID}}</td>
+                <td style="text-align: left;" >{{ obj.INVOICEDATE}}</td>
+                <td style="text-align: left;" >{{ obj.INVOICENO}}</td>
+                
+                    
+                 
+              </tr>
+          </tbody>
+           
+  
+      </table>
+  </div>
+   
+
+   
+   
+ </div>
+ 
+
+
+ <div class="col-md-12 row"  >
+    <div   class="col-md-2" ></div>
+    <div   class="col-md-8"  >
+        <table  class="table table-striped ah-table text-center"
+        datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1">
+
+           <thead class="bg-success text-white" style="border: 1px solid white;">
+               <tr>
+                <th class="thclr"   >DOCID</th>
+                <th class="thclr"  >PMID</th>
+                <th class="thclr"   >PROID</th>
+                <th class="thclr"  >PAYMODEID</th>
+                <th class="thclr"   >ADVANCE_BANK GUARANTEE</th>
+                <th class="thclr"   >ADVANCE_STAMP RECEIPT</th>
+                <th class="thclr"   >PROFORMA INVOICE</th>
+                <th class="thclr"   >WAYBILL</th>
+                <th class="thclr"   >CALIBRATION REPORT</th>
+                 
+            </tr> 
+              
+        </thead>
+        <tbody calss="table_cells_borders" >
+            <tr *ngFor="let obj of GridData; let i=index;">
+                    <td style="text-align: left;" >{{ obj.DOCID}}</td>
+                    <td style="text-align: left;" >{{ obj.PMID}}</td>
+                    <td style="text-align: left;" >{{ obj.PROID}}</td>
+                    <td style="text-align: left;" >{{ obj.PAYMODEID}}</td>
+                    <td style="text-align: left;" > 
+                    
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-info block"
+                        *ngIf="
+                        obj.ADVANCE_BANK_GUARANTEE !== null &&
+                        obj.ADVANCE_BANK_GUARANTEE !== 'NA' &&
+                        obj.ADVANCE_BANK_GUARANTEE !== undefined
+                        "
+                        (click)="btnPdfView(obj.ADVANCE_BANK_GUARANTEE)"
+                      >
+                        VIEW
+                      </button>
+                      <span
+                        *ngIf="
+                        obj.ADVANCE_BANK_GUARANTEE === null ||
+                        obj.ADVANCE_BANK_GUARANTEE === 'NA' ||
+                        obj.ADVANCE_BANK_GUARANTEE === undefined
+                        "
+                        >--</span
+                      >
+                    
+                    </td>
+                    <td style="text-align: left;" > 
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-info block"
+                        *ngIf="
+                        obj.ADVANCE_STAMP_RECEIPT !== null &&
+                        obj.ADVANCE_STAMP_RECEIPT !== 'NA' &&
+                        obj.ADVANCE_STAMP_RECEIPT !== undefined
+                        "
+                        (click)="btnPdfView(obj.ADVANCE_STAMP_RECEIPT)"
+                      >
+                        VIEW
+                      </button>
+                      <span
+                        *ngIf="
+                        obj.ADVANCE_STAMP_RECEIPT === null ||
+                        obj.ADVANCE_STAMP_RECEIPT === 'NA' ||
+                        obj.ADVANCE_STAMP_RECEIPT === undefined
+                        "
+                        >--</span >
+                    
+                    
+                    </td>
+                    <td style="text-align: left;" > 
+                    
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-info block"
+                        *ngIf="
+                        obj.PROFORMA_INVOICE !== null &&
+                        obj.PROFORMA_INVOICE !== 'NA' &&
+                        obj.PROFORMA_INVOICE !== undefined
+                        "
+                        (click)="btnPdfView(obj.PROFORMA_INVOICE)"
+                      >
+                        VIEW
+                      </button>
+                      <span
+                        *ngIf="
+                        obj.PROFORMA_INVOICE === null ||
+                        obj.PROFORMA_INVOICE === 'NA' ||
+                        obj.PROFORMA_INVOICE === undefined
+                        "
+                        >--</span >
+
+                    
+                    </td>
+                    <td style="text-align: left;" > 
+                    
+                    
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-info block"
+                        *ngIf="
+                        obj.WAYBILL !== null &&
+                        obj.WAYBILL !== 'NA' &&
+                        obj.WAYBILL !== undefined
+                        "
+                        (click)="btnPdfView(obj.WAYBILL)"
+                      >
+                        VIEW
+                      </button>
+                      <span
+                        *ngIf="
+                        obj.WAYBILL === null ||
+                        obj.WAYBILL === 'NA' ||
+                        obj.WAYBILL === undefined
+                        "
+                        >--</span >
+                    
+                    
+                    
+                    </td>
+                    <td style="text-align: left;" > 
+                        <b>
+                    
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-info block"
+                        *ngIf="
+                        obj.CALIBRATION_REPORT !== null &&
+                        obj.CALIBRATION_REPORT !== 'NA' &&
+                        obj.CALIBRATION_REPORT !== undefined
+                        "
+                        (click)="btnPdfView(obj.CALIBRATION_REPORT)"
+                      >
+                        VIEW
+                      </button>
+                      <span
+                        *ngIf="
+                        obj.CALIBRATION_REPORT === null ||
+                        obj.CALIBRATION_REPORT === 'NA' ||
+                        obj.CALIBRATION_REPORT === undefined
+                        "
+                        >--</span >
+                      </b>
+                    
+                    
+                    
+                    
+                    
+                    
+                    </td>                   
+
+            </tr>
+        </tbody>
+         
+
+    </table>
+</div>
+ 
+
+ 
+ 
+</div>
+</div>

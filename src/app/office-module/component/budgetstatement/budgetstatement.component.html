@@ -1,0 +1,478 @@
+ 
+
+<div class="card" > 
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">BUDGET SLIP Details     </h5>
+    </div>
+    <div class="card-body"   >
+<div   [(ngModel)]="budgetbody" id="budgetbody1">
+
+<div class="col-md-12 row"   id="budgethead" ><br> <br> <br>  <div class="col-md-8" >
+    <h5 class="mb-0" style="color: brown;text-align: center; "><u>BUDGET SLIP   </u></h5><br><br></div>
+  </div>
+  <!-- <div class="col-md-12 row" >
+    <div class="col-md-2" ><u>APDDCF/NPDD/SL.No <b>2</b></u> </div>  <div class="col-md-4" ></div> <div class="col-md-2" >Date :15-03-2023 </div>
+
+<br><br><br>
+  </div>      -->
+       <div class="col-md-12 row" >
+       
+       <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">Component Name
+              <span style="color: red">*</span></label>
+          </div>  
+       
+        <div class="form-group col-md-4">
+         
+          <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" style="font-size: 14px;font-style: normal;"    (change)="SubComponentdetails()" >                
+            <option disabled selected value="undefined">-- Select Component --</option>
+            <option style="font-size: 14px;font-style: normal;"  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+          </select>
+        </div>
+    </div>
+
+    <div class="col-md-12 row" >
+       
+        <div class="col-md-3" style="text-align: right;">
+             <label for="UninonId">Sub Component Name
+               <span style="color: red">*</span></label>
+           </div>  
+        
+         <div class="form-group col-md-4">
+          
+           <select id="SUBCOMPID"  class="form-control" [(ngModel)]="SUBCOMPID"  style="font-size: 14px;font-style: normal;"   (change)="SubComponentBudgetamtdetails()">                
+             <option disabled selected value="undefined">-- Select Component --</option>
+             <option style="font-size: 14px;font-style: normal;"  value="{{ obj.SUBCOMPID }}"   *ngFor="let obj of subcomponentListdata"    > {{ obj.COMPNAME }}  </option>
+           </select>
+         </div>
+     </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">Year of sanction
+              <span style="color: red">*</span></label>
+          </div> 
+          <!-- <div class="col-md-4" style="text-align: right;">
+          <input type="text" id="yearofsanction"  placeholder="Year of Sanction"  class="form-control" style="margin-top: -8px;"  >
+        </div>  -->
+        <div class="form-group col-md-4">
+         
+            <select id="SANYEAR"  style="font-size: 14px;font-style: normal;"  class="form-control" [(ngModel)]="SANYEAR"  (change)="yearchange()">                
+              <option  style="font-size: 14px;font-style: normal;"  disabled selected value="undefined">-- Select Year Of Sanction --</option>
+              <option  style="font-size: 14px;font-style: normal;"  value="14"   > 2022-2023</option>
+              <option  style="font-size: 14px;font-style: normal;"  value="15"   >  2023-2024 </option>
+              <option  style="font-size: 14px;font-style: normal;"  value="16"  >  2024-2025 </option> 
+            </select>
+          </div>
+
+        </div>  
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">District Name
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+              <select   aria-sort="ascending"  style="font-size: 14px;font-style: normal;" 
+              id="DISTRICTID"
+              class="form-control"
+              [(ngModel)]="DISTRICTID"   (change)="Districtchanged()"  >             
+              <option class="dropdown-item" disabled selected value="undefined">-- Select District--</option>
+              <option   style="font-size: 14px;font-style: normal;color: black;"  value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                {{ obj.DISTRICTNAME }} 
+              </option>
+            </select> 
+            </div> 
+        </div> 
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">Section / wing 
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+              <select      
+              id="SECTIONID"   style="font-size: 14px;font-style: normal;" 
+              class="form-control"  
+              [(ngModel)]="SECTIONID"    >             
+              <option   style="font-size: 14px;font-style: normal;"   disabled selected value="undefined" >-- Select Section--</option>
+              <option   style="font-size: 14px;font-style: normal;"  value="{{ obj.SECTIONID }}" *ngFor="let obj of SectionListdata" >
+                {{ obj.SECTIONNAME}} 
+              </option>
+            </select> 
+            </div> 
+        </div> 
+    </div>
+
+
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">Budget Sanction for (Rs.)
+              <span style="color: red">* </span> </label>
+          </div>  
+           
+        <div class="col-md-4">
+            <div class="form-group">              
+               <input type="text" id="txtbudgetsanction"  [(ngModel)]="txtbudgetsanction"   class="form-control" readonly value="0" placeholder="Budget Sanction Amount" />
+            </div> 
+        </div> 
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">Additional budget sanctioned <br>if any (Rs.)
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+                <input type="text" id="txtAdditionalbudgetsanction"  [(ngModel)]="txtAdditionalbudgetsanction"  class="form-control" readonly value="0" placeholder="Additional Budget Sanction " />
+            </div> 
+        </div> 
+    </div>
+
+   
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId"> Expenditure incurred up to (Rs.)
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+                <input type="text" id="txtExpenditureamt"  [(ngModel)]="txtExpenditureamt" class="form-control" readonly value="0" placeholder="Expenditure incurred up to " />
+            </div> 
+        </div> 
+    </div>
+
+
+
+    
+
+     <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">  Amount of the present bill (Rs.)
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+                <input type="text" id="txtpresentbill" class="form-control" [(ngModel)]="txtpresentbill"   value="" placeholder="Amount of the present bill" (change)="onModeChange()"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)|| (event.charCode == 46)"
+                />
+            </div> 
+        </div> 
+    </div>
+    
+
+    <div class="col-md-12 row" >
+        <div class="col-md-3" style="text-align: right;">
+            <label for="UninonId">  Progressive Expenditure (Rs.)
+              <span style="color: red">*</span></label>
+          </div>  
+
+        <div class="col-md-4">
+            <div class="form-group">              
+                <input type="text" id="txtProgressiveexp" readonly class="form-control" [(ngModel)]="txtProgressiveexp"    value="0" placeholder=" Progressive Expenditure"
+                 
+                />
+            </div> 
+        </div> 
+    </div>
+
+
+    	
+
+        <div class="col-md-12 row" >
+            <div class="col-md-3" style="text-align: right;">
+                <label for="UninonId">  Balance available after the above Expenditure (Rs.)
+                  <span style="color: red">*</span></label>
+              </div>  
+    
+            <div class="col-md-4">
+                <div class="form-group">              
+                    <input type="text" id="txtbalanceamount" readonly class="form-control" [(ngModel)]="txtbalanceamount"     value="0" placeholder="Balance available after the above Expenditure"
+                     
+                    />
+                </div> 
+            </div> 
+        </div>
+
+
+
+
+        <div class="col-md-12 row" >  
+            <div class="col-md-3" style="text-align: right;">
+                <label for="UninonId">Have you checked up whether there is Budget provision and allotment for the particulars month of passing for payment (OR) incurring of expenditure.
+                  <span style="color: red">*</span></label>
+              </div>  
+    
+            <div class="col-md-4">
+                <div class="form-group"> 
+                    <select    style="font-size: 14px;font-style: normal;"    id="provisionid" class="form-control"   [(ngModel)]="provisionid"    >             
+                    <option  style="font-size: 14px;font-style: normal;"  disabled selected value="undefined" >-- Select Provision--</option>
+                    <option  style="font-size: 14px;font-style: normal;"   value="1" >Yes </option>  <option   value="2" >No </option>
+                  </select> 
+
+
+                </div> 
+            </div> 
+        </div>
+
+
+
+
+        <div class="col-md-12 row" > 
+            <div class="col-md-3" style="text-align: right;">
+                <label for="UninonId">Has the expenditure been duly approved by the appropriate administrative authority, as per the delegation of Powers.
+                  <span style="color: red">*</span></label>
+              </div>  
+    
+            <div class="col-md-4">
+                <div class="form-group"> 
+                    <select   style="font-size: 14px;font-style: normal;"     id="adminauthority" class="form-control"   [(ngModel)]="adminauthority"    >             
+                    <option  style="font-size: 14px;font-style: normal;"  disabled selected value="undefined" >-- Select Administrative Authority--</option>
+                    <option  style="font-size: 14px;font-style: normal;"   value="1" >Yes </option>  <option   value="2" >No </option>
+                  </select> 
+
+
+                </div> 
+            </div> 
+        </div>
+
+
+
+
+        <div class="col-md-12 row" > 
+            <div class="col-md-3" style="text-align: right;">
+                <label for="UninonId">Have you checked up the authentical accuracy and whether all supporting documents are attached
+                  <span style="color: red">*</span></label>
+              </div>  
+    
+            <div class="col-md-4">
+                <div class="form-group"> 
+                    <select   style="font-size: 14px;font-style: normal;"     id="Documentsstatus" class="form-control"   [(ngModel)]="Documentsstatus"    >             
+                    <option  style="font-size: 14px;font-style: normal;"  disabled selected value="undefined" >-- Select Documents Status--</option>
+                    <option   style="font-size: 14px;font-style: normal;"  value="1" >Yes </option>  <option   value="2" >No </option>
+                  </select> 
+
+
+                </div> 
+            </div> 
+        </div>
+
+
+
+
+        <div class="col-md-12 row" >
+            <div class="col-md-3" style="text-align: right;">
+                <label for="UninonId">Mode of work awardship
+                  <span style="color: red">*</span></label>
+              </div>  
+    
+            <div class="col-md-4">
+                <div class="form-group"> 
+                    <select     style="font-size: 14px;font-style: normal;"   id="modeofwork" class="form-control"   [(ngModel)]="modeofwork"    >             
+                    <option  disabled selected value="undefined"  style="font-size: 14px;font-style: normal;" >-- Select Mode of work awardship--</option>
+                    <option   style="font-size: 14px;font-style: normal;"  value="22" >Tender </option>  <option   value="23" >Quotation </option>  <option   value="24" >Nomination </option>
+                  </select> 
+
+
+                </div> 
+            </div> 
+        </div>
+
+
+        <div class="col-md-12 row" >
+            <div class="col-md-8" >   </div>
+            <div class="col-md-2" > <input type="button"
+                class="btn btn-success btn-sm" id="btnsubmit" value="SUBMIT"  (click)="btnSubmitDetails()">  </div>
+
+                <div class="col-md-2" > <input type="button"  style="display: none;"
+                  class="btn btn-success btn-sm" id="btnsubmit" value="SUBMIT1"  (click)="downloadAsPDF()">  </div>
+                
+        </div>
+  <br>  <br> <br> <br> <br>
+        <div class="col-md-12 row" >
+            <div class="col-md-3" >   </div>
+            <div class="col-md-3" style="text-align: right;">  <B>  </B></div>
+        </div>
+
+        <div class="col-md-12 row" >
+            <div class="col-md-3" >   </div>
+            <div class="col-md-3"  style="text-align: right;">   <B> Seal and Signature of the Officer   </B> </div> 
+        </div>  
+        <br> <br> <br>
+
+        <div class="col-md-12 row" >
+            <div class="col-md-2" >   </div>
+            <div class="col-md-6" > <B>  ACCOUNTS  </B></div>    
+        </div>
+
+        <br> <br>
+
+        <div class="col-md-12 row" >
+            <div class="col-md-2" style="text-align: right;"> ENCLOSURES:  </div>
+            <div class="col-md-10" > 1. The Managing Director’s Note approval.    </div>           
+        </div>
+        <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" > 2. Technical sanction Order Copy.   </div>             
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" > 3. Work Order copy.  </div>             
+    </div>
+
+
+
+    <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" > 4. Bills  </div>             
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" > 5. Advance Stamp Receipt  </div>             
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" >6. Copy of Bank Guarantee (If applicable) </div>             
+    </div>
+
+    <div class="col-md-12 row" >
+        <div class="col-md-2" >   </div>
+        <div class="col-md-10" >7. Proforma invoice /Delivery /challan, Work completion report (If applicable) </div>             
+    </div>
+    <br>
+        <div class="col-md-12 row" > 
+              
+            <div class="col-md-11" >         
+Special instructions: No over writing / correction /white fluid masks / any other marks are not admitted for scrutiny. <br> If so the documents is null and void, the document needs to submitted a fresh for admission. 
+</div><div class="col-md-1" >   </div> 
+            
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="col-md-12 row">
+        <div class="col-md-12 table-responsive"  id="grid1">  
+            <!-- [hidden]="checkList?.length < 1" -->
+          <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" data-page-length='25' >
+            <thead class="bg-success text-white">
+              <tr >
+                <th class="thclr">S.NO</th>
+                <th class="thclr">Transaction_Date</th>
+                <th class="thclr">Component Name</th>
+                <th class="thclr">SubComponent Name</th>
+                <th class="thclr">Sanction Year</th>
+                <th class="thclr">District Name</th>
+                <th class="thclr">Section</th>  
+                <th class="thclr"> Budget Sanction Amount</th> 
+                <th class="thclr"> AddBudget Amount</th> 
+                <th class="thclr"> Expe inc</th> 
+                <th class="thclr"> Present Amount Bill</th> 
+                <th class="thclr"> Progressive Exp</th> 
+                <th class="thclr"> Balance After Exp</th> 
+                <th class="thclr"> Budget Provision</th> 
+                <th class="thclr"> Admin Approved Status</th> 
+                <th class="thclr"> Doc Status</th> 
+                <th class="thclr">Mode of work</th>  
+                <th class="thclr">Download</th>
+
+                 
+              </tr>
+              <tr   >             
+                <th   class="thclr">(1)</th>
+                <th   class="thclr">(2)</th>
+                <th   class="thclr">(3)</th>
+                <th   class="thclr">(4)</th>
+                <th   class="thclr">(5)</th>
+                <th   class="thclr">(6)</th>
+                <th   class="thclr">(7)</th>
+                <th   class="thclr">(8)</th>
+                <th   class="thclr">(9)</th>
+                <th   class="thclr">(10)</th>
+                <th   class="thclr">(11)</th>
+                <th   class="thclr">(12)</th>
+                <th  class="thclr" >(13)</th>
+                <th   class="thclr">(14)</th>
+                <th  class="thclr" >(15)</th>
+                <th   class="thclr">(16)</th>
+                <th   class="thclr">(17)</th>
+                <th   class="thclr">(18)</th>
+                 
+              </tr>
+            </thead>
+            <tbody *ngIf="checkList?.length > 0" >
+              <tr *ngFor="let obj of checkList; let i = index" >
+                <td >{{ i + 1 }}</td>
+                <td style="text-align: center; ">{{ obj.TXNDATE }}</td>
+                <td  class="txtleft">{{ obj.COMPNAME }}</td>
+                <td  class="txtleft">{{ obj.SUBCOMPNAME }}</td>
+                <td class="numbrs">{{ obj.YEARS }}</td>
+                <td  class="txtleft">{{ obj.DISTRICTNAME }}</td>
+                <td  class="txtleft">{{ obj.SECTION }}</td>
+
+                <td  class="numbrs">{{ obj.BUDGETAMOUNT}}</td>
+                <td  class="numbrs">{{ obj.ADDLBUDAMOUNT}}</td>
+                <td  class="numbrs">{{ obj.EXPINC}}</td>
+                <td  class="numbrs">{{obj.PRESENTAMTBILL}}</td>
+                <td  class="numbrs">{{ obj.PROGEXP}}</td>
+                <td  class="numbrs">{{ obj.BALANCEAFTEREXP}}</td> 
+                <td  class="numbrs">{{ obj.BUDPROVISSION}}</td>
+                <td  class="numbrs">{{ obj.ADMAPPROVEDSTATUS}}</td>
+                <td  class="numbrs">{{ obj.DOCUSTATUS}}</td>
+                <td  class="numbrs">{{obj.MODEOFWORKAWARDSHIP}}</td>
+
+
+       
+
+
+             <td  class="numbrs">  
+               <!-- Download -->
+                 <input type="button" class="fa fa-trash btn btn-info" (click)="DOWNLOADBUDGET(obj.BUDID);" value="Download"/>  
+            </td>
+                
+              </tr>
+            </tbody>
+          </table> 
+   
+      </div>
+  
+    </div>
+
+
+
+    </div> 
+</div>
+<style>
+table { border-collapse: separate; }
+
+
+</style>

@@ -1,0 +1,151 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Po District Percentage Summary</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="UninonId">PO
+                    <span style="color: red">*</span></label>
+            </div> 
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="TRAININGID" class="form-control" [(ngModel)]="selectedPO" (change)="POIdchange()">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{obj.PMID}}" *ngFor="let obj of POList">{{obj.PONUMBER}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div> 
+
+
+        <div class="table-responsive" [hidden]="PurchaseList?.length < 1">
+            <table class="table table-striped ah-table text-center" >
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr> <th class="borderwhitecolo">Slno</th>
+                        <th class="borderwhitecolo">Date</th>
+                        <th class="borderwhitecolo">Po Number</th>                         
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th> 
+                        <th class="borderwhitecolo">Adv Per </th>
+                        <th class="borderwhitecolo">Delivery Per </th>
+                        <th class="borderwhitecolo">Installation Per </th>
+                        <th class="borderwhitecolo">Final Per </th> 
+                    </tr>
+                    <tr>
+                        <th class="borderwhitecolo">(1)</th>
+                        <th class="borderwhitecolo">(2)</th>
+                        <th class="borderwhitecolo">(3)</th>
+                        <th class="borderwhitecolo">(4)</th>
+                        <th class="borderwhitecolo">(5)</th>
+                        <th class="borderwhitecolo">(6)</th>
+                        <th class="borderwhitecolo">(7)</th>
+                        <th class="borderwhitecolo">(8)</th>
+                        <th class="borderwhitecolo">(9)</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="POList?.length > 0">
+                    <tr *ngFor="let objd of PurchaseList; let i = index">
+                        <td class="number_align">{{i+1}}</td> 
+                        <td class="text_alignleft">{{objd.PODATE}}</td>
+                        <td class="text_alignleft">{{objd.PONUMBER}}</td>
+                        <td class="text_alignleft">{{objd.QUANTITY}}</td>
+                        <td class="text_alignleft">{{objd.AMOUNT}}</td>
+                        <td class="number_align"><b>{{objd.ADV_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.DELIVERY_PER}}</b></td>                        
+                        <td class="number_align"><b>{{objd.INSTALL_PER}}</b></td> 
+                        <td class="number_align"><b>{{objd.FINAL_PER}}</b></td>   
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+
+
+        <div class="col-md-12" [hidden]="POSummaryList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div> 
+
+
+
+        <div class="table-responsive" [hidden]="POSummaryList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="borderwhitecolo">Sl No</th>
+                        <th class="borderwhitecolo">District Name</th>                         
+                        <th class="borderwhitecolo">Invoice Quantity </th>
+                        <th class="borderwhitecolo">Invoice Amount</th>
+                        <th class="borderwhitecolo">Approved Quantity</th>
+                        <th class="borderwhitecolo">Approved  Amount</th>  
+
+                        <th class="borderwhitecolo"> Advance Amount</th>
+                        <th class="borderwhitecolo">  Delivery Amount</th> 
+                        <th class="borderwhitecolo"> Installation Amount</th>
+                        <th class="borderwhitecolo">  Final Amount</th> 
+                    </tr>
+                    <tr>
+                        <th class="borderwhitecolo">(1)</th>
+                        <th class="borderwhitecolo">(2)</th>
+                        <th class="borderwhitecolo">(3)</th>
+                        <th class="borderwhitecolo">(4)</th>
+                        <th class="borderwhitecolo">(5)</th>
+                        <th class="borderwhitecolo">(6)</th> 
+
+                        <th class="borderwhitecolo">(7)</th> 
+                        <th class="borderwhitecolo">(8)</th> 
+                        <th class="borderwhitecolo">(9)</th> 
+                        <th class="borderwhitecolo">(10)</th> 
+                    </tr>
+                </thead>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <tr *ngFor="let objd of POSummaryList; let i = index">
+                        <td class="number_align">{{i+1}}</td>
+                        <td class="text_alignleft">{{objd.DISTRICTNAME}}</td>
+                        <td class="number_align"><b>{{objd.INV_QTY}}</b></td>
+                        <td class="number_align"><b>{{objd.INV_AMOUNT}}</b></td>
+                        <td class="number_align"><b>{{objd.APP_QTY}}</b></td>
+                        <td class="number_align"><b>{{objd.APP_AMOUNT}}</b></td> 
+
+                        <td class="number_align"><b>{{objd.ADV_PER_AMOUNT}}</b></td> 
+                        <td class="number_align"><b>{{objd.DELIVERY_PER_AMOUNT}}</b></td> 
+                        <td class="number_align"><b>{{objd.INSTALL_PER_AMOUNT}}</b></td> 
+                        <td class="number_align"><b>{{objd.FINAL_PER_AMOUNT}}</b></td> 
+
+
+                    </tr>
+                </tbody>
+                <!-- <tbody *ngIf="POSummaryList?.length > 0">
+                    <td class="font-weight-bold text_alignleft">--</td>
+                    <td class="font-weight-bold text_alignleft">
+                        <b>TOTAL</b>
+                    </td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_DELIVERY_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_FINAL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_INSTALL_PER | indianNumber}}</td>
+
+                    <td class="font-weight-bold number_align">{{ reportTotal.AP_ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.AP_DELIVERY_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.AP_FINAL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.AP_INSTALL_PER | indianNumber}}</td>
+
+
+
+                </tbody> -->
+
+            </table>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,193 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">ISSUE DETAILS</h5>
+  </div>
+  <div class="card-body">
+    <div class="row" *ngIf="issueDetails !== ''">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >ISSUE ID :
+            <span class="text-success">
+              <b>{{ issueDetails.ISSUE_ID }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >ISSUE MODULE NAME :
+            <span class="text-success">
+              <b>{{ issueDetails.ISSUE_MODULE_NAME }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >ISSUE TITLE :
+            <span class="text-success">
+              <b>{{ issueDetails.ISSUE_TITLE }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >DESCRIPTION :
+            <span class="text-success">
+              <b>{{ issueDetails.DESCRIPTION }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >REGISTERED DATE :
+            <span class="text-success">
+              <b>{{ issueDetails.REGISTERD_ON }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >ISSUE STATUS :
+            <span
+              class="text-primary"
+              *ngIf="issueDetails.ISSUE_STATUS === '0'"
+            >
+              <b>OPEN</b>
+            </span>
+            <span
+              class="text-success"
+              *ngIf="issueDetails.ISSUE_STATUS === '1'"
+            >
+              <b>CLOSED</b>
+            </span>
+            <span class="text-danger" *ngIf="issueDetails.ISSUE_STATUS === '2'">
+              <b>RE-OPENED</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="issueDetails.ISSUE_IMG !== null">
+        <label>IMAGE :</label>
+        <img
+          [src]="'data:image/jpeg;base64,' + issueImage"
+          style="cursor: pointer"
+          class="img-thumbnail mr-3"
+          (click)="btnImage(issueImage)"
+        />
+      </div>
+      
+      <div class="col-md-3">
+        <div class="form-group">
+          <label
+            >DOCUMENT TITLE :
+            <span class="text-success">
+              <b>{{ issueDetails.DOCUMENT_TITLE }}</b>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="issueDetails.DOCUMENT_PATH !== 'NA'">
+        <label>DOCUMENT :</label>
+        <button
+            type="button"
+            class="btn btn-link"
+            (click)="btnViewPDF(documentPdf)"
+          >
+            VIEW UPLOADED DOCUMENT
+          </button>
+      </div>
+      <div class="col-md-3" *ngIf="issueDetails.VIDEO_PATH !== 'NA'">
+        <label>VIDEO :</label>
+        <button
+            type="button"
+            class="btn btn-link"
+            (click)="btnViewVideo(issueDetails.VIDEO_PATH)"
+          >
+            VIEW UPLOADED VIDEO
+          </button>
+      </div>
+
+      <div class="col-md-12" *ngIf="issueDetails.ISSUE_STATUS === '1'">
+        <div class="form-group">
+          <label for="remarks">REMARKS <span style="color: red">*</span></label>
+          <textarea
+            id="remarks"
+            type="text"
+            class="form-control"
+            [(ngModel)]="remarks"
+            placeholder="Please Enter  Remarks"
+            maxlength="500"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div
+        class="col-md-12"
+        align="center"
+        *ngIf="issueDetails.ISSUE_STATUS === '1'"
+      >
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="btnUpdateIssueStatus()"
+        >
+          RE-OPEN
+        </button>
+      </div>
+    </div>
+    <div class="row" *ngIf="issueDetails === ''">
+      <div class="col-md-12">
+        <h3 class="text-center">ISSUE DETAILS NOT AVAILABLE</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="popup-modal" *ngIf="videoPlayer.popUp">
+  <div class="popup-content"  style="min-width: 60%">
+    <div class="popup-header">
+      <h4 class="title">ISSUE VIDEO</h4>
+      <a
+        type="button"
+        class="close"
+        (click)="videoPlayer.popUp = false"
+        style="cursor: pointer"
+      >
+        <span>×</span>
+      </a>
+    </div>
+
+    <div class="popup-body">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-12">
+          <video
+          id="mainPlayer"
+          width="100%"
+          height="100%"
+          autoplay="autoplay"
+          controls="controls"
+          controls
+          controlsList="nodownload"
+        >
+          <source src="{{ videoPlayer.filePath }}" />
+        </video>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-header p-2">
+      <h5 class="mb-0">FIRM DETAILS REPORT</h5>
+  </div>
+  <div class="card-body">
+
+      <div class="col-md-12 row">
+          <div class="col-md-4">.</div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label for="UninonId">SELECT FIRM
+                      <span style="color: red">*</span></label>
+                  <select id="FIRMID" class="form-control" [(ngModel)]="FIRMID" (change)="FIRMBYFIRMID()">
+                      <option disabled selected value="undefined">-- Select Firm Name --</option>
+                      <option value="{{ obj.FIRMID }}" *ngFor="let obj of formdata"> {{ obj.FIRMNAME }} </option>
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-4">.</div>
+          <div class="col-md-12">
+              <HR style="height: 5px;color:brown;background-color: brown;">
+          </div>
+      </div>
+
+
+      <div class="col-md-12" [hidden]="firmdetailsList?.length < 1">
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+          </button>
+
+      </div>
+
+      <div class="table-responsive" [hidden]="firmdetailsList?.length < 1">
+          <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead class="bg-success text-white" style="border: 1px solid white;">
+                  <tr>
+                      <th class="tableheader_color">S No</th>
+                      <th class="tableheader_color">FIRM ID</th>
+                      <th class="tableheader_color">FIRM NAME </th>
+                      <th class="tableheader_color">FIRM ADDRESS </th>
+                      <th class="tableheader_color">REGISTRATION NUMBER </th>
+                      <th class="tableheader_color">PAN NUMBER</th>
+                      <th class="tableheader_color">GST NUMBER</th>
+                      <th class="tableheader_color">BANK NAME</th>
+                      <th class="tableheader_color">BANK IFSC CODE</th>
+                      <th class="tableheader_color">BANK ACCOUNTT NUMBER</th>
+
+
+                  </tr>
+                  <tr>
+                      <th class="tableheader_color">(1)</th>
+                      <th class="tableheader_color">(2)</th>
+                      <th class="tableheader_color">(3)</th>
+                      <th class="tableheader_color">(4)</th>
+                      <th class="tableheader_color">(5)</th>
+                      <th class="tableheader_color">(6)</th>
+                      <th class="tableheader_color">(7)</th>
+                      <th class="tableheader_color">(8)</th>
+                      <th class="tableheader_color">(9)</th>
+                      <th class="tableheader_color">(10)</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let objd of firmdetailsList; let i = index">
+                      <td class="number_align">{{i+1}}</td>
+                      <td class="number_align">{{objd.FIRMID}}</td>
+                      <td class="text_alignleft"><b>{{objd.FIRMNAME}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.FADDRESS1}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.REGNO}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.PAN}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.GST}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.BANKNAME}}</b></td>
+                      <td class="text_alignleft"><b>{{objd.BANKIFSC}}</b></td>
+                      <td class="number_align"><b>{{objd.BANKACTNO}}</b></td>
+
+                  </tr>
+              </tbody>
+          </table>
+
+      </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: center;">
+        <h5 class="mb-0">NOMINEE DETAILS</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+    
+            </div>
+
+            <!-- [hidden]="DataList?.length < 1" -->
+            <div   class="col-md-12">
+
+                <table  class="table table-striped ah-table text-center"
+                datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                   <thead class="bg-success text-white" style="border: 1px solid white;">
+                       <tr>
+                            <th class="tableheader_color">S.No.</th>
+                            <th class="tableheader_color">Financial Year</th>
+                            <th class="tableheader_color">Type</th>
+                            <th class="tableheader_color">Other Description</th>
+                            <th class="tableheader_color">Category</th>
+                            <th class="tableheader_color">Nature of Institute</th>
+                            <th class="tableheader_color">Description</th>
+                            <th class="tableheader_color">Approval Rating</th>
+                            <th class="tableheader_color">Approval Status</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                            <th class="tableheader_color">(9)</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="DataList?.length > 0">
+                        <tr *ngFor="let obj of DataList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="number_align">{{obj.FINANCIAL_YEAR}}</td>
+                            <td class="text_alignleft">{{obj.TYPE}}</td>
+                            <td class="text_alignleft">{{obj.TYPE_OTHER_DESCRIPTION}}</td>
+                            <td class="text_alignleft">{{obj.CATEGORY}}</td>
+                            <td class="text_alignleft">{{obj.NATURE_OF_INSTITUTION}}</td>
+                            <td class="text_alignleft">{{obj.DESCRIPTION}}</td>
+                            <td class="text_alignleft">{{obj.APPROVAL_RATING}}</td>
+                            <td class="text_alignleft">{{obj.APPROVAL_STATUS}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

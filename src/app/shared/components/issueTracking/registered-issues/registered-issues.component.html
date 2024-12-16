@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col mb-2" *ngFor="let obj of dashboardDetails">
+    <div
+      class="stats-card {{ obj.STYLE_CLASS }}"
+      (click)="btnDashboardDetails(obj.ISSUE_STATUS_ID, obj.COUNTS)"
+    >
+      <div class="overlay"></div>
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="stats-text">
+            <p class="text-uppercase text-muted mb-1">
+              <small>{{ obj.ISSUE_STATUS_NAME }}</small>
+            </p>
+            <h5 class="font-weight-bold mb-0">{{ obj.COUNTS }}</h5>
+          </div>
+          <div class="circle">
+            <i class="fas fa-check-double"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3" [hidden]="personList?.length < 1">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0 secondary-heading pb-0">{{ headingText }}</h5>
+      </div>
+      <div class="card-body">
+        <div class="col-md-12 table-responsive">
+          <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+              <tr>
+                <th>S.No.</th>
+                <th>MODULE NAME</th>
+                <th>ISSUE TYPE</th>
+                <th>ISSUE TITLE</th>
+                <th>DESCRIPTION</th>
+                <th>REMARKS</th>
+                <th>REGISTERED ON</th>
+                <th>UPDATED ON</th>
+                <th>DETAILS</th>
+              </tr>
+            </thead>
+            <tbody [hidden]="personList?.length < 1">
+              <tr *ngFor="let obj of personList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <b>{{ obj.ISSUE_ID }}</b>
+                </td>
+                <td>{{ obj.ISSUE_MODULE_NAME }}</td>
+                <td>{{ obj.ISSUE_TITLE }}</td>
+                <td>{{ obj.DESCRIPTION }}</td>
+                <td>{{ obj.REMARKS }}</td>
+                <td>
+                  <span *ngIf="obj.REGISTERD_ON === 'NA'" class="text-success"
+                    >NA</span
+                  >
+                  <span
+                    *ngIf="obj.REGISTERD_ON !== 'NA'"
+                    class="text-success"
+                    >{{ obj.REGISTERD_ON }}</span
+                  >
+                </td>
+                <td>
+                  <span *ngIf="obj.REGISTERD_ON === 'NA'" class="text-success"
+                    >NA</span
+                  >
+                  <span
+                    *ngIf="obj.REGISTERD_ON !== 'NA'"
+                    class="text-success"
+                    >{{ obj.UPDATED_DATE }}</span
+                  >
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    (click)="btnViewDetails(obj)"
+                  >
+                    VIEW
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

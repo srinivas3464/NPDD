@@ -1,0 +1,560 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Stock Entry Details </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+         
+        </div> 
+        
+        <div class="row align-items-center"  >
+                 <div class="col-md-12 row" >
+                    <div class="col-md-2"  style="text-align: right;">
+                        <div class="form-group">
+                          <label  >District Name
+                            <span style="color: red">*</span></label> 
+                          
+                           </div>
+                         </div>
+                         <div class="col-md-2"  >
+                           <div class="form-group">
+                          <select   aria-sort="ascending"   [tabIndex]="1" 
+                          id="distSelected"
+                          class="form-control"
+                          [(ngModel)]="distSelected"
+                          (change)="onDISTRICtChange()" 
+                        >
+                        
+                          <option class="dropdown-item" disabled selected value="undefined">-- SELECT District--</option>
+                          <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                            {{ obj.DISTRICTNAME }} 
+                          </option>
+                        </select> 
+           
+                        </div>
+                      </div>
+           
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="UninonId">SELECT PO/WO No
+                            <span style="color: red">*</span></label>
+                           </div>
+                           </div>
+                           <div class="col-md-2">
+                            <div class="form-group">  
+                         <select id="PMID"  class="form-control" [(ngModel)]="PMID" (change)="POBYPONUMBER()" [tabIndex]="2">                
+                          <option disabled selected value="undefined">-- Select PO/WO No --</option>
+                          <option  value="{{ obj.PMID }}"   *ngFor="let obj of Podetailslist"    > {{ obj.PONUMBER }}  </option>
+                        </select>  
+                       </div>
+                     </div>
+
+
+
+
+
+
+                     <div class="col-md-2">
+                        <div class="form-group"  style="text-align: right;">
+                          <label for="UninonId">Select Invoice & Date
+                            <span style="color: red">*</span></label>
+                        </div>
+                    </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                          <select id="INVID"  class="form-control" [(ngModel)]="INVID"  (change)="InvoiceByID()"  [tabIndex]="3">                
+                            <option disabled selected value="undefined">-- Select Invoice --</option>
+                            <option  value="{{ obj.INVID }}"    *ngFor="let obj of invdetailslist"> {{ obj.INVOICENO }}  </option>
+                          </select>
+                        </div>
+                      </div>
+
+                </div> 
+
+
+                <div  class="col-md-12 row"   >
+             
+                    <div class="table-responsive"    [hidden]="InvoiceReportsList?.length < 1">
+          
+                      <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                      [dtTrigger]="dtTrigger" data-page-length='25' >
+                      <thead class="bg-success text-white">
+          
+                         
+                                <tr  >
+                                    <th>Sno</th>                 
+                                     <!-- <th> INVOICENO</th>                           <th> INVOICEDATE</th>  <th> PONUMBER</th> 
+                                      <th> PRICE_UNIT </th>         <th> TOTAL </th>                        <th>DISCOUNT  </th>  -->
+
+                                    <th> FIRMNAME</th>          <th> COMPNAME</th>                          
+                                    <th> UOMNAME</th>              <th> UNITS</th>                           <th> PRICES</th> 
+                                     
+                                    <th> Received Units </th>  <th> COMENTS </th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let objd of InvoiceReportsList; let i = index">
+                                    <td>{{i+1}}</td>
+                                     
+                                    <!-- <td><b>{{objd.INVOICENO}}</b></td>
+                                    <td><b>{{objd.INVOICEDATE}}</b></td><td><b>{{objd.PONUMBER }}</b></td> <td><b>{{objd.PRICE_UNIT}}</b></td>
+          <td><b>{{objd.TOTAL}}</b></td>
+                                    <td><b>{{objd.DISCOUNT}}</b></td> -->
+
+                                    <td><b>{{objd.FIRMNAME}}</b></td>
+                                    <td><b>{{objd.COMPNAME}}</b></td>
+                                      <td><b>{{objd.UOMNAME }}</b></td>  <td><b>{{objd.UNITS }}</b></td>  
+                                                                 
+                                    <td><b>{{objd.PRICES}}</b></td>
+                                   
+          
+                                    
+                                  
+                                     
+                                    <td>   <input
+                                      id="Recqty_1"  
+                                      type="text" [tabIndex]="4"
+                                      class="form-control"
+                                      [(ngModel)]="Recqty1" 
+                                      onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                                      placeholder="Quantity"
+                                      maxlength="10"    NumbersOnly
+                                      autocomplete="off"  
+                                      (change)="onModeChange( )" (keydown)="onKeydownMain($event)"
+                                    />  </td>
+                                    <td><b>{{objd.COMENTS}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                    </div>
+                  
+                 
+                 </div>
+        
+
+                 <div  class="col-md-12 row"   *ngIf="subcomp">
+                  <div class="col-md-2">
+                    <div class="form-group">.
+                      </div></div>
+                  <div class="table-responsive col-md-8"  >
+        
+                    <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger" data-page-length='25' >
+                    <thead class="bg-success text-white">
+        
+                       
+                              <tr style="background-color: cadetblue;">
+                                  <th>Sno</th>   <th> COMPNAME</th>  <th> UNITS</th>       <th> Received Qty </th>  
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let objd of subcomponentList; let i = index">
+                                  <td>{{i+1}}</td>  
+                                  <td style="text-align: left;"><b>{{objd.COMPNAME}}</b></td>
+                                      <td><b>{{objd.QTY }}</b></td>  
+                                      <td><b>{{objd.RECEQTY }}</b></td>   
+                              </tr>
+                          </tbody>
+                      </table>
+          
+                  </div>
+                
+                  <div class="col-md-2">
+                    <div class="form-group">.
+                      </div></div>
+               </div>
+      
+
+
+        </div> 
+  
+  
+         
+                 
+                 <div class="col-md-12 row" >
+                    <div class="col-md-4"  >
+                        <div class="form-group">
+                          <label  style="color: brown;font-size: 18px;"> <u>Book keeping Details</u>  </label> 
+                          
+                           </div>
+                        </div>
+
+                        <div class="col-md-2"  >
+                          <div class="form-group">
+                            <label >  Remarks (If any)<span style="color: red">*</span>   </label>  
+                             </div>
+                          </div>
+
+                          <div class="col-md-4"  >
+                            <div class="form-group">
+                              <input
+                              id="REMARKS" [tabIndex]="5"
+                              type="text"
+                              class="form-control"
+                              [(ngModel)]="REMARKS" 
+                             
+                              placeholder="REMARKS"
+                              
+                              autocomplete="off"  
+                            />
+                               </div>
+                            </div>
+
+                    </div>
+
+                        <div class="col-md-12 row" >
+                        <div class="col-md-2"  >
+                            <div class="form-group">
+                              <label  >Register Name :</label>
+                              
+                               </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" style="width: 100%;">
+                              <input   id="RegName"      type="text"   class="form-control"  [(ngModel)]="RegName" [tabIndex]="6" value="0" readonly (ended)="false"
+                              onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                              placeholder="Registration Name"       autocomplete="off"  />
+                            </div>
+                          </div> 
+                          <!-- <div class="col-md-2"  style="text-align: right;display: none;">
+                            <div class="form-group">
+                              <label  >Received Stock  </label> 
+                              
+                               </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group" style="width: 100%;display: none;">
+                            <input
+                            id="Recqty"  readonly
+                            type="text" [tabIndex]="8"
+                            class="form-control"
+                            [(ngModel)]="Recqty" 
+                            onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                            placeholder="Quantity"
+                            maxlength="10"    NumbersOnly
+                            autocomplete="off"  
+                          />
+                          </div>
+                        </div> -->
+
+                        <!-- <div class="col-md-2">
+                          <div class="form-group"   style="text-align: right;">
+                            <label  
+                              >Invoice Way Bill </label
+                            > 
+                          </div>
+                      </div> -->
+
+                      <div class="col-md-2">
+                        <div class="form-group"  > 
+                          <button [tabIndex]="10"
+                          type="button"
+                          class="btn btn-success btn-sm"
+                          (click)="btnAllPdf('1')"
+                        >
+                         View  Invoice
+                        </button>
+  
+  
+                    </div>
+                  </div> 
+
+                      
+                      <div class="col-md-2">
+                        <div class="form-group"  > 
+                          <button [tabIndex]="10"
+                          type="button"
+                          class="btn btn-success btn-sm"
+                          (click)="btnAllPdf('2')"
+                        >
+                         View  WayBill
+                        </button>
+  
+  
+                    </div>
+                  </div> 
+
+
+                        <div class="col-md-2">
+                          <div class="form-group"   style="text-align: right;">
+                            <label  
+                              >Correct Document or Not  </label
+                            > 
+                          </div>
+                      </div>
+  
+                        <div class="col-md-2">
+                          <div class="form-group" style="text-align: left;margin-left: -100px;">
+                             
+                            <!-- <select   aria-sort="ascending"  
+                            id="crdocstatus"
+                            class="form-control"
+                            [(ngModel)]="crdocstatus"                        
+                          >                      
+                            <option class="dropdown-item" disabled selected value="undefined">-- Select Status--</option>
+                            <option style="color: black;" value="0">No  </option>
+                            <option style="color: black;" value="1">Yes  </option>
+                          </select>  -->
+    
+                          <input
+                          id="crdocstatus"
+                          type="checkbox" [tabIndex]="14"
+                          class="form-control" style="width: 35px;
+                          text-align: right;
+                          margin-left: 125px;"
+                          [(ngModel)]="crdocstatus"  
+                          
+                        />
+    
+                          </div>
+                      </div>
+                      
+  
+                     
+
+
+                 
+                        </div>
+                
+                
+
+                        <div class="col-md-12 row" > 
+                          <div class="col-md-2">
+                            <div class="form-group" >
+                              <label  
+                                >Entry Date  </label
+                              > 
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                          <app-date-picker [tabIndex]="7"
+                          [PlaceHolder]="'Select Date'"
+                          [(selectedDate)]="RegDate"
+                          [minDate]="minDate"
+                          [maxDate]="maxDate" [(ngModel)]="RegDate" 
+                        ></app-date-picker>
+                        </div>
+                      </div> 
+
+                         
+                      <div class="col-md-2">
+                        <div class="form-group"   style="text-align: right;">
+                          <label  
+                            >Download Details </label
+                          > 
+                        </div>
+                    </div>
+                      <div class="col-md-2">
+                        <div class="form-group"  >
+                           
+                          <button [tabIndex]="11"
+                          type="button"
+                          class="btn btn-success btn-sm"
+                          (click)="btnDownloadPdf()"
+                        >
+                         Download  
+                        </button> 
+                    </div>
+                  </div>
+
+
+
+
+                <div class="col-md-2">
+                  <div class="form-group"   style="text-align: right;">
+                    <label  
+                      >Signed Copy  </label
+                    > 
+                  </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group"  style="text-align: left;margin-left: -100px;"> 
+
+<input
+id="signedcopystatus"
+type="checkbox"  [tabIndex]="15"
+class="form-control"  style="width: 35px;
+text-align: right;
+margin-left: 125px;"
+[(ngModel)]="signedcopystatus"  
+
+/>
+
+
+                </div>
+            </div>
+
+
+
+                        </div>  
+
+                        <div class="col-md-12 row" >
+                            <div class="col-md-2"   >
+                                <div class="form-group">
+                                  <label  > SL.No  </label> 
+                                  
+                                   </div>
+                                </div>
+                
+                                   <div class="col-md-2">
+                                    <div class="form-group" style="width: 100%;">
+                                  <input
+                                  id="slno" [tabIndex]="8"
+                                  type="text"
+                                  class="form-control"
+                                  [(ngModel)]="slno" 
+                                  onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                                  placeholder="SL.No"
+                                  maxlength="10"    NumbersOnly
+                                  autocomplete="off"  
+                                  value="0" readonly (ended)="false"
+                                />
+                                </div>
+                              </div>
+                           
+                              <div class="col-md-2">
+                                <div class="form-group"   style="text-align: right;">
+                                  <label  
+                                    >Attach Stock Details (PDF)   <span style="color: red">*</span>  </label
+                                  > 
+                                </div>
+                            </div>
+    
+                                <!-- <div class="col-md-2"  >
+                                  <div class="form-group">
+                                   
+                                    <input   [(ngModel)]="stockdocUpload"
+                                      type="file"
+                                      class="form-control p-0"
+                                      id="WayBillUpload"
+                                      (change)="onstockdoc($event)" 
+                                      accept="application/pdf"
+                                      autocomplete="off" /> 
+                                  </div>
+                                </div>  -->
+                                
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    
+                                    <input   [(ngModel)]="allotmentAlienationUpload"
+                                      type="file" [tabIndex]="12"
+                                      class="form-control p-0"
+                                      id="allotmentAlienationUpload"
+                                      (change)="onstockdoc($event)"
+                                      accept="application/pdf"
+                                      autocomplete="off" />
+                                  </div>
+                                </div> 
+                           
+                          <div class="col-md-2">
+                            <div class="form-group"   style="text-align: right;">
+                              <label  
+                                >All Details Visible or Not  </label
+                              > 
+                            </div>
+                        </div>
+    
+                        <div class="col-md-2">
+                          <div   style="text-align: left;margin-left: -100px;">
+                             
+                         
+
+
+                          <input
+                          id="dtsvisiblestatus"
+                          type="checkbox" [tabIndex]="16"
+                          class="form-control"  style="width: 35px;
+                          text-align: right;
+                          margin-left: 125px;"
+                          [(ngModel)]="dtsvisiblestatus"  
+                         
+                          
+                          autocomplete="off"  
+                        />
+
+    
+                          </div>
+                      </div>
+
+
+                           </div>
+
+
+                        <div class="col-md-12 row" >
+                            <div class="col-md-2"  >
+                                <div class="form-group">
+                                  <label  > Page No :</label> 
+                                  
+                                   </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group" style="width: 100%;">
+                                  <input   id="PageNo"   [tabIndex]="9"   type="text"   class="form-control"  [(ngModel)]="PageNo"   value="0" readonly (ended)="false"
+                                  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                                  placeholder="Page No"   maxlength="10"   autocomplete="off"  />
+                                </div>
+                              </div> 
+                             
+                             
+                             
+                         
+                              <div class="col-md-4"  >
+                                <div class="form-group"  style="text-align: center;margin-left: 20px;" >
+    
+                              <button  style="text-align: center;margin-left: 100px;" 
+                              type="button" [tabIndex]="13"
+                              class="btn btn-success btn-sm"
+                              (click)="btnVIEWPdf()"
+                            >
+                             View  
+                            </button> 
+                            </div> 
+                          </div> 
+                             
+                             
+                             
+
+                              <div class="col-md-4">
+                                <div class="form-group"   style="text-align: right;">
+                                  <button
+                                  type="button" [tabIndex]="17"
+                                  class="btn btn-success btn-sm"
+                                  (click)="btnSubmit()"
+                                >
+                                 Submit  
+                                </button> 
+                            </div>
+                          </div>
+                            </div>
+
+
+                            <div class="col-md-12 row" >
+
+                              <div class="col-md-3"  >
+                                <div class="form-group">  </div> 
+                              </div> 
+                              
+
+                              <div class="col-md-4"   style="display: none;" ><!---->
+                                  <div class="form-group">
+                             
+                                    
+                          <iframe id="ifrm" style="width: 100%; height: 100%;"  >
+                          
+                          </iframe>
+                        </div> 
+                      </div> 
+
+                   
+
+
+
+
+
+                    </div> 
+
+    </div> 
+</div> 

@@ -1,0 +1,171 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Po Wise Percentages</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="UninonId">PURCHASE ORDER
+                    <span style="color: red">*</span></label>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="TRAININGID" class="form-control" [(ngModel)]="selectedPO" (change)="POIdchange()">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{obj.PMID}}" *ngFor="let obj of POList">{{obj.PONUMBER}}</option>
+                    </select>
+                </div> 
+
+            </div>
+            <div class="col-md-4"  [hidden]="POSummaryList?.length < 1"> <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button></div>
+        </div>
+
+        
+
+        <div class="table-responsive" [hidden]="POSummaryList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-success text-white"   >
+                 
+                    <tr>
+                        <!-- <th class="tableheader_color">S No</th>
+                        <th class="tableheader_color">District Name</th> -->
+                        <th class="borderwhitecolo" colspan="2"> </th>
+
+                        <th class="borderwhitecolo" colspan="4">INVOICE DETAILS</th>
+
+                        <!-- <th class="tableheader_color">INVOICEDATE</th>
+                        <th class="tableheader_color">INVOICENO</th>
+                        <th class="tableheader_color">INV_UNITS </th>
+                        <th class="tableheader_color">INV_PRICES</th> -->
+
+                        <th class="borderwhitecolo" colspan="4">PURCHASE DETAILS</th>
+                        <!-- <th class="tableheader_color">P_ADV_PER </th>
+                        <th class="tableheader_color">P_DELIVERY_PER</th>
+                        <th class="tableheader_color">P_INSTALL_PER</th>
+                        <th class="tableheader_color">P_FINAL_PER</th> -->
+                        <th class="borderwhitecolo" colspan="4">APPROVED DETAILS</th>
+                        <!-- <th class="tableheader_color">A_ADV_PER</th>
+                        <th class="tableheader_color">A_DELIVERY_PER</th>
+                        <th class="tableheader_color">A_INSTALL_PER</th>
+                        <th class="tableheader_color">A_FINAL_PER</th> -->
+                        <th class="borderwhitecolo" colspan="2">PROFARMA DETAILS</th>
+
+                        <!-- <th class="tableheader_color">PR_INV_PER</th>
+                        <th class="tableheader_color">PR_AP_ADV_PER</th> -->
+                        <th class="borderwhitecolo" colspan="2">PURCHASE DETAILS</th>
+                        <!-- <th class="tableheader_color">P_UNITS</th>
+                        <th class="tableheader_color">P_PRICES</th> -->
+
+
+
+                    </tr>
+                 
+                 
+                    <tr      >
+                          <td  class="borderwhitecolo" >SNo</td>
+                        <td   class="borderwhitecolo">District Name</td>  
+
+                        <td class="borderwhitecolo">INVOICE_DATE</td>
+                        <td class="borderwhitecolo">INVOICE NO</td>
+                        <td class="borderwhitecolo">INVOICE UNITS </td>
+                        <td class="borderwhitecolo" >INVOICE PRICES</td>
+
+                        <td class="borderwhitecolo"> ADVANCE % </td>
+                        <td class="borderwhitecolo">DELIVERY %</td>
+                        <td class="borderwhitecolo">INSTALL %</td>
+                        <td class="borderwhitecolo">FINAL %</td>
+
+
+                        <td class="borderwhitecolo"> ADVANCE % </td>
+                        <td class="borderwhitecolo">DELIVERY %</td>
+                        <td class="borderwhitecolo">INSTALL %</td>
+                        <td class="borderwhitecolo">FINAL %</td>
+
+                        <td class="borderwhitecolo">INVOICE %</td>
+                        <td class="borderwhitecolo">APPROVED ADVANCE %</td>
+
+                        <td class="borderwhitecolo">UNITS</td>
+                        <td class="borderwhitecolo">PRICES</td>
+
+
+
+                    </tr>
+                    <tr>
+                        <th class="tableheader_color">(1)</th>
+                        <th class="tableheader_color">(2)</th>
+                        <th class="tableheader_color">(3)</th>
+                        <th class="tableheader_color">(4)</th>
+                        <th class="tableheader_color">(5)</th>
+                        <th class="tableheader_color">(6)</th>
+                        <th class="tableheader_color">(7)</th>
+                        <th class="tableheader_color">(9)</th>
+                        <th class="tableheader_color">(10)</th>
+                        <th class="tableheader_color">(11)</th>
+                        <th class="tableheader_color">(12)</th>
+                        <th class="tableheader_color">(13)</th>
+                        <th class="tableheader_color">(14)</th>
+                        <th class="tableheader_color">(15)</th>
+                        <th class="tableheader_color">(16)</th>
+                        <th class="tableheader_color">(17)</th>
+                        <th class="tableheader_color">(18)</th>
+                        <th class="tableheader_color">(19)</th>
+                </thead>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <tr *ngFor="let objd of POSummaryList; let i = index">
+                        <td class="number_align">{{i+1}}</td>
+                        <td class="text_alignleft">{{objd.DISTRICTNAME}}</td>
+                        <td class="number_align"><b>{{objd.INVOICEDATE}}</b></td>
+                        <td class="number_align"><b>{{objd.INVOICENO}}</b></td>
+                        <td class="number_align"><b>{{objd.INV_UNITS}}</b></td>
+                        <td class="number_align"><b>{{objd.INV_PRICES}}</b></td>
+                        <td class="number_align"><b>{{objd.P_ADV_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.P_DELIVERY_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.P_INSTALL_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.P_FINAL_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.A_ADV_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.A_DELIVERY_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.A_INSTALL_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.A_FINAL_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.PR_INV_PER}}</b></td>
+                        <td class="number_align"><b>{{objd.PR_AP_ADV_PER}}</b> </td>
+                        <td class="number_align"><b>{{objd.P_UNITS}}</b></td>
+                        <td class="number_align"><b>{{objd.P_PRICES}}</b></td>
+
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <td>--</td>
+                    <td class="font-weight-bold text_alignleft">
+                        <b>TOTAL</b>
+                    </td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INV_UNITS | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INV_PRICES | indianNumber }}</td>
+                    <!-- <td class="font-weight-bold number_align">{{ reportTotal.P_ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.P_DELIVERY_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.P_INSTALL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.P_FINAL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.A_ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.A_DELIVERY_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.A_INSTALL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.A_FINAL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PR_INV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PR_AP_ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.P_UNITS | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.P_PRICES | indianNumber }}</td> -->
+
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

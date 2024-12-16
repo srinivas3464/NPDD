@@ -1,0 +1,400 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Proceeding Details </h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-center"  > 
+            <div class="col-md-12 row">
+
+
+                <div class="col-md-2">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="UninonId">PO/WO No&Date
+                        <span style="color: red">*</span></label>
+                       </div>
+                       </div>
+                       <div class="col-md-2">
+                         <div class="form-group">  
+                      <select id="PMID1"  class="form-control" [(ngModel)]="PMID" >                
+                       <option disabled selected value="undefined">-- Select PO/WO No&Date  --</option>
+                       <option  value="{{ obj.PMID }}"   *ngFor="let obj of Podetailslist"    > {{ obj.PONUMBER }}  </option>
+                     </select>
+         
+         
+         
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="col-md-2">
+                    <div class="form-group" style="text-align: right;">
+                      <label for="UninonId">Type
+                        <span style="color: red">*</span></label>
+                       </div>
+                       </div>
+                  <div class="col-md-2">
+                    <div class="form-group">  
+                 <select id="pitype"  class="form-control" [(ngModel)]="pitype"    (change)="onPOChange()"  >                
+                  <option disabled selected value="undefined">-- Select Invoice Type  --</option>
+                  <option  value="1">Proforma invoice</option>
+                  <option value="2">GST Invoice</option>
+                </select>
+    
+    
+    
+               </div>
+             </div>
+
+
+
+
+
+         
+             <div class="col-md-1" >
+                 <div class="form-group"  style="text-align: right;width: 70%;">
+                   <label  >District <span style="color: red">*</span></label> </div>
+             </div>
+             <div class="col-md-3"  >
+                    <div class="form-group">
+  <select   aria-sort="ascending"      id="DISTRICTID"   class="form-control"    [(ngModel)]="DISTRICTID"  (change)="ondistrictChange()"  > 
+                   <option class="dropdown-item" disabled selected value="undefined">-- Select District --</option>
+                   <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                     {{ obj.DISTRICTNAME   }} 
+                   </option>
+                 </select> 
+    
+                 </div>
+               </div>
+
+
+
+              </div>
+
+              <div class="col-md-12 row" >
+            
+    
+
+
+
+               <div class="col-md-2" >
+                <div class="form-group"  style="text-align: right;">
+                  <label  >Invoice <span style="color: red">*</span></label> </div>
+            </div>
+            <div class="col-md-2"  >
+                   <div class="form-group">
+ <select   aria-sort="ascending"      id="INVID"   class="form-control"    [(ngModel)]="INVID"   (change)="oninvChange()"  > 
+                  <option class="dropdown-item" disabled selected value="undefined">-- Select Invoice --</option>
+                  <option style="color: black;" value="{{ obj.INVID }}" *ngFor="let obj of invoiceListdata">
+                    {{ obj.INVOICENO   }} 
+                  </option>
+                </select> 
+   
+                </div>
+              </div>
+
+
+
+              
+              <div class="col-md-2" >
+                <div class="form-group"  style="text-align: right;">
+                  <label  >Approved  <span style="color: red">*</span></label> </div>
+            </div>
+            <div class="col-md-3"  >
+                   <div class="form-group">
+ <select   aria-sort="ascending"      id="PROID"   class="form-control"    [(ngModel)]="PROID"    > 
+                  <option class="dropdown-item" disabled selected value="undefined">-- Select Approved List --</option>
+                  <option style="color: black;" value="{{ obj.PROID }}" *ngFor="let obj of approvedListdata">
+                    {{ obj.AMOUNT   }} 
+                  </option>
+                </select> 
+   
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;">
+                  <input type="button"
+                  class="btn btn-success btn-sm" id="btnsubmit" style="width: 100px;
+                  height: 35px !important;font-size: 16px;" value="ADD"  (click)="btnaddDetails()"> 
+               </div>  </div>
+<!-- ------------------------- -->
+            </div>
+            <div class="col-md-12">
+              <HR style="height: 1px;color:brown;background-color: brown;">
+              </div>
+              <div class="col-md-12 row" >
+
+                 <div class="col-md-2" ></div> <div class="col-md-10" >
+                 <table    class="table table-striped ah-table text-center;  table-responsive"  
+                 [hidden]="proceedinginvlist?.length < 1"       >
+                  <thead class="bg-success text-white" >
+                    <tr>
+                      <th style="width:50px;">S.No.</th>
+                      <th>PO NUMBER</th>
+                      <th>DISTRICT NAME</th>
+                      <th>INVOICE NO</th>
+                      <th>APPROVEDLIST</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="proceedinginvlist?.length > 0">
+                    <tr *ngFor="let obj of proceedinginvlist; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td  class="number_align">{{ obj.PONUMBER }}</td>
+                      <td  class="number_align">{{ obj.DISTRICTNAME }}</td>
+                      <td  class="number_align">{{ obj.INVOICENO }}</td>
+                      <td  class="number_align">{{ obj.APPROVE_LIST }}</td> 
+                    </tr>
+      
+                  </tbody>
+              </table> 
+            </div> 
+              </div>
+
+              <div class="col-md-12">
+                <HR style="height: 1px;color:brown;background-color: brown;">
+                </div>
+            <div class="col-md-12 row" >
+
+               <div class="col-md-2">
+                <div class="form-group" style="text-align: right;width: 70%;">
+                  <label for="sanDt"
+                    >Sanction Date <span style="color: red">*</span></label
+                  > 
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+              <app-date-picker
+              [PlaceHolder]="'Select Date'"
+              [(selectedDate)]="sanDt"
+              [minDate]="minDate"
+              [maxDate]="maxDate" [(ngModel)]="sanDt" 
+            ></app-date-picker>
+            </div>
+          </div> 
+
+       
+
+            <div class="col-md-2">
+                <div class="form-group" style="text-align: right;">
+                  <label> Proceeding No   <span style="color: red">*</span></label>
+                </div></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                  <input
+                  id="totalamount"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="ProcNo" 
+                  
+                  placeholder="Proceeding No"
+                  maxlength="30"   
+                  autocomplete="off"  (input)="onModeChange()" (change)="onModeChange()"
+                />
+                <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)" -->
+
+                </div>
+              </div> 
+            </div>
+
+            <div class="col-md-12 row" >
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;width: 70%;">
+                  <label> Quantity   <span style="color: red">*</span></label>
+                </div></div>
+                <div class="col-md-2">
+                    <div class="form-group" style="width: 100%;">
+                  <input
+                  id="qty"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="qty" 
+                  onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                  placeholder="Quantity"
+                  maxlength="10"    NumbersOnly
+                  autocomplete="off"  
+                />
+                </div>
+              </div>
+
+
+
+
+
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;">
+                  <label> Amount   <span style="color: red">*</span></label>
+                </div></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                  <input
+                  id="amount"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="amount" 
+                  onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                  placeholder="Amount"
+                  maxlength="10"    NumbersOnly
+                  autocomplete="off"  
+                />
+                </div>
+              </div>
+            
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;">
+                  <label> Percentage  <span style="color: red">*</span></label>
+                </div></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                  <input
+                  id="Percentage"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="Percentage" 
+                  onkeypress="return   (event.charCode >= 48 && event.charCode <= 57)"
+                  placeholder="Percentage"
+                  maxlength="10"    NumbersOnly
+                  autocomplete="off"  
+                />
+                </div>
+              </div>
+
+            </div>
+             
+            
+            <div class="col-md-12 row" >
+
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;width: 70%;">
+                  <label> Proceeding  <span style="color: red">*</span></label>
+                </div></div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                  <input   [(ngModel)]="Proceedingdoc"
+                    type="file"
+                    class="form-control p-0"
+                    id="ProceedingdocUpload"
+                    (change)="onProceedingdoc($event)"
+                    accept="application/pdf" autocomplete="off"
+                      />
+                </div>
+              </div> 
+
+
+              
+              <div class="col-md-2">
+                <div class="form-group" style="text-align: right;">
+                  <label> Budget Slip  <span style="color: red">*</span></label>
+                </div></div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                   
+                          <input   [(ngModel)]="budgetslip"
+                            type="file"
+                            class="form-control p-0"
+                            id="budgetslip"
+                            (change)="onbudgetslip($event)"
+                            accept="application/pdf"
+                            autocomplete="off" />
+                       
+
+
+                     
+
+                </div>
+              </div> 
+              <div class="col-md-4">
+              <div class="form-group" style="text-align: right;">
+                <input type="button"
+                class="btn btn-success btn-sm" id="btnsubmit" style="width: 100px;
+                height: 35px !important;font-size: 16px;" value="SUBMIT"  (click)="btnSubmitDetails()"> 
+             </div>  </div>
+
+        </div>
+
+
+         
+         
+              <div class="col-md-12">
+              <HR style="height: 1px;color:brown;background-color: brown;">
+              </div>
+
+
+
+
+    
+              <div class="col-md-12 row" ><div class="col-md-1" ></div>
+              <div class="col-md-11" >
+    <table    class="table table-striped ah-table text-center;  table-responsive"       [hidden]="proceedingList?.length < 1"     >
+      <thead class="bg-success text-white" >
+        <tr>
+          <th style="width:50px;">S.No.</th>
+          <th>PRICE ID</th>
+          <th>PO NUMBER</th>
+          <th>DATE OF SANCTION</th>  
+          <th>PROCEDING NUMBER</th>        
+          <th>QUANTITY</th>
+          <th>PAYMENT AMOUNT</th>
+          <th>PAYMENT PERCENTAGE</th>
+          <th>DISTRICT NAME</th>
+          <th>PROCEEDINGS IMAGE</th>
+          <th>BUDGET SLIP IMAGE</th> 
+          <th>Delete</th> 
+        </tr>
+      </thead>
+      <tbody *ngIf="proceedingList?.length > 0">
+        <tr *ngFor="let obj of proceedingList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ obj.PRCID }}</td>
+          <td>{{ obj.PONUMBER }}</td>
+          <td>{{ obj.DATEOFSANTION }}</td>
+          <td>{{ obj.PROCEDINGNO }}</td>          
+          <td>{{ obj.QTY }}</td>
+          <td>{{ obj.PAYMENTAMOUNT }}</td>
+          <td>{{ obj.PAYMENTPER }}</td>
+          <td>{{ obj.ISTRICTNAME }}</td>
+          <!-- {{ obj.PROCEEDINGDOCPATH }} -->
+          <td>
+            <button class="btn btn-sm btn-info block"
+            (click)="btnAllPdf(obj.PROCEEDINGDOCPATH)">
+            <i>VIEW</i></button> 
+          </td>
+          <td>
+            <!-- {{ obj.BUDGETSLIPDOCPATH }} -->
+
+            <button class="btn btn-sm btn-info block"
+            (click)="btnAllPdf(obj.BUDGETSLIPDOCPATH)">
+            <i>VIEW</i></button> 
+          </td>
+          <td>
+            
+            <input type="button" class="fa fa-trash btn btn-danger" (click)="Deletepacket(obj.PRCID);" value="Remove"/></td>
+    
+        </tr>
+      
+      </tbody>
+    
+
+    <tfoot>
+        <!-- <tr>
+            <td style="text-align: right;" colspan="7">Total:</td>
+            <td class="right"> {{ totalamt }}</td>
+        </tr> -->
+    </tfoot>
+
+    </table>
+</div>
+
+</div>
+
+
+            
+    </div>
+</div>
+</div>

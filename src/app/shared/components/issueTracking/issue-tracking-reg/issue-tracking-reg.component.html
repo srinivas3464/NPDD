@@ -1,0 +1,248 @@
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">REPORT AN ISSUE</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="rbkId">RBK <span style="color: red">*</span></label>
+          <select
+            id="rbkId"
+            class="form-control"
+            [(ngModel)]="trackingData.rbkId"
+            (change)="onRbkChange()"
+          >
+            <option value="">-- SELECT RBK --</option>
+            <option value="{{ obj.RBK_ID }}" *ngFor="let obj of rbkList">
+              {{ obj.RBK_NAME }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="villageId"
+            >VILLAGE <span style="color: red">*</span></label
+          >
+          <select
+            id="villageId"
+            class="form-control"
+            [(ngModel)]="trackingData.villageId"
+            (change)="onVillageChange()"
+          >
+            <option value="">-- SELECT VILLAGE --</option>
+            <option
+              value="{{ obj.VILLAGE_ID }}"
+              *ngFor="let obj of villageList"
+            >
+              {{ obj.VILLAGE_NAME }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="issueType"
+            >ISSUE TYPE <span style="color: red">*</span></label
+          >
+          <select
+            id="issueType"
+            class="form-control"
+            [(ngModel)]="trackingData.issueType"
+            (change)="onIssueTypeChange()"
+          >
+            <option value="">-- SELECT ISSUE TYPE --</option>
+            <option value="1">SOFTWARE ISSUE</option>
+            <option value="2">HARDWARE ISSUE</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="moduleId">
+            MODULE NAME <span style="color: red">*</span></label
+          >
+          <select
+            id="moduleId"
+            class="form-control"
+            [(ngModel)]="trackingData.moduleId"
+            (change)="onmoduleNameChange()"
+          >
+            <option value="">-- SELECT MODULE --</option>
+            <option value="{{ obj.MODULE_ID }}" *ngFor="let obj of moduleList">
+              {{ obj.MODULE_NAME }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="trackingData.issueType === '1'">
+        <div class="form-group">
+          <label>FARMER ISSUE <sup class="text-danger h6">*</sup></label>
+          <div class="ah-radio-buttons">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                class="custom-control-input"
+                type="radio"
+                name="isFarmerIssue"
+                id="isFarmerIssue1"
+                value="1"
+                [(ngModel)]="trackingData.isFarmerIssue"
+                autocomplete="off"
+              />
+              <label class="custom-control-label" for="isFarmerIssue1">
+                YES
+              </label>
+            </div>
+
+            <div class="custom-control custom-radio custom-control-inline">
+              <input
+                class="custom-control-input"
+                type="radio"
+                name="isFarmerIssue"
+                id="isFarmerIssue2"
+                value="0"
+                [(ngModel)]="trackingData.isFarmerIssue"
+                autocomplete="off"
+              />
+              <label class="custom-control-label" for="isFarmerIssue2">
+                NO
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="trackingData.isFarmerIssue === '1'">
+        <div class="form-group">
+          <label for="farmerId"
+            >FARMER ID <span style="color: red">*</span></label
+          >
+          <input
+            id="farmerId"
+            type="text"
+            class="form-control"
+            [(ngModel)]="trackingData.farmerId"
+            placeholder="Please Enter Farmer ID"
+            maxlength="8"
+            autocomplete="off"
+            NumbersOnly
+            [allowDecimals]="false"
+            [allowSign]="false"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="moduleTitle"
+            >ISSUE TITLE <span style="color: red">*</span></label
+          >
+          <input
+            id="moduleTitle"
+            type="text"
+            class="form-control"
+            [(ngModel)]="trackingData.issueTitle"
+            placeholder="Please Enter Issue Title"
+            maxlength="50"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="description"
+            >ISSUE DESCRIPTION <span style="color: red">*</span></label
+          >
+          <textarea
+            id="description"
+            type="text"
+            class="form-control"
+            [(ngModel)]="trackingData.description"
+            placeholder="Please Enter Issue Description"
+            maxlength="500"
+            rows="8"
+          ></textarea>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="issueTrackingImgUpload"
+            >ISSUE PHOTO UPLOAD <span style="color: red">*</span>
+          </label>
+          <input
+            type="file"
+            class="form-control p-0"
+            id="issueTrackingImgUpload"
+            (change)="onIssueTrackingImageChange($event)"
+            accept="image/*"
+            #issueTrackingImgUpload
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="docTitle"
+            >DOCUMENT TITLE <span style="color: red">*</span></label
+          >
+          <input
+            id="docTitle"
+            type="text"
+            class="form-control"
+            [(ngModel)]="trackingData.docTitle"
+            placeholder="Please Enter Document Title"
+            maxlength="100"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="issueTrackingImgUpload"
+            >DOCUMENT UPLOAD <span style="color: red">*</span>
+          </label>
+          <input
+            type="file"
+            class="form-control p-0"
+            name="docUpload"
+            id="docUpload"
+            (change)="onIssueTrackingpdfChange($event)" 
+            accept="application/pdf"
+            #docUpload
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="videoFile"
+            >VIDEO UPLOAD <small class="text-danger">(mp4,mov,webm,avi,wmv & below 10mb)</small>   <span style="color: red">*</span>
+          </label>
+          <input
+            type="file"
+            class="form-control p-0"
+            id="videoFile"
+            (change)="onVideoChange($event.target.files)"
+            accept="video/mp4"
+            #videoFile
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12" align="center">
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          (click)="btnSubmit()"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

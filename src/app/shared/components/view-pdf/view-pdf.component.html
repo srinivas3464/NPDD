@@ -1,0 +1,13 @@
+<div
+  class="col-md-12"
+  align="center"
+  *ngIf="pdf !== '' && pdf !== undefined && pdf !== null"
+>
+  <iframe
+    width="100%"
+    height="600px"
+    type="application/pdf"
+    class="embed-responsive-item"
+    [attr.src]="pdf"
+  ></iframe>
+</div>

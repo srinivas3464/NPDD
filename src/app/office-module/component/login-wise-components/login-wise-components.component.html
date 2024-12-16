@@ -1,0 +1,163 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: center;">
+      <h5 class="mb-0">OFFICE LOGINS COMPONENTS</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+          
+            <div class="col-md-2" style="text-align: right;">
+                <div class="form-group">
+                <label >User Login<span style="color: red">*</span></label></div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">  
+                  <select
+                  id="userlogin"
+                  class="form-control"
+                  [(ngModel)]="officelogindetails.userlogin" 
+                 (change)="onloginchange()"
+                >  
+                   <option  disabled selected value="">-- Select User Login --</option>  
+                  <option value="{{ obj.UNIQUE_ID }}" *ngFor="let obj of LOGINLIST"> 
+                    {{ obj.NAME }}
+                  </option>
+                  
+                </select>
+                </div>
+             </div>   
+  
+            </div>
+            <div class="row">
+              <br><br> 
+              <div class="col-md-12"> <hr style=" border: 2px solid maroon;"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+              <!-- <div class="col-md-12" style="overflow-x:auto;">  -->
+                <div
+                class="col-md-8 table-responsive"
+                [hidden]="COMPONENTLIST?.length < 1"
+              >
+
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger" data-page-length='10' >
+              <thead class="bg-success text-white" style="border: 1px solid white;">
+  
+
+
+                     <tr>
+                       <th   class="tableheader_color"  >S.No.</th>
+                       <th   class="tableheader_color"  >Component ID</th> 
+                       <th  class="tableheader_color"  >Component Name</th>
+                       <th  class="tableheader_color"  >Assigned Status</th> 
+                   </tr> 
+
+                   <tr >             
+                    <th  class="tableheader_color"  >(1)</th>
+                    <th  class="tableheader_color" >(2)</th>
+                    <th  class="tableheader_color" >(3)</th>
+                    <th  class="tableheader_color" >(4)</th> 
+                  </tr> 
+
+                   </thead>  
+                        <tbody *ngIf="COMPONENTLIST?.length > 0">
+                            <tr *ngFor="let obj of COMPONENTLIST; let i = index">
+
+                       <td  class="number_align" style="width: 60px !important;">{{ i+1 }}</td> 
+                       <td class="number_align"  style="width: 60px !important;">  
+                     
+                      {{obj.COMPID }}  </td>                  
+                       <td  class="text_align_color"  style="width: 500px !important;"> {{obj.COMPNAME|uppercase}} </td>
+                       <td  class="number_align"  style="width: 60px !important;"> 
+                        <input       
+                         type="checkbox" 
+                        id="checkbox_{{obj.COMPID}}"
+                         name="assignedstatus"  (change)="onSelectionChange(obj.COMPID)"  
+                         value=" {{obj.ASSIGNED_STATUS}}"
+                         [(ngModel)]="obj.ASSIGNED_STATUS"  
+                         > 
+                       </td> 
+                     </tr>
+                   </tbody> 
+                 </table> 
+                 
+                
+                
+                
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-10" align="center"  ></div>
+                <div class="col-md-2" align="center" style="position: relative;bottom: 8px;">
+                    <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="btnSubmit()">                      
+                    Submit
+                    </button> 
+                  </div>
+
+
+
+        </div>
+
+        <div class="row">  
+            <div class="col-md-2"></div>
+            <div
+            class="col-md-8 table-responsive"
+            [hidden]="updateCOMPONENTLIST?.length < 1"
+          >
+    
+          <table class="table table-striped ah-table text-center"  data-page-length='10' >
+          <thead class="bg-success text-white" style="border: 1px solid white;">
+    
+    
+    
+                 <tr>
+                   <th   class="tableheader_color"  >S.No.</th>
+                   <th   class="tableheader_color"  >Component ID</th> 
+                   <th  class="tableheader_color"  >Component Name</th>
+                    <th  class="tableheader_color"  >Assigned Status</th>  
+               </tr> 
+    
+               <tr >             
+                <th  class="tableheader_color"  >(1)</th>
+                <th  class="tableheader_color" >(2)</th>
+                <th  class="tableheader_color" >(3)</th>
+                  <th  class="tableheader_color" >(4)</th> 
+              </tr> 
+    
+               </thead>  
+                    <tbody *ngIf="updateCOMPONENTLIST?.length > 0">
+                        <tr *ngFor="let obj of updateCOMPONENTLIST; let i = index">
+    
+                   <td  class="number_align" style="width: 60px !important;">{{ i+1 }}</td> 
+                   <td class="number_align"  style="width: 60px !important;">  
+                 
+                  {{obj.COMPID }}  </td>                  
+                   <td  class="text_align_color"  style="width: 500px !important;"> {{obj.COMPNAME|uppercase}} </td>
+                    <td  class="number_align"  style="width: 60px !important;"> 
+                    <!-- <input       
+                     type="button" 
+                    id="checkbox_{{obj.COMPID}}"
+                     name="assignedstatus"  (change)="onSelectionRemove(obj.COMPID)"  
+                     value="Remove" style="background-color: red;color: white;"
+                     [(ngModel)]="btnsubmit" >  -->
+
+                     <input type="button" class="fa fa-trash btn btn-danger" (click)="onSelectionRemove(obj.COMPID);" value="Remove"/> 
+                   </td>  - 
+                 </tr>
+               </tbody> 
+             </table> 
+             
+            
+            
+            
+            </div>
+    
+        </div>
+    
+       
+    </div>
+</div>

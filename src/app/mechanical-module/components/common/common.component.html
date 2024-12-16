@@ -1,0 +1,470 @@
+<!-- STATIC Dynamic START-->
+<!-- <app-common-dynamic-menu></app-common-dynamic-menu>  -->
+<!-- STATIC Dynamic END-->
+
+<!-- STATIC MENU START-->
+
+ <!--Navbar-->
+ <nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient headstick">
+    <!-- Navbar brand -->
+    <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+      <img
+        class="brand-logo"
+        src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+        style="width: 50px"
+      />
+      <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+        Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+      </h5>
+    </a>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item text-right">
+          <a
+            class="navbar-brand d-flex align-items-center"
+            style="cursor: pointer"
+          >
+          <img
+          class="brand-logo"
+          src="https://apddcf.ap.gov.in/cdn/img/CM.png"
+          style="width: 50px"
+        />
+        <div class="text-center">
+          <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+            Sri Nara Chandrababu Naidu
+          </h6>
+              <p style="font-size: 12px; margin-bottom: 0; color: #fff">
+                Hon’ble Chief Minister, <br />
+                Andhra Pradesh
+              </p>
+            </div>  
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Collapsible content -->
+  </nav>
+  <!--/.Navbar-->
+   <!--Menu-Navbar -->
+   <nav
+   class="
+     menu-navbar
+     navbar navbar-expand-lg navbar-dark
+     primary-color-dark
+     py-md-0
+     text-white menustick
+     "
+     style="margin-bottom: 50px;"
+ 
+  >
+  
+  <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+  <button
+  class="navbar-toggler"
+  type="button"
+  data-toggle="collapse"
+  data-target="#navbarSupportedContent-333"
+  aria-controls="navbarSupportedContent-333"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+  >
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <!-- menu 1 design start   *ngIf="menu1list?.length > 0"-->
+  <div >
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu </a>
+                     
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <!-- <div  *ngFor="let obj of menu1list; let i = index"> 
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div> -->
+
+                            <a
+                            class="dropdown-item"
+                            routerLink="Tenders"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            >    <span style="font-size: x-small;">  ME1-</span>Tenders         </a> 
+
+
+
+
+
+                            <a
+                            class="dropdown-item"
+                            routerLink="podetails"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                          >          <span style="font-size: x-small;">  ME2-</span>Purchase Order Details         </a> 
+                    
+                    
+                          <a
+                          class="dropdown-item"
+                          routerLink="PODistrictwiseDetails"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                        >          <span style="font-size: x-small;">  ME3-</span>Purchase Order District wise Details       </a>
+                        <a
+                        class="dropdown-item"
+                        routerLink="ProformaInvoice"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                      >          <span style="font-size: x-small;">  ME4-</span>Proforma Invoice  Details       </a> 
+
+                      <a
+    class="dropdown-item"
+    routerLink="InvoiceDetails"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >          <span style="font-size: x-small;">  ME5-</span>Invoice Details         </a> 
+                          <a
+                          class="dropdown-item"
+                          routerLink="ProceedingDetails"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          >          <span style="font-size: x-small;">  ME6-</span>Proceeding Details        </a>  
+
+
+                          <a
+                          class="dropdown-item"
+                          routerLink="FirmDetails"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                        >   <span style="font-size: x-small;">  ME7-</span>Firm Registration Details          </a>             
+                        
+                        <a
+                          class="dropdown-item"
+                          routerLink="FirmSecuirtyDeposites"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                        >   <span style="font-size: x-small;">  ME8-</span>Firm Security Deposit           </a>  
+                  
+                  
+                  <a
+                  class="dropdown-item"
+                  routerLink="Budgetstatement"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >          <span style="font-size: x-small;">  ME9-</span>Budget Statement         </a>  
+                  <a
+                  class="dropdown-item"
+                  routerLink="ApprovalsDetails"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >          <span style="font-size: x-small;">  ME10-</span>Approvals Details         </a> 
+
+
+                  <a
+                  class="dropdown-item"
+                  routerLink="PoDistrictQtyChanges"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >         <span style="font-size: x-small;">  ME11-</span> PO District Qty Changes         </a> 
+
+
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- menu 1 design end -->
+
+
+
+
+  
+  
+  <!-- menu 2 design start -->
+  <!-- <div *ngIf="menu2list?.length > 0">
+    <div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Menu2 </a>
+                        
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div  *ngFor="let obj of menu2list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div> -->
+  <!-- menu 2 design end -->
+    
+  
+  
+  <!-- Report 1 design start *ngIf="Report1list?.length > 0"-->
+  <div >
+    <div >
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Report </a>
+                        
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <!-- <div *ngFor="let obj of Report1list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div> -->
+
+                            <a
+                            class="dropdown-item"
+                            routerLink="FirmDetailsReport"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                          >          <span style="font-size: x-small;">  ME21-</span>Firm Details Report         </a>
+                          
+                            <a
+                            class="dropdown-item"
+                            routerLink="FirmSecuDepositReport"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                          >          <span style="font-size: x-small;">  ME22-</span>Firm Security Deposite Report         </a>
+
+
+                            <a
+                            class="dropdown-item"
+                            routerLink="BudgetslipReport"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                          >          <span style="font-size: x-small;">  ME23-</span>Budget Slip Report        </a> 
+
+                          <a
+                          class="dropdown-item"
+                          routerLink="InvoiceReports"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                        >         <span style="font-size: x-small;">  ME24-</span> Invoice Report         </a>
+                        
+
+                        
+                        <a
+                          class="dropdown-item"
+                          routerLink="InvoiceDocumentReport"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                        >          <span style="font-size: x-small;">  ME25-</span>Invoice Documents Report         </a>
+
+                        
+            <a
+            class="dropdown-item"
+            routerLink="TenderDetailsReports"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >          <span style="font-size: x-small;">  ME26-</span>Tender Details Today Report         </a> 
+          <a
+          class="dropdown-item"
+          routerLink="TenderDetailsReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >          <span style="font-size: x-small;">  ME27-</span>Tender Details Report        </a>
+          <a
+          class="dropdown-item"
+          routerLink="PODetailsReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          <span style="font-size: x-small;">  ME28-</span>PO Details Report         </a> 
+
+
+
+
+        <a
+            class="dropdown-item"
+            routerLink="TenderPriceReport"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >         <span style="font-size: x-small;">  ME29-</span>Sanctioned Price Report         </a>
+
+          <a
+          class="dropdown-item"
+          routerLink="ApprovalReports"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          <span style="font-size: x-small;">  ME30-</span>Approval Details Reports         </a>
+
+        <a
+        class="dropdown-item"
+        routerLink="ProceedingDetailsReport"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >          <span style="font-size: x-small;">  ME31-</span>Proceeding Details  Report        </a>
+
+
+
+      <a
+class="dropdown-item"
+routerLink="BmcuequipmentReport"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>          <span style="font-size: x-small;">  ME32-</span>BMCU Equipment Report        </a>
+
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div>
+  <!-- Report 1 design end -->
+  
+  
+  <!-- Report 2 design start -->
+  <!-- <div *ngIf="Report2list?.length > 0">
+    <div >
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item dropdown" routerLinkActive="active">
+                        <a   class="nav-link dropdown-toggle"
+                        id="navbarDropdownMenuLink-333"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        style="cursor: pointer"
+                        ><i class="fab fa-wpforms"></i> Report 2</a>
+                        
+                            <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                              <div *ngFor="let obj of Report2list; let i = index">
+                              <a   class="dropdown-item"
+                            routerLink="{{obj.SCREEN_NAME}}"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">  {{obj.DISPLAY_NAME}}  </a> 
+                            </div>
+                        </div> 
+                        </li>
+                </ul>
+        </div>
+    </div>
+  </div> -->
+  <!-- Report 2 design end -->
+  
+  
+  <ul class="navbar-nav ml-auto nav-flex-icons">
+    <li class="nav-item dropdown" routerLinkActive="active">
+      <a
+        class="nav-link dropdown-toggle d-flex align-items-center"
+        id="navbarDropdownMenuLink-333"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="cursor: pointer"
+      >
+        <h6 class="mb-0 mr-1">
+          Welcome <b>{{ userName }}</b>
+        </h6>
+        <i class="fas fa-user"></i>
+      </a>
+      <div
+        class="dropdown-menu dropdown-menu-right dropdown-primary"
+        aria-labelledby="navbarDropdownMenuLink-333"
+      >
+        <!-- <a class="dropdown-item" href="#" routerLink="">Profile</a> -->
+        <!-- <a
+        class="dropdown-item"
+        style="cursor: pointer"
+        (click)="btnForgetPassword()"
+      >
+          <i class="fas fa-key"></i> Forget Password
+        </a> -->
+        <a
+        class="dropdown-item"
+        style="cursor: pointer"
+        routerLink="PasswordUpdate"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="btnForgetPassword()"
+        
+      >
+        <i class="fas fa-key"></i> Update Password
+      </a>
+      
+        <a class="dropdown-item" style="cursor: pointer" (click)="btnLogout()"
+        ><i class="fas fa-sign-out-alt"></i> Logout</a
+      >
+        <hr class="my-1" />
+        <a class="dropdown-item text-center" style="cursor: pointer">
+          <span
+            >Last logged in: <br />
+            <b class="text-danger">{{ lastLoginTime }}</b></span
+          >
+        </a>
+      </div>
+    </li>
+  </ul>
+  
+  </nav>
+  <!--/.Menu-Navbar -->
+  
+  <!--Main Content -->
+  <div id="page-container">
+  <div id="content-wrap">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-11 mx-auto"  style="margin-top: 105px;margin-bottom: 100px;">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <!--Footer Content -->
+  <footer class="page-footer font-small blue footerstick">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center pt-3">
+      <a style="cursor: pointer; color: #fff">
+        <img
+          src="https://apddcf.ap.gov.in/cdn/img/apddcf-circle.png"
+          style="width: 30px"
+        />
+        Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+      </a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!--/.Footer-Content -->
+  </div>
+  <!--/.Main-Content -->
+  
+  
+
+<!-- STATIC MENU END-->

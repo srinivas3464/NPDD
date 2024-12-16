@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('1')">
+
+            <div class="overlay"></div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>COMPONENTS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('2')">
+
+            <div class="overlay"></div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>SUB COMPONENSTS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card" *ngIf="clickone">
+    <div style="text-align: center;">
+        <h5 *ngIf="id === 1"><u>COMPONENETS</u></h5>
+        <h5 *ngIf="id === 2"><u>SUB COMPONENTS</u></h5>
+
+       
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+        <div class="col-md-12 row">
+            
+                <table  class="table table-striped ah-table text-center"
+                datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                   <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="tableheader_color">S.No</th>
+                            <th *ngIf="id === 1" class="tableheader_color">Component ID</th>
+                            <th *ngIf="id === 1" class="tableheader_color">Component Code</th>
+                            <th class="tableheader_color">Component Name</th>
+                            <th *ngIf="id === 2" class="tableheader_color">Sub Component ID</th>
+                            <th *ngIf="id === 2" class="tableheader_color">Sub Component Name</th>
+                            <th class="tableheader_color">Description</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders" *ngIf="componentList?.length > 0">
+                        <tr *ngFor="let obj of componentList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td *ngIf="id === 1" class="number_align">{{obj.COMPID}}</td>
+                            <td *ngIf="id === 1" class="number_align">{{obj.COMPCODE}}</td>
+                            <td class="text_alignleft">{{obj.COMPNAME}}</td>
+                            <td *ngIf="id === 2" class="number_align">{{obj.PARTID}}</td>
+                            <td *ngIf="id === 2" class="text_alignleft">{{obj.PARTNAMES}}</td>
+                            <td *ngIf="id === 2" class="text_alignleft">{{obj.PARTDESC}}</td>
+                            <td *ngIf="id === 1" class="text_alignleft">{{obj.DESCRIPTION}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+             
+        </div>
+    </div>
+</div> 

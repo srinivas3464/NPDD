@@ -1,0 +1,171 @@
+<div class="card">
+  <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">Component Price Report </h5>
+  </div>
+  <div class="card-body">
+
+
+      <!-- <div class="col-md-12 row" >
+          <div class="col-md-2" style="text-align: right;margin-top: 0px;" onclick="handleChange1()" >
+          <input type="radio" id="COMPONENT" name="Component" value="COMPONENT" [checked]="COMPONENTisChecked" (change)="handleChange($event)" >
+          
+          <label> Component
+        </label>
+           
+              </div> 
+              <div class="col-md-2" style="text-align: right;">
+                <input type="radio" name="Component" value="SUBCOMPONENT" [checked]="SUBCOMPONENTisChecked" (change)="handleChange($event)"> 
+   
+  
+  
+        
+                <label> SubComponent
+              </label>
+            </div> 
+              <div class="col-md-2" style="text-align: right;margin-top: 11px;" >
+                <label for="UninonId">Component Name
+                  <span style="color: red">*</span></label>
+              </div> 
+
+          <div class="form-group col-md-5" style="margin-top: 11px;">
+           
+            <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" (change)="componentChange();"  >                
+              <option disabled selected value="undefined">-- SELECT COMPONENT --</option>
+              <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+            </select>
+          </div>  
+      </div> 
+       -->
+
+       <div class="col-md-12 row"> 
+        <div class="col-md-6"  style="background-color: #1f363a29;text-align: center;border-right: 1px solid #dc3545;">
+            <div class="form-group">
+                <label style="color: brown;text-align: center; " ><u>Transaction Date Based Report </u> </label>
+
+            </div> </div>
+        
+            <div class="col-md-1"   style="background-color: #1f363a29;"></div>
+            <div class="col-md-3"  style="background-color: #1f363a29;text-align: center;">
+                <div class="form-group">
+                    <label  style="color: brown;text-align: center; "><u>Inserted Date Based Report </u> </label>
+    
+                </div> </div>
+                <div class="col-md-2"  style="background-color: #1f363a29;text-align: center;"></div>
+        </div>  
+
+      <div class="col-md-12 row"> 
+          <div class="col-md-2"   style="background-color: #1f363a29;text-align: center;">
+              <div class="form-group">
+                  <label for="fromdate">From Date <span style="color: red">*</span></label>
+
+                  <app-date-picker [PlaceHolder]="'Select From Date'" [(selectedDate)]="fromdate" [minDate]="minDate" [maxDate]="maxDate"
+                      [(ngModel)]="fromdate"></app-date-picker> 
+              </div>
+          </div>
+
+          <div class="col-md-2"  style="background-color: #1f363a29;text-align: center;">
+              <div class="form-group" >
+                  <label for="fromdate">To Date <span style="color: red">*</span></label>
+
+                  <app-date-picker [PlaceHolder]="'Select To Date'" [(selectedDate)]="Todate" [minDate]="minDate" [maxDate]="maxDate"
+                      [(ngModel)]="Todate"></app-date-picker>
+
+              </div>
+          </div>
+          <div class="col-md-2"  style="background-color: #1f363a29;border-right: 1px solid #dc3545;">
+              <input type="button" class="btn btn-info fa fa-plus" value="Find Transaction Date wise" (click)="GODetails();"
+                  style="margin-top: 32px;" /> 
+          </div>
+          <div class="col-md-1"    style="background-color: #1f363a29;"></div>
+          <div class="col-md-2" style="background-color: #1f363a29;">
+
+          <div class="form-group"  >
+            <label for="fromdate">  Date <span style="color: red">*</span></label>
+
+            <app-date-picker [PlaceHolder]="'Select From Date'" [(selectedDate)]="fromdate_frm" [minDate]="minDate" [maxDate]="maxDate"
+                [(ngModel)]="fromdate_frm"></app-date-picker> 
+        </div>
+         </div>
+
+          <div class="col-md-2"  style="background-color: #1f363a29;">
+            <input type="button" class="btn btn-info fa fa-plus" *ngIf="admbtn" value="Find Inserted Date wise" (click)="TodateDetails();"
+                style="margin-top: 32px;" /> 
+        </div>
+
+        <div class="col-md-1"    style="background-color: #1f363a29;"></div>
+          
+      </div>
+
+      <div class="col-md-12">
+        <HR style="height: 1px;color:brown;background-color: brown; ">
+    </div>
+      <div class="col-md-12" [hidden]="priceList?.length < 1">
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+          </button>
+
+      </div>
+      <div class="col-md-12 row">
+          <div class="col-md-12 table-responsive" [hidden]="priceList?.length < 1">
+            
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead class="bg-success text-white" style="border: 1px solid white;">
+                      <tr>
+                          <th class="tableheader_color">S No</th>
+                          <th class="tableheader_color">Comp ID</th>
+                          <th class="tableheader_color">Financial Year</th>
+                          <th class="tableheader_color">Type</th>
+                          <th class="tableheader_color">Tender Type</th>
+
+                          <th class="tableheader_color">Component Name</th>
+                          <th class="tableheader_color">Description</th>
+                          <th class="tableheader_color">Quantity</th>
+                          <th class="tableheader_color">Price</th>
+                      </tr>
+                      <tr>
+                          <th class="tableheader_color">(1)</th>
+                          <th class="tableheader_color">(2)</th>
+                          <th class="tableheader_color">(3)</th>
+                          <th class="tableheader_color">(4)</th>
+                          <th class="tableheader_color">(5)</th>
+                          <th class="tableheader_color">(6)</th>
+                          <th class="tableheader_color">(7)</th>
+                          <th class="tableheader_color">(8)</th>
+                          <th class="tableheader_color">(9)</th>
+
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                      <tr *ngFor="let obj of priceList; let i = index">
+                          <td class="number_align">{{ i + 1 }}</td>
+                          <td class="number_align" name="{{obj.COMPID}}" id="{{ i + 1 }}">{{ obj.COMPID }}</td>
+
+                          <td style="text-align: left;">{{ obj.FINANCIAL_YEAR }}</td>
+                          <td style="text-align: left;">{{ obj.TYPE }}</td>
+                          <td style="text-align: left;">{{ obj.TENDER_TYPE }}</td>
+
+                          <td class="text_align_color">{{ obj.COMPNAME }}</td>
+                          <td class="text_align_color">{{ obj.DESCRIPTION }}</td>
+                          <td class="number_align"> {{ obj.QTY }} </td>
+                          <td class="number_align"> {{ obj.PRICE }} </td>
+
+
+                      </tr>
+                  </tbody>
+              </table>
+
+          </div>
+
+      </div>
+
+
+  </div>
+
+</div>
+<style>
+  table {
+      border-collapse: separate;
+  }
+</style>

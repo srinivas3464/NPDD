@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: center;">
+      <h5 class="mb-0">LOGINS WISE MENU DETAILS</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- <div class="col-md-1"></div> -->
+            <div class="col-md-2" style="text-align: right;">
+                <div class="form-group">
+                <label >User Login<span style="color: red">*</span></label></div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">  
+                  <select
+                  id="userlogin"
+                  class="form-control"
+                  [(ngModel)]="officelogindetails.userlogin" 
+                 
+                > 
+                <!-- "
+                   (change)="onloginchange(officelogindetails.UNIQUE_ID)" -->
+                   <option  disabled selected value="">-- Select User Login --</option>  
+                  <option value="{{ obj.UNIQUE_ID }}" *ngFor="let obj of LOGINLIST"> 
+                    {{ obj.NAME }}
+                  </option>
+                  
+                </select>
+                </div>
+             </div>  
+
+             <div class="col-md-2" align="center" style="position: relative;bottom: 8px;">
+                <button
+                type="button"
+                class="btn btn-success btn-sm"
+                (click)="btnFind()">                      
+                Find
+                </button> 
+              </div>
+            </div>
+
+
+            <div class="row">
+            <table
+            class="table table-striped ah-table text-center"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="bg-success text-white">
+
+
+                     <tr>
+                       <th >S.No.</th>
+                       <th >Screen ID</th> 
+                       <th>Component Name</th>
+                       <th>Login Unique Id</th>
+                       <th>Assigned Status</th>
+                       <th> Assigned Menu</th>  
+                       <th> Action</th>  
+                   </tr> 
+                   </thead> 
+                        <tbody *ngIf="COMPONENTLIST?.length > 0">
+                            <tr *ngFor="let obj of COMPONENTLIST; let i = index">
+
+                       <td>{{ i+1 }}</td> 
+                       <td>    <b>{{obj.SCREEN_ID }}</b> </td>                  
+                       <td> {{obj.SCREEN_NAME}} </td> 
+                       <td> {{obj.LOGIN_UNIQUE_ID}} </td> 
+                        <td> {{obj.SCREEN_STATUS }}   </td>
+                         
+                        <td> {{obj.MENU_NAME}}     </td> 
+                        <td>
+            
+                            <input type="button" class="fa fa-trash btn btn-danger" (click)="Deletepacket(obj.SCREEN_ID);" value="Remove"/></td> 
+                     </tr>
+                   </tbody> 
+                 </table> 
+                 
+                </div>
+                
+        </div>

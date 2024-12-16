@@ -1,0 +1,139 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">BMCU Equipment Report</h5>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6"></div>
+        <div class="col-md-3"></div>
+       
+    </div> 
+
+    <div class="row"><div class="col-md-1"></div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="Districtid">District <span style="color: red">*</span></label>
+                <select id="Districtid" class="form-control" [(ngModel)]="Districtid"  (change)="bmcudetails();">
+                    <option  disabled selected value="undefined">-- SELECT District --</option>
+                    <option value="{{ obj.DISTRICT_ID }}" *ngFor="let obj of Districtlist"> {{ obj.DISTRICT_NAME }} </option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="BMCUID">BMCU<span style="color: red">*</span></label>
+                <select id="BMCUID" class="form-control" [(ngModel)]="BMCUID"    (change)="equipmentdetailsGridList();" >
+                    <option  disabled selected value="undefined">-- Select BMCU --</option> 
+                    <option value="{{ obj.BMCU_CODE }}" *ngFor="let obj of Bmculist"> {{ obj.BMCU_NAME }} </option>
+                </select>
+            </div>
+        </div> 
+
+        <div class="col-md-2"><br />
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+        </div>
+
+
+    </div> 
+
+    <div class="row" >
+        
+        <div class="col-md-1" ></div>
+        <div class="col-md-10">
+          
+           <div class="card-body">
+            <div class="col-md-12 table-responsive">
+
+ 
+                <table  class="table table-striped ah-table text-center"
+                 datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                           <tr >
+                               <th  class="thclr">S NO</th>
+                               <th  class="thclr" >District </th>
+                               <th  class="thclr" >BMCU </th>
+                               <th  class="thclr" >Equipment </th> 
+
+                               <th  class="thclr">Invoice No</th>
+                               <th  class="thclr" > Make</th>
+                               <th  class="thclr" >Installation Date</th>
+                              
+                               <th  class="thclr" >Capacity Value</th>
+                               <th  class="thclr" >Serial Number</th>
+                               <th  class="thclr" >Calibration Status</th> 
+                               <th  class="thclr" >Installation Status</th>
+                               <th  class="thclr" >Serial No Image </th>
+                               <th  class="thclr" >Device Image </th>
+                               <!-- <th  class="thclr" >Status</th> -->
+                              
+                                
+
+                           </tr>
+                           <tr>
+                               <th   class="thclr">(1)</th>
+                               <th  class="thclr">(2)</th>
+                               <th   class="thclr">(3)</th>
+                               <th   class="thclr">(4)</th>
+                               <th   class="thclr">(5)</th>
+                               <th  class="thclr">(6)</th>
+                               <th   class="thclr">(7)</th>
+                               <th   class="thclr">(8)</th>
+                               <th   class="thclr">(9)</th>
+                               <th   class="thclr">(10)</th>
+                               <th   class="thclr">(11)</th>
+                               <th  class="thclr">(12)</th>
+                               <th   class="thclr">(13)</th>
+                                
+                           </tr>
+                       </thead>
+                       
+                               <tbody  calss="table_cells_borders" >
+                                   <tr *ngFor="let obj of BMCUEquipmentList; let i = index">
+                                       <td class="number_align">{{ i + 1 }}</td>
+                                       <td style="text-align: left; width: 200px;" class="table_cells_borders"> {{obj.DISTRICT_NAME}}</td>
+                                       <td style="text-align: left; width: 200px;" class="table_cells_borders"> {{obj.BMCU_NAME}}</td>
+                                       <td style="text-align: left; width: 200px;" class="table_cells_borders"> {{obj.EQUIPMENT_NAME}}</td>
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.INVOICE_NUMBER}}</td>
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.DEVICE_MAKER}}</td>
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.MANUFACTURE_DATE}}</td>                                       
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.CAPACITY_VALUE}}</td>
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.SERIAL_NUMBER}}</td>
+                                       <td style="text-align: left;" class="table_cells_borders"> {{obj.CALIBRATION_STATUS}}</td>   
+                                      <td style="text-align: left;" class="table_cells_borders"> {{obj.INSTALLATION_STATUS}}</td>
+
+                                       
+                              
+                                 <td>
+                                    <span *ngIf="obj.SERIAL_NUMBER_IMG !== '0' && obj.SERIAL_NUMBER_IMG !==undefined  &&  obj.SERIAL_NUMBER_IMG !== null">
+                                        <button class="btn btn-sm btn-info block"
+                                   (click)="btnAllPdf(obj.SERIAL_NUMBER_IMG)">
+                                   <i>VIEW</i></button>
+                                        </span> 
+                                  <span *ngIf="obj.SERIAL_NUMBER_IMG === '0'  || obj.SERIAL_NUMBER_IMG ===undefined  ||  obj.SERIAL_NUMBER_IMG === null" >NA</span >     
+                                </td>
+                                 <td>
+                                    <span *ngIf="obj.DEVICE_IMG !== '0' && obj.DEVICE_IMG !==undefined  &&  obj.DEVICE_IMG !== null">
+                                        <button class="btn btn-sm btn-info block"
+                                   (click)="btnAllPdf(obj.DEVICE_IMG)">
+                                   <i>VIEW</i></button>
+                                        </span> 
+                                  <span *ngIf="obj.DEVICE_IMG === '0'  || obj.DEVICE_IMG ===undefined  ||  obj.DEVICE_IMG === null" >NA</span >
+ 
+                                 </td>
+
+                                  
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+        </div>
+   </div>
+
+    
+</div>

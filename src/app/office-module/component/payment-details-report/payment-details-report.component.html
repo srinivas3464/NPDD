@@ -1,0 +1,96 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">PAYMENT DETAILS  REPORT</h5>
+    </div>
+    <div class="card-body">
+ 
+        <div class="col-md-12">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+        <div  class="col-md-12 row"   > 
+             
+            <div class="table-responsive"  > 
+        
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                       <tr>
+        
+                 
+                        <tr  >
+                            <th  class="borderwhitecolo">S.NO</th>                  <th  class="borderwhitecolo"> PO NUMBER</th>                           <th  class="borderwhitecolo"> PO DATE</th> 
+                            <th  class="borderwhitecolo"> INVOICE NUMBER</th>          <th  class="borderwhitecolo"> INVOICE DATE</th>                           <th  class="borderwhitecolo"> INVOICE AMOUNT</th> 
+                            <th  class="borderwhitecolo"> DEDUCTIONS</th>              <th  class="borderwhitecolo"> CGST NUMBER</th>                           <th  class="borderwhitecolo"> SGST NUMBER</th> 
+                            <th  class="borderwhitecolo"> IGST NUMBER</th>         <th  class="borderwhitecolo"> TDS NUMBER</th>                        <th  class="borderwhitecolo">NET AMOUNT  </th>   
+                            <th  class="borderwhitecolo"> CHEQUE NUMBER </th>  <th  class="borderwhitecolo"> CHEQUE DATE </th> <th  class="borderwhitecolo"> UTR NUMBER </th>   <th  class="borderwhitecolo"> TDS DOCUMENT </th>  <th  class="borderwhitecolo"> ACTION </th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th> 
+                            <th class="borderwhitecolo">(4)</th>
+                            <th class="borderwhitecolo">(5)</th>
+                            <th class="borderwhitecolo">(6)</th>
+                            <th class="borderwhitecolo">(7)</th>
+
+                            <th class="borderwhitecolo">(8)</th>
+                            <th class="borderwhitecolo">(9)</th>
+                            <th class="borderwhitecolo">(10)</th> 
+                            <th class="borderwhitecolo">(11)</th>
+                            <th class="borderwhitecolo">(12)</th>
+                            <th class="borderwhitecolo">(13)</th>
+                            <th class="borderwhitecolo">(14)</th>
+                            <th class="borderwhitecolo">(15)</th>
+                            <th class="borderwhitecolo">(16)</th>
+                            <th class="borderwhitecolo">(17)</th>
+                        </tr>
+
+
+
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of Paymentdetailslist; let i = index">
+                            <td>{{i+1}}</td>
+                             
+                            <td>{{objd.PONUMBER}}</td>
+                            <td>{{objd.PODATE}}</td>
+                            <td>{{objd.INVOICENO}}</td>
+                            <td>{{objd.INVOICEDATE}} </td>
+                            <td>{{objd.GROSSINVOICEVAL }}</td>  
+                            <td>{{objd.DEDUCTION }}</td>
+                            <td>{{objd.CGST }}</td>                                                   
+                            <td>{{objd.SGST}}</td>
+                            <td>{{objd.IGST}}</td>
+                            <td>{{objd.TDS}}</td>
+                            <td>{{objd.NETPAYMENT}}</td>
+                            <td>{{objd.CHEQUENO}}</td>
+                            <td>{{objd.CHEQUEDATE}}</td>
+                            <td>{{objd.UTR}}</td>
+                            <td> 
+        
+                                <button class="btn btn-sm btn-info block"
+                                (click)="btnAllPdf(objd.UPLOADTDSDOC)">
+                                <i>VIEW</i></button> 
+                            </td>
+                             
+                            
+                             
+                            <td><input type="button" class="fa fa-trash btn btn-danger" (click)="DeletePAYID(objd.PAYID);" value="Remove"/></td>
+            
+        
+                        </tr>
+                    </tbody>
+                </table>
+        
+            </div>
+          
+         
+         </div>
+        
+
+    </div>
+</div>

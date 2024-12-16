@@ -1,0 +1,411 @@
+ 
+
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Schedule Details  </h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-center"  >
+              <div class="col-md-12 row">
+                <div class="col-md-4" style="text-align: right;"> <label for="UninonId">Select Schedule Training
+                  <span style="color: red">*</span></label></div>
+
+
+                <div class="col-md-4">
+                 <div class="form-group">
+                  
+                   <select id="TRAININGID"  class="form-control" [(ngModel)]="TRAININGID"   (change)="onScheduleChange()">                
+                       <option disabled selected value="undefined">-- Select Schedule Testing --</option>
+                     <option  value="{{ obj.TRAININGID }}"    *ngFor="let obj of POlist"> {{ obj.TRAININGNAME }}  </option>  
+                   </select>
+                 </div>
+               </div>
+               <div class="col-md-4">.</div>
+              </div>
+
+               <div class="col-md-12">
+
+               <HR style="height: 1px;color:brown;background-color: brown;">
+               </div>
+
+
+              
+
+               
+
+
+           
+
+
+
+               
+
+                <div class="col-md-12 row" *ngIf="ft" >
+                   
+                    <div class="col-md-2">
+                     <div class="form-group" style="text-align: right;">
+                       <label for="UninonId">Mentor Mobile No :
+                         <span style="color: red">*</span></label>                                           
+                             </div>
+                             </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                        <input   id="mentorphno"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="mentorphno" 
+                        onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                        placeholder="Mentor Phone No"   maxlength="10"   autocomplete="off"  />
+
+                    </div>
+                    </div>
+                   
+                    <div class="col-md-2">
+                        <div class="form-group" style="text-align: right;"> 
+                            <label  > Ric Mobile No:</label> 
+                            
+                             </div>
+                        
+                         </div>
+                    <div class="col-md-3">
+
+                        <input   id="ricphno"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="ricphno" 
+                        onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                        placeholder="Ric Phone No"   maxlength="10"   autocomplete="off"  />
+                        
+                    </div>
+                     <div class="col-md-2"> 
+                          <button
+                        type="button"  
+                        class="btn btn-success btn-sm"
+                        (click)="btnFind()"
+                      >
+                       Find  
+                      </button> </div>
+
+                      <div class="col-md-12  ">
+                        <HR style="height: 1px;color:brown;background-color: brown;">
+                        </div>
+
+                        <div class="col-md-12 ">
+             
+                          <!-- datatable -->
+                          <table    class="table table-striped ah-table text-center"    [hidden]="Mentorriclist?.length < 1" >   
+                            <thead class="bg-success text-white" >
+                              <tr>
+                                <th style="width:50px;">S.No.</th>
+                                <th>Name</th>
+                                 <th>ID</th> 
+                                 <th>Designation</th>
+                                  <th>MobileNo</th> 
+                                     <th>RouteNo</th>
+                                      <th>District</th>
+                                       <th>status</th>
+          
+                              </tr>
+                            </thead>
+                            <tbody  *ngIf="Mentorriclist?.length > 0">
+                              <tr *ngFor="let obj of Mentorriclist; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ obj.NAME }}</td><td>{{ obj.MID }}</td> <td>{{ obj.DESIG }}</td><td>{{ obj.MOBILENO }}</td><td>{{ obj.ROUTENO }}</td><td>{{ obj.DISTRICT }}</td><td>{{ obj.STATUS }}</td>
+          
+                              </tr>
+                              </tbody>
+                                  
+          
+                                  <tfoot> 
+                                  </tfoot>
+          
+                             </table> 
+                         </div>
+
+
+                </div>
+  
+               <div class="col-md-12 row" *ngIf="st" >
+                
+                <div class="col-md-2">
+                  <div class="form-group" style="text-align: right;">
+                    <label for="UninonId">Technicion Mobile No :
+                      <span style="color: red">*</span></label>                                           
+                          </div>
+                          </div>
+                     <div class="col-md-3">
+                         <div class="form-group">
+                     <input   id="technicionphno"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="technicionphno" 
+                     onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                     placeholder="Technicion Phone No"   maxlength="10"   autocomplete="off"  />
+
+                 </div>
+                 </div>
+                
+                 <div class="col-md-2">
+                     <div class="form-group" style="text-align: right;"> 
+                         <label  > Ric Mobile No:</label> 
+                         
+                          </div>
+                     
+                      </div>
+                 <div class="col-md-3">
+
+                     <input   id="ssricphno"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="ssricphno" 
+                     onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                     placeholder="Ric Phone No"   maxlength="10"   autocomplete="off"  />
+                     
+                 </div>
+                  <div class="col-md-2"> 
+                       <button
+                     type="button"  
+                     class="btn btn-success btn-sm"
+                     (click)="btnSSFind()"
+                   >
+                    Find  
+                   </button> </div>
+
+
+                   <div class="col-md-12  ">
+                    <HR style="height: 1px;color:brown;background-color: brown;">
+                    </div>
+
+
+
+                    <div class="col-md-12 ">
+             
+                      <!-- datatable -->
+                      <table    class="table table-striped ah-table text-center"  >   
+                        <thead class="bg-success text-white" >
+                          <tr>
+                            <th style="width:50px;">S.No.</th>
+                            <th>Name</th> <th>ID</th>  <th>Designation</th> <th>MobileNo</th>    <th>RouteNo</th> <th>District</th> <th>status</th>
+      
+                          </tr>
+                        </thead>
+                        <tbody  *ngIf="Techriclist?.length > 0">
+                          <tr *ngFor="let obj of Techriclist; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.NAME }}</td><td>{{ obj.MID }}</td> <td>{{ obj.DESIG }}</td><td>{{ obj.MOBILENO }}</td><td>{{ obj.ROUTENO }}</td><td>{{ obj.DISTRICT }}</td><td>{{ obj.STATUS }}</td>
+      
+                          </tr>
+                          </tbody>
+                              
+      
+                              <tfoot> 
+                              </tfoot>
+      
+                         </table> 
+                     </div>
+
+
+               </div>
+
+
+               <div class="col-md-12 row" *ngIf="bt" >
+                
+                <div class="col-md-1">
+                    <div class="form-group">
+                      <label for="UninonId">Name :
+                        <span style="color: red">*</span></label>
+
+                                          
+                            </div>
+                            </div>
+                       <div class="col-md-2">
+                           <div class="form-group">
+                       <input   id="bmcuname"   [tabIndex]="0"   type="text"   class="form-control"  [(ngModel)]="bmcuname" 
+                       onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)"
+                       placeholder="Name"      autocomplete="off"  />
+
+                   </div>
+                   </div>
+
+
+                   <div class="col-md-1 ">
+                    
+
+                         <div class="form-group">
+                            <label for="UninonId">Mobile:
+                              <span style="color: red">*</span></label>
+      
+                                                
+                                  </div>
+                    
+                     </div>
+                <div class="col-md-2">
+
+                    <input   id="bmcuphno"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="bmcuphno" 
+                    onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                    placeholder="Mobile No"   maxlength="10"   autocomplete="off"  />
+                    
+                </div>
+
+
+
+                <div class="col-md-1">
+                    <div class="form-group" style="margin-left: -20px;">
+                      <label for="UninonId">Designation:
+                        <span style="color: red">*</span></label>
+
+                                          
+                            </div>
+                            </div>
+                       <div class="col-md-2">
+                           <div class="form-group">
+                       <input   id="bmcudesignation"   [tabIndex]="0"   type="text"   class="form-control"  [(ngModel)]="bmcudesignation" 
+                       onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)"
+                       placeholder="Designation"      autocomplete="off"  />
+
+                   </div>
+                   </div>
+
+
+
+
+                   <div class="col-md-1">
+                    <div class="form-group">
+                      <label for="UninonId">Email ID :
+                        <span style="color: red">*</span></label>
+
+                                          
+                            </div>
+                            </div>
+                       <div class="col-md-2">
+                           <div class="form-group">
+                       <input   id="bmcuemailid"   [tabIndex]="0"   type="text"   class="form-control"  [(ngModel)]="bmcuemailid" 
+                        placeholder="Email ID"      autocomplete="off"  />
+
+                   </div>
+                   </div>
+
+
+
+
+               </div>
+
+               <div class="col-md-12 row  ">
+                 
+                <div class="card card-header p-1 col-md-12"  style="text-align:center ;color: brown;">
+                  <b><u> Training Details </u></b>
+                </div>
+                <div class="col-md-12"> <br /><br /> </div>
+               </div>
+              <div class="col-md-12 row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8"  > <!-- style="border-color:brown;border-style: groove; border-radius: 5px;" -->
+               <div class="col-md-12 row"  >
+               
+
+                <div class="col-md-2">
+                 <div class="form-group" style="text-align:right ;">
+                   <label for="trainingdate">Training Date
+                     <span style="color: red">*</span></label>
+
+                    </div> 
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <!-- <label for="sddate" >Txn/Bank/Cheque Date <span style="color: red">*</span></label>  -->
+    
+                  <app-date-picker
+                  [PlaceHolder]="'  Select  Date'"
+                  [(selectedDate)]="trainingdate"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                ></app-date-picker>
+                </div>
+              </div>
+                     <!-- <div class="col-md-4"  style="text-align:left ;">
+                       
+                      <input   type="text"   class="form-control"  placeholder="Training Date" />  
+
+                    </div>  -->
+                    <div class="col-md-2">
+                        <div class="form-group"  style="text-align:right ;">
+                          <label for="UninonId">Training Time
+                            <span style="color: red">*</span></label>
+       
+                           </div> 
+                          </div>  
+                           <div class="col-md-4" >
+                            <div class="form-group"  style="text-align:left ;">
+                                 
+                        <!-- <input   id="trainingtime"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="trainingtime" 
+                        onkeypress="return(event.charCode >= 48 && event.charCode <= 58)" 
+                        placeholder="Training Time"   maxlength="5"   autocomplete="off"  /> -->
+
+                        <input id="startTime" type="time" class="form-control" [(ngModel)]="trainingtime" placeholder="Please Enter Meeting Time"
+                    maxlength="8" autocomplete="off" />
+
+                    </div>
+                    </div> 
+
+                  </div>
+                  <div class="col-md-12 row" > 
+
+                           <div class="col-md-2">
+                            <div class="form-group"  style="text-align:right ;">
+                              <label for="UninonId">Venu
+                                <span style="color: red">*</span></label>
+           
+                               </div> </div>
+
+                               <div class="col-md-4">
+                                <div class="form-group" style="text-align:left ;">
+                                    <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)" -->
+                            <input   id="trainingvenu"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="trainingvenu" placeholder="Venu"       autocomplete="off"  />
+    
+                        </div>
+                        </div>
+
+
+                               <div class="col-md-2">
+                                <div class="form-group"  style="text-align:right ;">
+                                  <label for="UninonId">Address
+                                    <span style="color: red">*</span></label>
+               
+                                   </div> </div>
+
+                                   <div class="col-md-4">
+                                    <div class="form-group"  style="text-align:left ;">
+                                        <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)" -->
+                                <input   id="trainingAddress"   [tabIndex]="1"   type="text"   class="form-control"  [(ngModel)]="trainingAddress" 
+                               
+                                
+                              
+                                placeholder="Address"     autocomplete="off"  />
+        
+                            </div>
+                            </div>
+ 
+
+                 
+
+              </div>
+            </div>
+            <div class="col-md-2">   <button
+              type="button" [tabIndex]="17"
+              class="btn btn-success btn-sm"
+              (click)="btnSubmit()" style="margin-top: 50px;"
+            >
+             Submit  
+            </button> </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="col-md-12 row" *ngIf="ft" >
+</div> -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+ 
+ 

@@ -1,0 +1,89 @@
+<div class="card">
+    <div class="card-header p-2" style="text-align: center;">
+        <h5 class="mb-0">New Screen Entry</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="ComponentName">Component Name<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter Component Name" [(ngModel)]="ComponentName">
+
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="ScreenName">Screen Name<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter Screen Name" [(ngModel)]="ScreenName">
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="DisplayName">Display Name<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter Display Name" [(ngModel)]="DisplayName">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="ScreenType">Screen Type<span style="color: red">*</span></label>
+                    <select class="form-control" [(ngModel)]="ScreenType">
+                        <option value="">--Select--</option>
+                        <option value="0">Menu</option>
+                        <option value="1">Report</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" (click)="ScreenAdd()">Submit</button>
+            </div>
+
+            <div class="col-md-5"></div>
+        </div>
+
+          <div class="row">
+            <div class="col-md-12 table-responsive"  >
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S No</th>
+                            <th class="tableheader_color">ScreenID</th>
+                            <th class="tableheader_color">Component Name</th>
+                            <th class="tableheader_color">Screen Name</th>
+                            <th class="tableheader_color">Dispaly Name</th>
+                            <th class="tableheader_color">Screen Type</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">1</th>
+                            <th class="tableheader_color">2</th>
+                            <th class="tableheader_color">3</th>
+                            <th class="tableheader_color">4</th>
+                            <th class="tableheader_color">5</th>
+                            <th class="tableheader_color">6</th>
+                        </tr>
+                    </thead>
+                    <tbody   >
+                        <tr *ngFor="let obj of DataList;  let i=index;">
+                             <td class="number_align"> {{i+1}} </td>
+                            <td class="text_alignleft">{{obj.SCREEN_ID}}</td>
+                            <td class="text_alignleft">{{obj.COMPONENT_NAME}}</td>
+                            <td class="text_alignleft">{{obj.SCREEN_NAME}}</td>
+                            <td class="text_alignleft">{{obj.DISPLAY_NAME}}</td> 
+                            <td class="text_alignleft">{{obj.SCREEN_TYPE}}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+
+    </div>
+</div>

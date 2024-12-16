@@ -1,0 +1,166 @@
+
+
+
+
+
+
+
+<div class="card"> 
+
+    <div  >
+        <div class="row">
+            <div class="col-md-4"></div> <div class="col-md-8">
+        <div class="d-flex justify-content-between">
+            <div class="stats-text"  >
+                <p class="text-uppercase text-muted mb-1" style="margin-left: 50px">
+                   <u style="color: brown;">  NOMINATIONS </u>    
+                </p>
+            </div>
+            <div class="circle">
+                <i class="fas fa-check-double"></i>
+            </div>
+        </div>
+
+    </div>
+
+
+    </div>
+<div  class="card-body">
+        <div class="row">
+
+            <div class="col-md-2"   style="text-align: right;">
+                <label for="UninonId">  Financial Year
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="col-md-3" >
+             
+            <select id="fyID"  class="form-control" [(ngModel)]="fyID"   >                
+              <option disabled selected value="undefined">-- Financial Year --</option>
+              <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+            </select>
+              </div>
+
+
+
+              <div class="col-md-2"   style="text-align: right;">
+                <label for="UninonId">  Type
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-2" >
+             
+            <select id="typeID"  class="form-control" [(ngModel)]="typeID"    (change)="TypeChange();"  >                
+              <option disabled selected value="undefined">--  Select Type --</option>
+              <!-- <option  value="1"   > Traning  </option>
+              <option  value="2"   > College </option>
+              <option  value="3"   > Others </option> -->
+                <option  value="{{ obj.ID }}"   *ngFor="let obj of typedata"    > {{ obj.PAYMODE }}  </option>  
+            </select>
+              </div>
+              <div class="form-group col-md-3" >
+                <input type="text" class="form-control" id="typeothers" placeholder="Enter Others"  
+                [(ngModel)]="typeothers" *ngIf="typeothersdisplay">   
+            </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-md-2"   style="text-align: right;">
+                <label for="UninonId">  Category
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-3" >
+             
+            <select id="CategoryID"  class="form-control" [(ngModel)]="CategoryID"   >                
+              <option disabled selected value="undefined">--  Select Category Type --</option>
+              <!-- <option  value="1"   > Academic  </option>
+              <option  value="2"   > On Site Traning</option>              -->
+                <option  value="{{ obj.ID }}"   *ngFor="let obj of Category"    > {{ obj.PAYMODE }}  </option>  
+            </select>
+              </div>
+    
+
+
+        <div class="col-md-2"   style="text-align: right;">
+            <label for="UninonId">  Nature of Institute
+              <span style="color: red">*</span></label>
+          </div> 
+        <div class="form-group col-md-2" >
+         
+        <select id="NatureID"  class="form-control" [(ngModel)]="NatureID"   >                
+          <option disabled selected value="undefined">--  Select NatureType --</option>
+          <!-- <option  value="1"   > Govt Institute  </option>
+          <option  value="2"   >State Govt</option>  
+          <option  value="3"   >Autonomous Bodies</option>   
+          <option  value="4"   >Empower Agency</option>     -->
+           <option  value="{{ obj.ID }}"   *ngFor="let obj of NatureType"    > {{ obj.PAYMODE }}  </option>  
+        </select>
+          </div>
+
+        </div>
+
+
+        <div class="row">
+
+
+          <div class="col-md-2"   style="text-align: right;">
+            <label for="UninonId">  Description
+              <span style="color: red">*</span></label>
+          </div> 
+        <div class="form-group col-md-3" >
+         
+        <select id="DescID"  class="form-control" [(ngModel)]="DescID"   >                
+          <option disabled selected value="undefined">--  Select Description --</option>
+          <!-- <option  value="1"   >Code  </option>
+          <option  value="2"   >Traning</option>  
+          <option  value="3"   >Delivery</option>   
+          <option  value="4"   >Travelling</option>     -->
+       <option  value="{{ obj.ID }}"   *ngFor="let obj of Descriptiondata"    > {{ obj.PAYMODE }}  </option>  
+        </select>
+          </div>
+
+
+
+
+          <div class="col-md-2"   style="text-align: right;">
+            <label for="UninonId">  Approval Rating
+              <span style="color: red">*</span></label>
+          </div> 
+        <div class="form-group col-md-2" >
+         
+            <select class="form-select form-control" id="Rating" [(ngModel)]="Rating">
+                <option disabled selected value="undefined">--Select Rating--</option>
+                <option value="{{ obj.ID }}" *ngFor="let obj of RatingLevelList"> {{ obj.PAYMODE }} </option>
+
+            </select>
+          </div>
+
+
+          <div class="form-group col-md-2" >
+       
+            <select id="statusID"  class="form-control" [(ngModel)]="statusID"  >                
+              <option disabled selected value="undefined">--  Select Status --</option>
+               <option  value="1"   >Approved </option>
+              <option  value="2"   >Reject</option>   
+              <!-- <option value="{{ obj.ID }}" *ngFor="let obj of ApprovedstatusList"> {{ obj.PAYMODE }} </option>  -->
+               </select>
+            
+              </div>
+
+
+              <div class="col-md-1" >
+                <div class="form-group" >  
+                    <button class="btn btn-success" (click)="addItem()">Submit</button>
+                    <!-- <i class="fa fa-plus"></i> -->
+                </div>
+            </div>
+
+        </div>
+</div>
+    </div>
+
+
+
+
+</div>

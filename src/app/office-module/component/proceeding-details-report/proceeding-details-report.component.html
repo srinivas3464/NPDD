@@ -1,0 +1,107 @@
+ 
+
+<div class="card">
+    <div class="card-header p-2"> 
+      <h5 class="mb-0">Proceeding Details Report</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-center"  >
+          <div class="col-md-12">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+            <div class="col-md-12 row">
+                 
+
+      
+              <table  class="table table-striped ah-table text-center"
+              datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                 <thead class="bg-success text-white" style="border: 1px solid white;">
+                     <tr> 
+ 
+ 
+           
+            <th class="borderwhitecolo">S.NO</th>
+            <th class="borderwhitecolo"> ID</th>
+            <th class="borderwhitecolo">PO NUMBER</th>
+            <th class="borderwhitecolo">Invoice Type</th>
+            <th class="borderwhitecolo">DATEOF SANTION</th>  
+            <th class="borderwhitecolo">PROCEDING NUMBER</th>        
+            <th class="borderwhitecolo">QUANTITY</th>
+            <th class="borderwhitecolo">PAYMENT AMOUNT</th>
+            <th class="borderwhitecolo">PAYMENT PERCENTAGE</th>
+            <th class="borderwhitecolo">DISTRICT NAME</th>
+            <th class="borderwhitecolo">PROCEEDING DOCUMENT</th>
+            <th class="borderwhitecolo">BUDGET SLIP DOCUMENT</th> 
+            
+          </tr>
+
+          <tr>
+            <th class="borderwhitecolo">(1)</th>
+            <th class="borderwhitecolo">(2)</th>
+            <th class="borderwhitecolo">(3)</th> 
+            <th class="borderwhitecolo">(4)</th>
+            <th class="borderwhitecolo">(5)</th>
+            <th class="borderwhitecolo">(6)</th>
+            <th class="borderwhitecolo">(7)</th>
+            <th class="borderwhitecolo">(8)</th>
+            <th class="borderwhitecolo">(9)</th>
+            <th class="borderwhitecolo">(10)</th>
+            <th class="borderwhitecolo">(11)</th>
+            <th class="borderwhitecolo">(12)</th> 
+        </tr>
+
+        </thead>
+        <tbody *ngIf="proceedingList?.length > 0">
+          <tr *ngFor="let obj of proceedingList; let i = index">
+            <td class="number_align">{{ i + 1 }}</td>
+            <td class="number_align">{{ obj.PRCID }}</td>
+            <td class="text_alignleft">{{ obj.PONUMBER }}</td>
+            <td class="text_alignleft">{{ obj.INV_TYPE }}</td>
+            <td class="text_alignleft">{{ obj.DATEOFSANTION }}</td>
+            <td class="text_alignleft">{{ obj.PROCEDINGNO }}</td>          
+            <td class="number_align">{{ obj.QTY }}</td>
+            <td class="number_align">{{ obj.PAYMENTAMOUNT }}</td>
+            <td class="number_align">{{ obj.PAYMENTPER }}%</td>
+            <td class="text_alignleft">{{ obj.DISTRICTNAME }}</td>
+           
+            <td class="text_alignleft">
+              <button class="btn btn-sm btn-info block"
+              (click)="btnAllPdf(obj.PROCEEDINGDOCPATH)">
+              <i>VIEW</i></button> 
+            </td>
+            <td class="text_alignleft">
+             
+  
+              <button class="btn btn-sm btn-info block"
+              (click)="btnAllPdf(obj.BUDGETSLIPDOCPATH)">
+              <i>VIEW</i></button> 
+            </td>
+             
+      
+          </tr>
+        
+        </tbody>
+      
+  
+      <tfoot>
+          <!-- <tr>
+              <td style="text-align: right;" colspan="7">Total:</td>
+              <td class="right"> {{ totalamt }}</td>
+          </tr> -->
+      </tfoot>
+  
+      </table>
+   
+  
+                
+                 
+            </div>
+        </div>
+    </div>
+</div>

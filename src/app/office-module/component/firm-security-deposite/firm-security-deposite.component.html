@@ -1,0 +1,222 @@
+
+<div class="card" >
+    <div class="card-header p-2">
+       
+      <h5 class="mb-0" style="color: brown;text-align: center; ">FIRM SECURITY DEPOSIT DETAILS    </h5>
+    </div>
+    <div class="card-body"> 
+
+
+        <div class="col-md-12 row" > 
+
+
+
+           <div class="col-md-3" style="text-align: right;">
+              <div class="form-group">
+              <label for="UninonId">Firm Name
+                <span style="color: red">*</span></label>
+              </div>
+            </div> 
+            <div class="col-md-3">
+              <div class="form-group">
+              <select id="FIRMID"  class="form-control" [(ngModel)]="FIRMID"  (change)="FirmListsbyFIRID()">                
+                <option disabled selected value="undefined">-- Select Firm Name--</option>
+                <option  value="{{ obj.FIRMID }}"   *ngFor="let obj of formdata"    > {{ obj.FIRMNAME }}  </option>
+              </select> 
+              </div>
+          </div> 
+          
+          
+
+
+        </div>
+        <div class="col-md-12"  [hidden]="firmdetailsList?.length < 1">
+            <HR style="height: 1px;color:brown;background-color: brown;">
+            </div>
+ 
+            <div class="table-responsive"   [hidden]="firmdetailsList?.length < 1">
+              <table class="table table-striped ah-table text-center table-bordered" datatable [dtOptions]="dtOptions"  
+              [dtTrigger]="dtTrigger" data-page-length='25' >
+              <thead class="bg-success text-white">
+                        <tr  >
+                            <th>FIRMID</th>
+                              <th>FIRM NAME </th>
+                              <th>ADDRESS </th>
+                              <th>CONTACT NUMBER </th>  <th>REGISTRATION NUMBER </th> 
+                           <th>PAN CARD NUMBER</th>                              
+                           <th>GST NUMBER</th>
+                           <th>BANK NAME</th>
+                           <th>IFSC CODE</th>
+                           <th>ACCOUNT NUMBER</th> 
+ 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of firmdetailsList; let i = index">
+                            <td>{{objd.FIRMID}}</td>
+                            <td><b>{{objd.FIRMNAME}}</b></td>
+                            <td><b>{{objd.FADDRESS1}}</b></td>
+                            <td><b>{{objd.FCONTACT}}</b></td>
+                            <td><b>{{objd.REGNO}}</b></td>
+                            <td><b>{{objd.PAN}}</b></td>
+                            <td><b>{{objd.GST}}</b></td>
+                            <td><b>{{objd.BANKNAME}}</b></td>                            
+                            <td><b>{{objd.BANKIFSC}}</b></td>
+                            <td><b>{{objd.BANKACTNO}}</b></td> 
+    
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+            <div class="col-md-12">
+                <HR style="height: 0px;color:brown;background-color: brown;">
+                </div>
+ 
+                <div class="col-md-12 row" >
+                    <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="sddate" >Date <span style="color: red">*</span></label> 
+        
+                      <app-date-picker
+                      [PlaceHolder]="'Select Deposite Date'"
+                      [(selectedDate)]="sddate"
+                      [minDate]="minDate"
+                      [maxDate]="maxDate"
+                    ></app-date-picker>
+                    </div>
+                  </div>   
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="UninonId">Mode Of Payment
+                        <span style="color: red">*</span></label>
+                      <select id="ctype"  class="form-control" [(ngModel)]="ctype">                
+                        <option   selected value="undefined">-- Select Type --</option>
+                        <option  value="1" > Online </option>
+                        <option  value="2" > Cheque/DD  </option>
+                        <option  value="3" > Bank Guarantee</option>
+                      </select>
+                    </div>
+                  </div>
+
+                   
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="UninonId">Online/Cheque/DD/BG No
+                        <span style="color: red">*</span></label>
+                        <input
+                        id="ChequeNo"
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="ChequeNo" onkeypress="return  (  (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)|| (event.charCode ==45) ) "
+                        placeholder="Please Enter Txn/Bank/Cheque No"  
+                        maxlength="25"  style="width: 190px;"
+                        autocomplete="off" />                     
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="sddate" >Online/Cheque/DD/BG Date <span style="color: red">*</span></label> 
+    
+                  <app-date-picker
+                  [PlaceHolder]="'  Select  Date'"
+                  [(selectedDate)]="ChequeDate"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  (dateChange)="addEvent()"
+                ></app-date-picker>
+                </div>
+              </div>
+
+            
+            <div class="col-md-2">
+                <div class="form-group">
+                  <label for="UninonId">Deposit Amount
+                    <span style="color: red">*</span></label>
+                    <input
+                    id="deptamount"
+                    type="text"
+                    class="form-control"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                    [(ngModel)]="deptamount"
+                    placeholder="Deposite Amount"
+                    maxlength="10"  style="width: 190px;"
+                    autocomplete="off" />                     
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="DueDate" >Due/Exp Date <span style="color: red">*</span></label> 
+
+              <app-date-picker
+              [PlaceHolder]="' Select  DueDate'"
+              [(selectedDate)]="DueDate"
+              [minDate]="minDate1"
+              [maxDate]="maxDate1"
+            ></app-date-picker>
+            </div>
+          </div>
+
+
+                 </div>
+
+ <div class="col-md-12">
+         <div class="popup-footer justify-content-center"  >
+             <button
+               type="button"
+               class="btn btn-success btn-sm"
+                (click)="btnSubmitDetails()"
+             >
+             
+               SUBMIT
+             </button>
+           </div>
+         </div>
+
+
+
+
+
+         <div class="col-md-12"  [hidden]="SecuDepList?.length < 1">
+          <HR style="height: 0px;color:brown;background-color: brown;">
+          </div>
+
+          <div class="table-responsive"   [hidden]="SecuDepList?.length < 1">
+            <table class="table table-striped ah-table text-center  table-bordered" datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" data-page-length='25' >
+            <thead class="bg-success text-white">
+                      <tr  >
+                          <th>Type</th>
+                            <th>Txn/Bank/Cheque No </th>
+                            <th>Txn/Bank/Cheque Date </th>
+                            <th>Deposite Amount </th>  
+                            <th>Due/Exp Date  </th>  
+                            
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let objd of SecuDepList; let i = index">
+                          <td>{{objd.CTYPE}}</td>
+                          <td><b>{{objd.TXNCHQNO}}</b></td>
+                          <td><b>{{objd.TXNCHQDATE}}</b></td>
+                          <td><b>{{objd.DEPTAMOUNT}}</b></td>
+                          <td><b>{{objd.DUEDATE}}</b></td>                                        
+  
+                      </tr>
+                  </tbody>
+              </table>
+  
+          </div>
+          <div class="col-md-12">
+              <HR style="height: 1px;color:brown;background-color: brown;">
+              </div>
+
+
+
+    </div>
+
+</div> 
+

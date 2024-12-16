@@ -1,0 +1,405 @@
+
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0">Firm Registration Details</h5>
+    </div>
+    <div class="card-body">
+
+       <div class="col-md-12 row" >
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label  >Firm Name  <span style="color: red">*</span></label>
+
+                <textarea id="firmname"  class="form-control"   [(ngModel)]="firmname" placeholder=" Enter Firm Name"
+                maxlength="200"  
+                
+                autocomplete="off"   rows="2" cols="50" 
+                 ></textarea>  
+                 <!-- ng-pattern="/^[a-zA-Z\s]*$/" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)|| event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57)" -->
+
+                  </div>
+           </div>
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label  >D.No/Street <span style="color: red">*</span></label>
+
+               
+
+              <textarea id="address1"  class="form-control"   [(ngModel)]="address1" placeholder=" Enter Firm D.No/Street"
+                maxlength="200"  
+                
+                autocomplete="off"   rows="2" cols="50" 
+                 ></textarea>  
+                 <!-- ng-pattern="/^[a-zA-Z\s]*$/" onkeypress="return (event.charCode >= 65 && event.charCode <= 90)|| event.charCode == 32  || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)"
+                  -->
+
+                  </div>
+           </div>
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label  >Village/Mandal/landmark <span style="color: red">*</span></label>
+                
+              
+              <textarea id="address2"  class="form-control"   [(ngModel)]="address2" placeholder=" Enter Firm Village/Mandal/landmark"
+                maxlength="200"  
+                
+                autocomplete="off"   rows="2" cols="50" 
+                 ></textarea>  
+<!--                  
+                 ng-pattern="/^[a-zA-Z\s]*$/" onkeypress="return (event.charCode >= 65 && event.charCode <= 90)|| event.charCode == 32  || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" -->
+
+
+                  </div>
+           </div>
+ 
+           <div class="col-md-3">
+            <div class="form-group">
+                <label>Registration Number  <span style="color: red">*</span></label>  
+                
+                <input
+                id="pregno"
+                type="text"    onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                class="form-control"
+                [(ngModel)]="pregno"
+                placeholder=" Enter Registration No"
+                maxlength="21"  
+                autocomplete="off"
+              />
+            </div>
+           </div>
+
+       </div>
+
+        <div class="col-md-12 row" >
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label  >State Name
+                <span style="color: red">*</span></label> 
+              <select   aria-sort="ascending"  
+              id="STATEID"  
+              class="form-control"
+              [(ngModel)]="STATEID"    (change)="DISTRICTSBYSTATEID()"         >             
+              <option class="dropdown-item" disabled selected value="undefined">-- SELECT STATE NAME--</option>
+              <option style="color: black;" value="{{ obj.STATEID }}" *ngFor="let obj of stateListdata">
+                {{ obj.STATENAME }} 
+              </option>
+            </select> 
+            </div>
+
+        </div>
+
+           <div class="col-md-3">
+            <div class="form-group">
+              <label  >District Name
+                <span style="color: red">*</span></label> 
+              <select   aria-sort="ascending"  
+              id="DISTID"  
+              class="form-control"
+              [(ngModel)]="DISTID"            >             
+              <option class="dropdown-item" disabled selected value="undefined">-- SELECT District--</option>
+              <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                {{ obj.DISTRICTNAME }} 
+              </option>
+            </select> 
+            </div>
+
+        </div>
+
+          
+          
+       <div class="col-md-3">
+        <div class="form-group">
+            <label  >Pan Number <span style="color: red">*</span></label>
+            <input
+            id="panno"
+            type="text"
+            class="form-control"
+            [(ngModel)]="panno"
+            
+            onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)"
+            placeholder=" Enter PAN No"
+            
+            maxlength="13" 
+            autocomplete="off"
+          />
+              </div>
+       </div>
+
+
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label  >GST Number<span style="color: red">*</span></label>
+
+                <input
+                id="gstno"
+                type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)"
+                class="form-control"
+                [(ngModel)]="gstno"
+                placeholder=" Enter GST No"
+                maxlength="15"  
+                autocomplete="off"
+              />
+
+                  </div>
+           </div>
+
+
+
+        
+
+
+    </div> 
+
+
+    <div class="col-md-12 row" >
+
+      
+      <div class="col-md-3">
+        <div class="form-group">
+            <label  >Contact Number <span style="color: red">*</span></label>
+            <input
+            id="contactno"
+            type="text"
+            class="form-control"
+            [(ngModel)]="contactno"  onkeypress="return  (event.charCode >= 48 && event.charCode <= 57) "
+            placeholder=" Enter Contact No"
+            maxlength="10"  
+            autocomplete="off"
+            NumbersOnly
+          />
+
+              </div>
+       </div>
+
+       <div class="col-md-3">
+        <div class="form-group">
+            <label  >Email <span style="color: red">*</span></label>
+             <input
+            id="Email"
+            type="text"
+            class="form-control"
+            [(ngModel)]="Email"
+            placeholder=" Enter Email"
+            maxlength="30"  
+            autocomplete="off"
+          />  
+           
+        </div>
+      </div>
+
+
+     
+
+      <div class="col-md-3">
+        <div class="form-group">
+            <label>Year of Established  <span style="color: red">*</span></label> 
+            
+            <!-- <app-date-picker
+            [PlaceHolder]="'Select Deposite Date'"
+            [(selectedDate)]="pestyear"
+            [minDate]="minDate"
+            [maxDate]="maxDate" 
+            Format ="YYYY"
+          ></app-date-picker> -->
+            
+             <input
+            id="pestyear"
+            type="text"   onkeypress="return  (event.charCode >= 48 && event.charCode <= 57) "
+            class="form-control"
+            [(ngModel)]="pestyear"
+            placeholder=" Enter Year"
+            maxlength="4"  
+            autocomplete="off" NumbersOnly 
+          />  
+
+
+        </div>
+       </div>
+
+
+
+      </div>
+      <div class="col-md-12 row card-header p-2" style="height: 35px;" >
+        <div class="col-md-12">
+        <div class="form-group">
+            <label  class="mb-0 "><b > Bank Details  </b> </label>
+
+              </div>
+       </div> 
+        </div>
+        <div class="col-md-12 row" >
+
+
+
+          <div class="col-md-2">
+            <div class="form-group">
+                <label  >IFSC CODE <span style="color: red">*</span></label>
+                <input
+                id="ifsccode"
+                type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                class="form-control"
+                [(ngModel)]="ifsccode"
+                placeholder=" Enter IFSC CODE"
+                maxlength="11"  width="100px"
+                autocomplete="off"
+              />
+             
+
+                  </div>
+           </div>
+           <div class="col-md-1">
+            <div class="form-group" >
+              <button style="margin-top: 28px;"
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="findifsccodedetails()"
+            >
+              Find
+            </button>
+            </div>
+          </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+                <label  >Bank Name  <span style="color: red">*</span></label>
+
+                 
+            <input
+            id="bankname"
+            type="text"  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || event.charCode == 32  || (event.charCode >= 97 && event.charCode <= 122) "
+            class="form-control" 
+            [(ngModel)]="bankname"
+            placeholder=" Enter Bank Name"
+            maxlength="30"  
+            autocomplete="off"
+          />
+          <!-- readonly -->
+
+                  </div>
+           </div>
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label  >Branch Name  <span style="color: red">*</span></label>
+                <input
+            id="branchname"
+            type="text"  
+            class="form-control"
+            [(ngModel)]="branchname"   onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || event.charCode == 32  || (event.charCode >= 97 && event.charCode <= 122) "
+            placeholder=" Enter Branch Name"
+            maxlength="30"  
+            autocomplete="off"
+          />
+           <!-- readonly -->
+
+                  </div>
+           </div>
+
+
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label  >Account Number<span style="color: red">*</span></label>
+
+                <input
+                id="accountno"
+                type="text"
+                class="form-control"  onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                [(ngModel)]="accountno"
+                placeholder=" Enter Account No"
+                maxlength="21"
+                autocomplete="off"
+                NumbersOnly
+                [allowDecimals]="false"
+                [allowSign]="false"
+                regex=”^[0-9]{9,18}$”   OR regex=”^\d{9,18}$”
+              />
+
+                  </div>
+           </div>
+        
+            </div>
+
+    <div class="col-md-12 row card-header p-2" style="height: 40px;">
+        <div class="col-md-12">
+        <div class="form-group">
+            <label  class="mb-0 "><b > Plant Details </b>   </label>
+              </div>
+       </div>
+    
+        </div>
+
+
+        <div class="col-md-12 row" > 
+
+            <div class="col-md-6">
+            <div class="form-group">
+                <label>Plant Address   </label>   
+                
+               
+                <textarea id="paddress"  class="form-control"   [(ngModel)]="paddress" placeholder=" Enter Firm Plant Address"
+                maxlength="200"  
+                ng-pattern="/^[a-zA-Z\s]*$/" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 45 && event.charCode <= 57) || (event.charCode == 32)|| (event.charCode == 35)"
+                autocomplete="off"   rows="2" cols="50" 
+                 ></textarea>  
+
+ 
+
+            </div>
+           </div>
+
+
+           <div class="col-md-3">
+            <div class="form-group">
+                <label>Contact Number  </label>     
+                
+                <input
+                id="pcontactno"
+                type="text"
+                class="form-control"  onkeypress="return  (event.charCode >= 48 && event.charCode <= 57) "
+                [(ngModel)]="pcontactno"
+                placeholder=" Enter Plant Contact no"
+                maxlength="10"  
+                autocomplete="off" NumbersOnly
+              />
+
+            </div>
+           </div>
+
+          
+
+
+        </div>
+
+       
+
+
+
+
+
+
+
+
+        
+               
+                <div class="col-md-12"  style="text-align: right;">
+                    <div class="popup-footer justify-content-center"  >
+                        <button
+                          type="button"
+                          class="btn btn-success btn-sm"
+                          (click)="btnSubmitDetails()"
+                        >
+                          SUBMIT
+                        </button>
+                      </div>
+                    </div>
+
+            </div>
+
+</div>
+ 

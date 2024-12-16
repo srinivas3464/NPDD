@@ -1,0 +1,174 @@
+<div class="card">
+  <div class="card-header p-2">
+      <h5 class="mb-0">PURCHASE ORDER DETAILS REPORT</h5>
+  </div>
+  <div class="card-body">
+
+      <div class="col-md-12 row">
+          <div class="col-md-4">.</div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label for="UninonId">SELECT PONUMBER AND DATE
+                      <span style="color: red">*</span></label>
+                  <select id="PMID" class="form-control" [(ngModel)]="PMID" (change)="POBYPONUMBER()">
+                      <option disabled selected value="undefined">-- Select Component name --</option>
+                      <option value="{{ obj.PMID }}" *ngFor="let obj of Podetailslist"> {{ obj.PONUMBER }} </option>
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-4">.</div>
+          <div class="col-md-12">
+              <HR style="height: 5px;color:brown;background-color: brown;">
+          </div>
+      </div>
+
+
+
+
+      <div class="col-md-12 row">
+          <div class="col-md-12" [hidden]="purchasedetailsList?.length < 1">
+              <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                  <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                  Download Excel
+              </button>
+
+          </div>
+          <div class="table-responsive" [hidden]="purchasedetailsList?.length < 1">
+            <!-- " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" -->
+              <table class="table table-striped ah-table text-center"
+                  data-page-length='25'>
+                  <thead class="bg-success text-white" style="border: 1px solid white;">
+                      <tr>
+                          <th class="tableheader_color">S.No</th>
+                          <th class="tableheader_color">Form Name </th>
+                          <th class="tableheader_color">Component Name </th>
+                          <th class="tableheader_color">Purchase Order Date</th>
+                          <th class="tableheader_color">Purchase Order</th>
+                          <th class="tableheader_color">Total Units</th>
+                          <th class="tableheader_color">Total Rate</th>
+                      </tr>
+
+                      <tr>
+                          <th class="tableheader_color">(1)</th>
+                          <th class="tableheader_color">(2)</th>
+                          <th class="tableheader_color">(3)</th>
+                          <th class="tableheader_color">(4)</th>
+                          <th class="tableheader_color">(5)</th>
+                          <th class="tableheader_color">(6)</th>
+                          <th class="tableheader_color">(7)</th>
+
+                      </tr>
+
+                  </thead>
+                  <tbody>
+                      <tr calss="table_cells_borders" *ngFor="let objd of purchasedetailsList; let i = index">
+                          <td class="number_align">{{i+1}}</td>
+                          <td class="text_alignleft"><b>{{objd.FIRMNAME}}</b></td>
+                          <td class="text_alignleft"><b>{{objd.COMPNAME}}</b></td>
+                          <td class="text_alignleft"><b>{{objd.PODATE}}</b></td>
+                          <td class="number_align"><b>{{objd.PONUMBER}}</b></td>
+                          <td class="number_align"><b>{{objd.UNITS}}</b></td>
+                          <td class="number_align"><b>{{objd.PRICES}}</b></td>
+                      </tr>
+                  </tbody>
+<footer>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</footer>
+
+              </table>
+
+          </div>  
+
+
+      </div>
+      <div class="col-md-12 row"> 
+
+        <div class="table-responsive" [hidden]="DistrictdetailsList?.length < 1">
+
+            <table class="table table-striped ah-table text-center"  
+                data-page-length='25'>
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr  >
+                        <th class="tableheader_color">SNo.</th> 
+                        <th class="tableheader_color">DISTRICT NAME</th>
+                        <th class="tableheader_color"  >QUANTITY</th>
+                        <th class="tableheader_color"  >AMOUNT</th>
+                        <th class="tableheader_color"  >INVOICE QUANTITY</th>
+                        <th class="tableheader_color"   >INVOICE AMOUNT</th>
+                        <th class="tableheader_color" >BALANCE QUANTITY</th>
+                        <th class="tableheader_color"  >BALANCE AMOUNT</th>
+     
+                    </tr>
+                    <tr>
+                        <th class="tableheader_color">(1)</th>
+                        <th class="tableheader_color">(2)</th>
+                        <th class="tableheader_color">(3)</th>
+                        <th class="tableheader_color">(4)</th>
+                        <th class="tableheader_color">(5)</th>
+                        <th class="tableheader_color">(6)</th>
+                        <th class="tableheader_color">(7)</th>
+                        <th class="tableheader_color">(8)</th> 
+        
+                    </tr>
+                </thead>
+                <tbody calss="table_cells_borders">
+                    <tr *ngFor="let obj1 of DistrictdetailsList; let i=index;">
+                        <td class="number_align">{{ i + 1 }}</td> 
+                        <td  class="text_alignleft" >{{obj1.DISTRICTNAME}}</td>
+                        <td class="number_align">{{obj1.QUANTITY}}</td>
+                        <td class="number_align">{{obj1.AMOUNT}}</td> 
+                        <td class="number_align">{{obj1.INVOICE_QUANTITY}}</td> 
+                        <td class="number_align">{{obj1.INVOICE_AMOUNT}}</td> 
+                        <td class="number_align">{{obj1.BALANCE_QUANTITY}}</td> 
+                        <td class="number_align">{{obj1.BALANCE_INVOICE}}</td> 
+     
+                    </tr>
+                </tbody>
+
+<!-- <footer>
+    <tr> <td>   </td>
+        <td>  {{reportTotal.DISTRICTNAME}} </td>
+        <td>  {{reportTotal.QUANTITY}} </td>
+        <td>  {{reportTotal.AMOUNT}} </td>
+        <td>  {{reportTotal.INVOICE_QUANTITY}} </td>
+        <td>  {{reportTotal.INVOICE_AMOUNT}} </td>
+        <td>  {{reportTotal.BALANCE_QUANTITY}} </td>
+        <td>  {{reportTotal.BALANCE_INVOICE}} </td>  
+    </tr>
+</footer> -->
+
+
+<tbody *ngIf="DistrictdetailsList?.length > 0">
+    <td class="font-weight-bold text_alignleft">--</td>
+    <td class="font-weight-bold text_alignleft">
+        <b>TOTAL</b>
+    </td>
+    <td class="font-weight-bold number_align" >{{ reportTotal.QUANTITY | indianNumber  :2 }}</td>
+    <td class="font-weight-bold number_align">{{ reportTotal.AMOUNT | indianNumber   :2 }}</td>
+    <td class="font-weight-bold number_align">{{ reportTotal.INVOICE_QUANTITY | indianNumber   :2 }}</td>
+    <td class="font-weight-bold number_align">{{ reportTotal.INVOICE_AMOUNT | indianNumber   :2 }}</td>
+    <td class="font-weight-bold number_align">{{ reportTotal.BALANCE_QUANTITY | indianNumber  :2 }}</td>
+    <td class="font-weight-bold number_align">{{ reportTotal.BALANCE_INVOICE | indianNumber  :2 }}</td>
+
+
+
+</tbody>
+
+
+            </table>
+
+        </div>
+
+
+      </div>
+
+  </div>
+</div>

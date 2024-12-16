@@ -1,0 +1,135 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Stock District wise Report </h5>
+    </div>
+    <div class="card-body">
+    
+    
+        <div class="row align-items-center"  >
+                <div class="col-md-12 row" >
+                <div class="col-md-2"  style="text-align: right;">
+                    <div class="form-group">
+                        <label  >District Name
+                        <span style="color: red">*</span></label> 
+                        
+                        </div>
+                        </div>
+                        <div class="col-md-2"  >
+                        <div class="form-group">
+                        <select   aria-sort="ascending"   [tabIndex]="1"
+                        id="distSelected"
+                        class="form-control"
+                        [(ngModel)]="distSelected"
+                        (change)="onDISTRICtChange()" 
+                    >
+                    
+                        <option class="dropdown-item" disabled selected value="undefined">-- SELECT District--</option>
+                        <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                        {{ obj.DISTRICTNAME }} 
+                        </option>
+                    </select> 
+        
+                    </div>
+                    </div>
+                </div>
+        </div> 
+
+        <div class="col-md-12">
+          <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+              Download Excel
+          </button>
+
+      </div>
+        <div  class="col-md-12 row"   >
+             
+            <div class="table-responsive"     >
+  
+              <table  class="table table-striped ah-table text-center"
+              datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                 <thead class="bg-success text-white" style="border: 1px solid white;">
+                     <tr>
+  
+                 
+                        
+                            <th  class="tableheader_color" >Sno</th> 
+                            <th  class="tableheader_color" > PO NUMBER</th>
+                            <th  class="tableheader_color" > PO Date</th>
+                            <th  class="tableheader_color" > PO Qty</th>
+                            <th  class="tableheader_color" > Invoice No</th>  
+                            <th  class="tableheader_color" > Invoice Date</th>                          
+                            <th  class="tableheader_color" > Invoice Qty</th>
+                            <th  class="tableheader_color" > Entry Date</th>
+                            <th  class="tableheader_color" > Received Qty</th> 
+                            <th  class="tableheader_color" > Balance Qty</th> 
+                            <th  class="tableheader_color" > Stock Pdf</th> 
+                        </tr>
+                        <tr >             
+                            <th  class="tableheader_color"  >(1)</th>
+                            <th  class="tableheader_color" >(2)</th>
+                            <th  class="tableheader_color" >(3)</th>
+                            <th  class="tableheader_color" >(4)</th>
+                            <th  class="tableheader_color" >(5)</th>
+                            <th  class="tableheader_color"  >(6)</th>
+                            <th  class="tableheader_color" >(7)</th>
+                            <th  class="tableheader_color" >(8)</th>
+                            <th  class="tableheader_color" >(9)</th>
+                            <th  class="tableheader_color" >(10)</th>
+                            <th  class="tableheader_color" >(11)</th>
+                             
+                          </tr> 
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of detailslist; let i = index">
+                            <td>{{i+1}}</td> 
+                            <td  class="text_align_color"> {{objd.PONUMBER}} </td>
+                            <td  class="text_align_color"> {{objd.PODATE}} </td>
+                            <td  class="text_align_color"> {{objd.POQTY}} </td> 
+                            <td  class="text_align_color"> {{objd.INVOICENO}} </td>                                                           
+                            <td  class="text_align_color"> {{objd.INVOICEDATE}} </td>
+                            <td  class="text_align_color"> {{objd.INVOICEQTY}} </td>
+                            <td  class="text_align_color"> {{objd.ENTRYDATE}} </td>
+                            <td  class="text_align_color"> {{objd.RECEIVEDQTY}} </td>
+                            <td  class="text_align_color">  {{objd.BALANCEQTY}} </td> 
+                            
+                            <td  class="text_align_color">  
+                                <button
+                                type="button"
+                                class="btn btn-sm btn-info block"
+                                *ngIf="
+                                objd.STOCK !== null &&
+                                objd.STOCK !== 'NA' &&
+                                objd.STOCK !== undefined
+                                "
+                                (click)="btnPdfView(objd.STOCK)"
+                              >
+                                VIEW
+                              </button>
+                              
+                            
+                            
+                              <span 
+                              *ngIf="
+                              objd.STOCK === null ||
+                              objd.STOCK === 'NA' ||
+                              objd.STOCK === undefined "
+                              >--</span >
+                            </td> 
+                             
+                               
+                                                       
+                             
+                              
+                             
+
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+          
+         
+         </div>
+    </div>
+</div>

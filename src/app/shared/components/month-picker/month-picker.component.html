@@ -1,0 +1,27 @@
+<div class="input-group">
+  <input
+    type="text"
+    placeholder="{{ PlaceHolder }}"
+    class="form-control"
+    style="background-color: #fff"
+    [(ngModel)]="selectedDate"
+    bsDatepicker
+    #dp="bsDatepicker"
+    [bsConfig]="bsConfig"
+    #dpDate
+    (bsValueChange)="onDateChange($event)"
+    [minDate]="minMonth"
+    [maxDate]="maxMonth"
+    readonly
+  />
+  <div class="input-group-append">
+    <span
+      class="input-group-text"
+      id="datePickerIcon"
+      style="cursor: pointer"
+      (click)="dp.toggle()"
+    >
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+    </span>
+  </div>
+</div>

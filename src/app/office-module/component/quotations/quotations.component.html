@@ -1,0 +1,732 @@
+
+<div class="row">
+
+
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('1')"> 
+            <div class="overlay"></div> 
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>QUOTATION DETAILS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('2')"> 
+            <div class="overlay"></div> 
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>QUOTATION RISE</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('3')"> 
+            <div class="overlay"></div> 
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>OFFERS RECEIVED</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('4')"> 
+            <div class="overlay"></div> 
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>PAYMENT TERMS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mb-2">
+        <div class="stats-card success" (click)="ComponentClick('5')"> 
+            <div class="overlay"></div> 
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="stats-text">
+                        <p class="text-uppercase text-muted mb-1">
+                            <small>FIRM FINALIZE / APPROVALS</small>
+                        </p>
+                    </div>
+                    <div class="circle">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="card" *ngIf="clickone">
+    <div  class="card-header p-2" style="text-align: center;">
+        <h5><u>QUOTATION DETAILS</u></h5>
+    </div>
+    <div class="card-body">
+
+        <div class="col-md-12 row" >
+            <div class="col-md-2"   style="text-align: left;">
+              <label for="UninonId">  Financial Year
+                <span style="color: red">*</span></label>
+            </div> 
+          <div class="form-group col-md-2" >
+           
+          <select id="fyID"  class="form-control" [(ngModel)]="fyID"     >                
+            <option disabled selected value="undefined">-- Financial Year --</option>
+            <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+          </select>
+            </div>
+      
+          
+
+          <div class="col-md-3" style="text-align: left;">
+              <label >Requirement Description  
+                  <span style="color: red">*</span></label> 
+          </div>
+
+          <div class="col-md-4" style="text-align: left;">
+          <input type="text" class="form-control" [(ngModel)]="ReqDesc" placeholder="Enter text">
+          </div>
+
+
+        </div>       
+
+        <div class="col-md-12 row">
+          <div class="col-md-2" >
+              <label for="bankguaranteeUpload"
+              > Attach(PDF) <span style="color: red">*</span>
+            </label>
+              </div>
+
+          <div class="col-md-2" *ngIf="PAYMODEID1"   >
+              <div class="form-group">
+               
+                <input   [(ngModel)]="ReqUpload"
+                type="file"
+                class="form-control p-0"
+                id="ReqUpload"
+                (change)="onInvoiceChange($event)"
+                accept="application/pdf"
+                autocomplete="off" />
+              </div>
+            </div> 
+            <div class="form-group col-md-5"  style="text-align: right;">
+                <button type="submit" class="btn btn-primary" (click)="Quotationadd()">Add</button>
+            </div>
+      </div>
+    
+      
+      
+        <div class="col-md-12 row"><div  class="col-md-2" ></div>
+            <div class="table-responsive"  [hidden]="ReqList?.length < 1">
+               
+                <table class="table table-striped ah-table text-center"  >
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S.No</th>
+                            <th  class="tableheader_color">Financial Year</th>
+                            <th  class="tableheader_color">Description</th>
+                            <th class="tableheader_color">Image Path</th>
+                            
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders" *ngIf="ReqList?.length > 0" > 
+                        
+                        <tr *ngFor="let obj of ReqList; let i=index;">
+                            <td class="number_align" style="width: 150px;" >{{i+1}}</td> 
+
+                            
+                            <td  class="text_alignleft">{{obj.FINANCIAL_YEAR_NAME}}</td>
+                            <td   class="text_alignleft" style="width: 500px;" >{{obj.REQUIREMENT_DESCRIPTION}}</td>
+                            <!-- <td  class="text_alignleft">{{obj.RD_IMAGE_PATH}}</td> -->
+                            <td class="number_align" *ngIf="obj.RD_IMAGE_PATH" style="width: 150px;">
+                                <button class="btn btn-primary mt-4" (click)="btnPdfView(obj.RD_IMAGE_PATH)">VIEW</button>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card" *ngIf="clickTwo">
+    <div  class="card-header p-2" style="text-align: center;">
+        <h5><u>QUOTATION RISE</u></h5>
+    </div>
+
+    <div class="card-body">
+           
+          
+
+        <div class="col-md-12 row">
+            
+            <div class="col-md-2"   style="text-align: left;">
+                <label for="UninonId">  Financial Year
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-2" >
+             
+            <select id="fyIDrice"  class="form-control" [(ngModel)]="fyIDrice"     >                
+              <option disabled selected value="undefined">-- Financial Year --</option>
+              <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+            </select>
+              </div>
+      
+              
+
+            <div class="col-md-2" style="text-align: left;">
+                <label >Quotation Description  
+                    <span style="color: red">*</span></label> 
+            </div>
+
+            <div class="col-md-6" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="qutdesc" placeholder="Enter text">
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+                <label for="bankguaranteeUpload"
+                > Attachment(PDF) <span style="color: red">*</span>
+              </label>
+                </div>
+
+            <div class="col-md-3" >
+                <div class="form-group">
+                 
+                  <!-- <input   [(ngModel)]="qutdescUpload"
+                    type="file"
+                    class="form-control p-0"
+                    id="qutdescUpload"
+                    (change)="onbankguarantee($event)"
+                    accept="application/pdf"
+                    autocomplete="off" /> -->
+
+                    <input   [(ngModel)]="StampReceiptUpload"
+                type="file"
+                class="form-control p-0"
+                id="StampReceiptUpload"
+                (change)="onStampReceipt($event)"
+                accept="application/pdf"
+                autocomplete="off" />
+
+                </div>
+              </div> 
+              <div class="form-group col-md-4"  style="text-align: right;">
+                <button type="submit" class="btn btn-primary" (click)="Quriceadd()">Add</button>
+            </div>
+        </div>
+
+
+
+        <div >
+            <div class="col-md-12 row">  <div class="col-md-2"></div>
+                <div class="table-responsive"  [hidden]="quotriceList?.length < 1">
+                    <!-- datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" -->
+                    <table class="table table-striped ah-table text-center">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th class="tableheader_color">S.No</th>
+                              
+                                <th  class="tableheader_color">ID</th>
+                                <th  class="tableheader_color">Budget Year ID</th>
+                                <th  class="tableheader_color">Budget Year</th>
+                                 
+
+                                <th  class="tableheader_color">Description</th>
+                                <th class="tableheader_color">Image Path</th>
+                                
+                            </tr>
+                            <tr>
+                                <th class="tableheader_color">(1)</th>
+                                <th class="tableheader_color">(2)</th>
+                                <th class="tableheader_color">(3)</th>
+                                <th class="tableheader_color">(4)</th>
+                                <th class="tableheader_color">(5)</th>
+                                <th class="tableheader_color">(6)</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody calss="table_cells_borders" *ngIf="quotriceList?.length > 0" > 
+                            
+                            <tr *ngFor="let obj of quotriceList; let i=index;">
+                                <td class="number_align">{{i+1}}</td> 
+                                <td   class="number_align">{{obj.QUOTATION_ID}}</td>
+                                <td  class="text_alignleft">{{obj.FINANCIAL_YEAR}}</td>
+                                <td  class="text_alignleft">{{obj.FINANCIAL_YEAR_NAME}}</td>
+                                <td   class="number_align">{{obj.QUOTATION_DESCRIPTION}}</td>
+                                <!-- <td  class="text_alignleft">{{obj.QUOTATION_IMAGE_PATH}}</td> -->
+                                <td class="number_align" *ngIf="obj.QUOTATION_IMAGE_PATH"  >
+                                    <button class="btn btn-primary mt-2" (click)="btnPdfView(obj.QUOTATION_IMAGE_PATH)">VIEW</button>
+                                </td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+<div class="card" *ngIf="clickThree">
+
+    <div  class="card-header p-2" style="text-align: center;">
+        <h5><u>OFFERS RECEIVED</u></h5>
+    </div>
+
+ 
+
+    <div class="card-body"> 
+        <div class="col-md-12 row">
+
+            <div class="col-md-2"   style="text-align: left;">
+                <label for="UninonId">  Financial Year
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-2" >
+             
+            <select id="fyIDFIRM"  class="form-control" [(ngModel)]="fyIDFIRM"     >                
+              <option disabled selected value="undefined">-- Financial Year --</option>
+              <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+            </select>
+              </div>
+
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">Firm Name
+                    <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="firmname" placeholder="Enter text">
+            </div>
+
+           
+            <div class="col-md-1" style="text-align: left;">
+                <label for="UninonId"> Address
+                    <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-3" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="firmadd" placeholder="Enter text">
+            </div>
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">GST</label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="gst" placeholder="Enter text"> 
+            </div>
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">Rate <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="rate" placeholder="Enter text"> 
+            </div>
+            <div class="form-group col-md-1"  style="text-align: right;">
+                <button type="submit" class="btn btn-primary" (click)="Firmdtsadd()">Add</button>
+            </div>
+
+            </div>
+            <div >
+                <div class="col-md-12 row">
+                    <div class="  table-responsive"  [hidden]="firmdtsList?.length < 1">
+                        <!-- datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" -->
+                        <table class="table table-striped ah-table text-center" >
+                            <thead class="bg-success text-white">
+                                <tr>
+                                    <th class="tableheader_color">S.No</th>                                  
+                                    
+                                    <th  class="tableheader_color">Budget Year ID</th>  
+                                    <th  class="tableheader_color">Budget Year</th>  
+                                    <th  class="tableheader_color">FIRM ID</th>
+                                    <th  class="tableheader_color">FIRM NAME</th>
+                                    <th class="tableheader_color">FIRM ADDRES</th>
+                                    <th class="tableheader_color">FIRM GST</th>
+                                    <th class="tableheader_color">FIRM RATE</th>
+                                     
+                                </tr>
+                                <tr>
+                                    <th class="tableheader_color">(1)</th>
+                                    <th class="tableheader_color">(2)</th>
+                                    <th class="tableheader_color">(3)</th>
+                                    <th class="tableheader_color">(4)</th>
+                                    <th class="tableheader_color">(5)</th>
+                                    <th class="tableheader_color">(6)</th>
+                                    <th class="tableheader_color">(7)</th>
+                                    <th class="tableheader_color">(8)</th>
+                                </tr>
+                            </thead>
+                            <tbody calss="table_cells_borders" *ngIf="firmdtsList?.length > 0" > 
+                                
+                                <tr *ngFor="let obj of firmdtsList; let i=index;">
+                                    <td class="number_align">{{i+1}}</td> 
+                                    <td  class="text_alignleft">{{obj.FINANCIAL_YEAR}}</td>
+                                    <td  class="text_alignleft">{{obj.FINANCIAL_YEAR_NAME}}</td>
+                                    <td   class="number_align">{{obj.FIRM_ID}}</td>
+                                    <td  class="text_alignleft">{{obj.FIRM_NAME}}</td>    
+                                    <td   class="number_align">{{obj.FIRM_ADDRES}}</td>
+                                    <td   class="number_align">{{obj.GST}}</td>
+                                    <td   class="number_align">{{obj.RATE}}</td>
+                                     
+
+                                    <!-- <td  class="text_alignleft">{{obj.PARTNAMES}}</td> -->
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+<div class="card" *ngIf="clickFour">
+    <div  class="card-header p-2" style="text-align: center;">
+        <h5><u>PAYMENT TERMS </u></h5>
+    </div>
+    <div class="card-body"> 
+
+
+        <div class="col-md-12 row" >
+
+            <div class="col-md-12 row" >
+                <div class="col-md-2"   style="text-align: left;">
+                  <label for="UninonId">  Financial Year
+                    <span style="color: red">*</span></label>
+                </div> 
+              <div class="form-group col-md-2" >
+               
+              <select id="fyID"  class="form-control" [(ngModel)]="fyID"     >                
+                <option disabled selected value="undefined">-- Financial Year --</option>
+                <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+              </select>
+                </div>
+
+            <div class="col-md-2"   style="text-align: left;">
+              <label for="UninonId">  Firm Name
+                <span style="color: red">*</span></label>
+            </div> 
+          <div class="form-group col-md-2" style="text-align: left;">
+           
+          <select id="FIRMID"  class="form-control" [(ngModel)]="FIRMID"    (change)="Firmidchanged()" >                
+            <option disabled selected value="undefined">-- Firm Name --</option>
+            <option  value="{{ obj.FIRM_ID }}"   *ngFor="let obj of firmdtsList"    > {{ obj.FIRM_NAME }}  </option>
+          </select>
+            </div>
+   
+            
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">Firm Address
+                    <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="paytermaddress" readonly placeholder="Enter text">
+            </div>
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">GST</label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="paytermgst" readonly placeholder="Enter text"> 
+            </div>
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="UninonId">Rate <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-2" style="text-align: left;">
+            <input type="text" class="form-control" [(ngModel)]="paytermrate" readonly placeholder="Enter text"> 
+            </div>
+
+            
+
+           </div>
+
+            
+ 
+    </div>
+</div>
+    <div class="card-body"> 
+
+        <div class="col-md-12 row">
+            <div class="col-md-4"  ></div>
+            <div class="col-md-6 table-responsive" >
+                
+                <table class="table table-striped ah-table text-center"  >
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">Enter payment terms and conditions </th>
+                            <th class="tableheader_color">Negotiable status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody calss="table_cells_borders" >                              
+                            <tr  >
+                                <td class="number_align">  <input type="text" class="form-control" [(ngModel)]="negotiablestatus" placeholder="Enter payment terms"></td> 
+                                <td class="number_align">  <select id="StatusID"  class="form-control" [(ngModel)]="StatusID"     >                
+                                    <option disabled selected value="undefined">-- Status --</option>
+                                    <option   value="1">-- Yes --</option>
+                                    <option  value="2">-- No --</option>
+                                    
+                                  </select></td>  
+                        </tr>
+                        </tbody>
+                        </table>
+          
+        </div>
+
+        
+        <div class="form-group col-md-2" >
+            <button type="submit" class="btn btn-primary" (click)="PaymenttermsAdd()">Add</button>
+        </div> 
+        </div>
+
+        <div class="card-body" [hidden]="negotiableList?.length < 1" >
+            <div class="col-md-12 row">
+                <div class="col-md-12 table-responsive" >
+                    <!--  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"-->
+                    <table class="table table-striped ah-table text-center">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th class="tableheader_color">S.No</th>
+                              
+                                <th  class="tableheader_color">PAYMENT ID</th>
+                                <th class="tableheader_color">FIRM ID</th>
+                                <th class="tableheader_color">FIRM NAME</th>
+                                <th class="tableheader_color">FIRM ADDRESS</th>
+                                <th class="tableheader_color">FIRM GST</th>
+                                <th class="tableheader_color">FIRM RATE</th>
+
+                                <th class="tableheader_color">FINANCIAL ID</th>
+                                <th class="tableheader_color">FINANCIAL YEAR</th>
+                                <th class="tableheader_color">PAYMENT TERM CONDITIONS</th>
+                                <th class="tableheader_color">NEGOTIABLE STATUS</th>
+                                
+                            </tr>
+                            <tr>
+                                <th class="tableheader_color">(1)</th>
+                                <th class="tableheader_color">(2)</th>
+                                <th class="tableheader_color">(3)</th>
+                                <th class="tableheader_color">(4)</th>
+                                <th class="tableheader_color">(5)</th>
+                                <th class="tableheader_color">(6)</th>
+                                <th class="tableheader_color">(7)</th>
+
+                                <th class="tableheader_color">(8)</th>
+                                <th class="tableheader_color">(9)</th>
+                                <th class="tableheader_color">(10)</th>
+                                <th class="tableheader_color">(11)</th>
+                            </tr>
+                        </thead>
+                        <tbody calss="table_cells_borders" > 
+                            <!-- *ngIf="negotiableList?.length > 0" -->
+                            <tr *ngFor="let obj of negotiableList; let i=index;">
+                                <td class="number_align">{{i+1}}</td> 
+                                <td   class="number_align">{{obj.PAYMENT_ID}}</td>
+                                <td  class="text_alignleft">{{obj.FIRM_ID}}</td>
+
+                                <td  class="text_alignleft">{{obj.FIRM_NAME}}</td>
+                                <td  class="text_alignleft">{{obj.FIRM_ADDRES}}</td>
+                                <td  class="text_alignleft">{{obj.GST}}</td>
+                                <td  class="text_alignleft">{{obj.RATE}}</td>
+
+                                <td  class="text_alignleft">{{obj.FINANCIAL_YEAR}}</td>
+                                <td  class="text_alignleft">{{obj.FINANCIAL_YEAR_NAME}}</td>
+                                <td  class="text_alignleft">{{obj.PAYMENT_TERM_CONDITIONS}}</td>
+                                <td  class="text_alignleft">{{obj.NEGOTIABLE_STATUS}}</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+</div>
+<div class="card" *ngIf="clickFive">
+    <div  class="card-header p-2" style="text-align: center;">
+        <h5><u>FIRM FINALIZE / APPROVALS</u></h5>
+    </div>
+    <div class="card-body">
+
+        <div class="col-md-12 row" >
+            <div class="col-md-2"   style="text-align: left;">
+              <label for="UninonId">  Financial Year
+                <span style="color: red">*</span></label>
+            </div> 
+          <div class="form-group col-md-2" >
+           
+          <select id="fyID"  class="form-control" [(ngModel)]="fyID"     >                
+            <option disabled selected value="undefined">-- Financial Year --</option>
+            <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+          </select>
+            </div>
+        
+            <div class="col-md-2"   style="text-align: left;">
+              <label for="UninonId">  Firm Name
+                <span style="color: red">*</span></label>
+            </div> 
+          <div class="form-group col-md-2" style="text-align: left;">
+           
+          <select id="FIRMID1"  class="form-control" [(ngModel)]="FIRMID1"     >                
+            <option disabled selected value="undefined">-- Firm Name --</option>
+            <option  value="{{ obj.FIRM_ID }}"   *ngFor="let obj of firmdtsList"    > {{ obj.FIRM_NAME }}  </option>
+          </select>
+            </div>
+        
+            <div class="col-md-2"   style="text-align: right;">
+                <label for="UninonId">  Approval Rating
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-2" >
+             
+                <select class="form-select form-control" id="Rating" [(ngModel)]="Rating">
+                    <option disabled selected value="undefined">--Select Rating--</option>
+                    <option value="{{ obj.ID }}" *ngFor="let obj of RatingLevelList"> {{ obj.PAYMODE }} </option>
+    
+                </select>
+              </div>
+            
+            <div class="col-md-2"  style="text-align: left;" >
+                <label  >Approvlas
+                    <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-2"  >
+            <select id="ApprovlasStatusID"  class="form-control" [(ngModel)]="ApprovlasStatusID"     >                
+                <option disabled selected value="undefined">-- Status --</option>
+                <option   value="1">-- Yes --</option>
+                <option  value="2">-- No --</option>
+                
+              </select>
+            </div>
+          
+
+            
+
+            <div class="col-md-2" style="text-align: left;">
+                <label for="docUpload"
+                > Attach(PDF) <span style="color: red">*</span>
+              </label>
+            </div>
+
+
+                <div class="col-md-4" *ngIf="PAYMODEID2">
+                    <div class="form-group">
+                      
+                      <input   [(ngModel)]="docUpload"
+                        type="file"
+                        class="form-control p-0"
+                        id="docUpload"
+                        (change)="ondocguarantee($event)"
+                        accept="application/pdf"
+                        autocomplete="off" />
+                    </div>
+                  </div> 
+
+
+                  <div class="form-group col-md-2" >
+                    <button type="submit" class="btn btn-primary" (click)="ApprovalsAdd()">Add</button>
+                </div>  
+
+
+                </div> 
+
+                <div class="col-md-12 row"    [hidden]="ApproveddetailsList?.length < 1">
+                    <div class="col-md-12 table-responsive" >
+                        <!-- datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" -->
+                        <table class="table table-striped ah-table text-center" >
+                            <thead class="bg-success text-white">
+                                <tr>
+                                    <th class="tableheader_color">S.No</th>
+                                  
+                                    <th  class="tableheader_color">FINANCIAL YEAR ID</th>
+                                    <th  class="tableheader_color">FINANCIAL YEAR</th>
+                                    <th class="tableheader_color">FIRM NAME</th>
+                                    <th class="tableheader_color">APPROVAL RATING</th>
+                                    <th class="tableheader_color">APPROVALS STATUS</th>
+                                    <th class="tableheader_color">PDF DOCUMENT</th>
+                                    
+                                </tr>
+                                <tr>
+                                    <th class="tableheader_color">(1)</th>
+                                    <th class="tableheader_color">(2)</th>
+                                    <th class="tableheader_color">(3)</th>
+                                    <th class="tableheader_color">(4)</th>
+                                    <th class="tableheader_color">(5)</th>
+                                    <th class="tableheader_color">(6)</th>
+                                    <th class="tableheader_color">(7)</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody calss="table_cells_borders" > 
+                                <!-- *ngIf="ApproveddetailsList?.length > 0" -->
+                                <tr *ngFor="let obj of ApproveddetailsList; let i=index;">
+                                    <td class="number_align">{{i+1}}</td> 
+                                    <td   class="number_align">{{obj.FINANCIAL_YEAR}}</td>
+                                    <td   class="number_align">{{obj.FINANCIAL_YEAR_NAME}}</td>
+                                    <td  class="text_alignleft">{{obj.FIRM_NAME}}</td>
+                                    <td  class="text_alignleft">{{obj.APPROVAL_RATING}}</td>
+                                    <td  class="text_alignleft">{{obj.APPROVAL_TEXT}}</td>
+                                    <!-- <td  class="text_alignleft">{{obj.AP_IMAGE_PATH}}</td> -->
+                                    <td class="number_align" *ngIf="obj.AP_IMAGE_PATH">
+                                        <button class="btn btn-primary mt-4" (click)="btnPdfView(obj.AP_IMAGE_PATH)">VIEW</button>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+</div>
+</div>

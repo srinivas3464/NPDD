@@ -1,0 +1,630 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0" style="color: brown;text-align: center; ">PAYMENT APPROVALS PROCESS</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="col-md-12 row">
+            <div class="col-md-2">
+                <label for="UninonId">
+                    <p>Fin Year
+                        <span style="color: red">*</span>
+                    </p>
+                </label>
+            </div>
+            <div class="form-group col-md-2">
+                <select id="fromfyID" class="form-control" [(ngModel)]="fromfyID" (change)="podetails()"> 
+                    <option disabled selected value="undefined">-- Select Year --</option>
+                    <option value="{{ obj.ID }}" *ngFor="let obj of Financialyeardata"> {{ obj.PAYMODE }} </option>
+                </select>
+            </div>
+
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="UninonId"> Po/Wo No Date
+                        <span style="color: red">*</span></label>
+                </div> 
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <!--                      (change)="Invoicedetails()"-->
+                    <select id="PMID" class="form-control" [(ngModel)]="PMID"     (change)="GridtypeData()">
+                        <option disabled selected value="undefined">-- Select No/Date --</option>
+                        <option value="{{ obj.PMID }}" *ngFor="let obj of Podetailslist"> {{ obj.PONUMBER }} </option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="col-md-1" style="display: none;">
+                <div class="form-group">
+                    <label for="UninonId"> Type
+                        <span style="color: red">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-3" style="display: none;">
+                <div class="form-group">
+                    <!-- (change)="onDistrictwiseqtyChange()" -->
+                    <select id="typeID" class="form-control" [(ngModel)]="typeID">
+                        <option disabled selected value="undefined">-- Select Type--</option>
+                        <option value="{{ obj.ID }}" *ngFor="let obj of TyeGridData"> {{ obj.PAYMODE }} </option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="UninonId"> Inv Type
+                        <span style="color: red">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select id="PRID" class="form-control" [(ngModel)]="PRID" (change)="Invoicedetails()">
+                        <option disabled selected value="undefined">-- Select Type --</option>
+                      
+                        <option value="{{ obj.ID }}" *ngFor="let obj of TyeGridData"> {{ obj.INVOICE }} </option>
+
+                        <!-- <option value="1"> Profarma Invoice</option>
+                        <option value="2"> GST Invoice </option> -->
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 row">
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="UninonId"> Invoice & Date
+                        <span style="color: red">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select id="INVID" class="form-control" [(ngModel)]="INVID" (change)="POBYPONUMBER()">
+                        <option disabled selected value="undefined">-- Select Invoice --</option>
+                        <option value="{{ obj.INVID }}" *ngFor="let obj of invdetailslist"> {{ obj.INVOICENO }} </option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="UninonId"> District
+                        <span style="color: red">*</span></label>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <!-- (change)="onDistrictwiseqtyChange()"  -->
+                    <select id="SLNO" class="form-control" [(ngModel)]="SLNO">
+                        <option disabled selected value="undefined">-- Select PO/WO District--</option>
+                        <option value="{{ obj.SLNO }}" *ngFor="let obj of GridData"> {{ obj.STATENAME +" - "+ obj.DISTRICTNAME }} </option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+
+                    <button type="button" class="btn btn-primary btn-sm" (click)="onDistrictwiseqtyChange()">
+                        Find
+                    </button>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-12 row">
+        <div class="col-md-12">
+            <table class="table table-striped ah-table text-center" *ngIf="GridData1?.length > 0">
+
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="tableheader_color">S No </th>
+                        <th class="tableheader_color" style="width:60px;">PMID</th>
+                        <th class="tableheader_color" style="width: 100px;">PO NUMBER</th>
+                        <th class="tableheader_color" style="width: 80px;">UNITS</th>
+
+                        <th class="tableheader_color" style="width: 100px;">PRICE</th>
+                        <th class="tableheader_color" style="width: 200px;">FIRM NAME</th>
+
+                        <th class="tableheader_color" style="width: 200px;">COMPONENT NAME</th>
+                        <th class="tableheader_color" style="width: 100px;">INVOICE NO</th>
+
+
+                        <th class="tableheader_color" style="width: 80px;">INVOICE DATE</th>
+                        <th class="tableheader_color" style="width: 80px;">INVOICE QTY</th>
+
+                        <th class="tableheader_color" style="width: 80px;">AMOUNT</th>
+
+                        <!-- <th class="tableheader_color"  style="width: 80px;">CHANGE QTY</th>
+                <th class="tableheader_color"  style="width: 80px;">CHANGE AMOUNT</th> -->
+                    </tr>
+                    <tr>
+                        <th class="tableheader_color">(1)</th>
+                        <th class="tableheader_color">(2)</th>
+                        <th class="tableheader_color">(3)</th>
+                        <th class="tableheader_color">(4)</th>
+                        <th class="tableheader_color">(5)</th>
+                        <th class="tableheader_color">(6)</th>
+                        <th class="tableheader_color">(7)</th>
+                        <th class="tableheader_color">(8)</th>
+                        <th class="tableheader_color">(9)</th>
+                        <th class="tableheader_color">(10)</th>
+                        <th class="tableheader_color">(11)</th>
+
+                        <!-- <th class="tableheader_color">(12)</th>
+                <th class="tableheader_color">(13)</th> -->
+                    </tr>
+                </thead>
+                <tbody calss="table_cells_borders">
+                    <tr *ngFor="let obj of GridData1; let i=index;">
+                        <td class="number_align" style="width:50px;">{{ i + 1 }}</td>
+
+
+                        <td style="text-align: left;width:60px;" class="table_cells_borders">{{obj.PMID}}</td>
+                        <td class="number_align" style="width:100px;">{{obj.PONUMBER}}</td>
+                        <td class="number_align" style="width:80px;">{{obj.UNITS}}</td>
+
+                        <td class="number_align" style="width:100px;">{{obj.PRICES}}</td>
+                        <td class="number_align" style="width:200px;">{{obj.FIRMNAME}}</td>
+                        <td class="number_align" style="width:200px;">{{obj.COMPNAME}}</td>
+                        <td class="number_align" style="width:100px;">{{obj.INVOICENO}}</td>
+
+                        <td class="number_align" style="width:80px;">{{obj.INVOICEDATE}}</td>
+                        <td class="number_align" style="width:80px;">{{obj.INVOICE_QTY}}</td>
+                        <td class="number_align" style="width:80px;">{{obj.AMOUNT}}</td>
+
+                        <!-- <td  class="number_align"   style="width:150px;text-align: right"  > 
+                   
+                    
+                     
+    
+                    <input type="text"   [(ngModel)]="ADV_PER" id="ADV_PER"   name="ADV_PER"    NumbersOnly   style="width:100px;text-align: right" value="{{obj.ADV_PER}}">
+    
+                  
+                  
+                
+                </td>
+                  <td  class="number_align"    style="width:150px;text-align: right" > 
+                    
+                       
+                    <input type="text" [(ngModel)]="ADV_PER_AMOUNT" id="ADV_PER_AMOUNT"  name="ADV_PER_AMOUNT"    style=" width:100px;text-align: right" value="{{obj.ADV_PER_AMOUNT}}" NumbersOnly    /> 
+                    
+                               
+                  </td> -->
+
+
+
+
+                    </tr>
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-12 row">
+
+        <div class="col-md-12">
+            <table class="table table-striped ah-table text-center" *ngIf="GridDataold?.length > 0">
+
+
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="tableheader_color">S.No.</th>
+
+                        <th class="tableheader_color">District</th>
+                        <th class="tableheader_color" style="width: 80px;">Quantity</th>
+                        <th class="tableheader_color" style="width: 100px;">Amount</th>
+
+
+                        <th class="tableheader_color" style="width: 80px;" *ngIf="adv">Advance<br /> Per %</th>
+                        <th class="tableheader_color" style="width: 120px;" *ngIf="adv">Advance<br /> Amount</th>
+
+                        <th class="tableheader_color" style="width: 80px;">Delivery<br /> Per %</th>
+                        <th class="tableheader_color" style="width: 120px;">Delivery<br /> Amount</th>
+
+                        <th class="tableheader_color" style="width: 80px;">Installation<br /> Per %</th>
+                        <th class="tableheader_color" style="width: 120px;">Installation<br /> Amount</th>
+
+                        <th class="tableheader_color" style="width: 80px;"> Final<br /> Per %</th>
+                        <th class="tableheader_color" style="width: 120px;">Final<br /> Amount</th>
+
+
+                    </tr>
+                    <tr>
+                        <th class="tableheader_color">(1)</th>
+                        <th class="tableheader_color">(2)</th>
+                        <th class="tableheader_color">(3)</th>
+                        <th class="tableheader_color">(4)</th>
+                        <th class="tableheader_color">(5)</th>
+                        <th class="tableheader_color">(6)</th>
+                        <th class="tableheader_color">(7)</th>
+                        <th class="tableheader_color">(8)</th>
+                        <th class="tableheader_color">(9)</th>
+                        <th class="tableheader_color">(10)</th>
+                        <th class="tableheader_color" *ngIf="adv">(11)</th>
+                        <th class="tableheader_color" *ngIf="adv">(12)</th>
+
+
+                    </tr>
+                </thead>
+                <tbody calss="table_cells_borders">
+                    <tr *ngFor="let obj of GridDataold; let i=index;">
+                        <td class="number_align">{{ i + 1 }}</td>
+
+
+                        <td style="text-align: left;" class="table_cells_borders">{{obj.DISTRICTNAME}}</td>
+                        <td class="number_align">{{obj.QUANTITY}}</td>
+                        <td class="number_align">{{obj.AMOUNT}}</td>
+                        <td class="number_align" *ngIf="adv">
+
+                            <span *ngIf="obj.ADV_PER !== '0'">
+                                <table>
+                                    <tr>
+                                        <td style="text-align: right !important;">
+                                            <input type="checkbox"
+                                                (change)="onSelectionChange('1',obj.ADV_PER,obj.ADV_PER_AMOUNT,obj.QUANTITY)"
+                                                style="cursor: pointer;" *ngIf="adv" name="radio" id="rbtn1" ng-model="rbtn1"
+                                                value="0,{{ obj.SLNO }}" />
+                                        </td>
+                                        <td style="text-align: right !important;" *ngIf="adv">
+                                            <input type="text" id="ADV_PER" name="ADV_PER" style=" width:50px;text-align: right" *ngIf="adv"
+                                                NumbersOnly readonly ng-model="ADV_PER" value=" {{obj.ADV_PER }}">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <span *ngIf="obj.ADV_PER === '0'" style="text-align: center;"> -- </span>
+
+
+
+
+                        </td>
+                        <td class="number_align" *ngIf="adv">
+                            <span *ngIf="obj.ADV_PER_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                <input type="text" ngModel="{{obj.ADV_PER_AMOUNT }}" id="advamt" style=" width:100px;text-align: right"
+                                    value="{{obj.ADV_PER_AMOUNT  }}" NumbersOnly readonly />
+
+                            </span>
+                            <span *ngIf="obj.ADV_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>
+                        </td>
+
+
+                        <td class="number_align">
+                            <span *ngIf="obj.DELIVERY_PER !== '0'">
+                                <table style="text-align: right !important;">
+                                    <tr>
+                                        <td style="text-align: right !important;">
+                                            <input type="checkbox"
+                                                (change)="onSelectionChange('2',obj.DELIVERY_PER,obj.DEL_PER_AMOUNT,obj.QUANTITY)"
+                                                style="cursor: pointer;" name="radio" id="rbtn2" ng-model="rbtn2"
+                                                value="0,{{ obj.SLNO }}" />
+                                        </td>
+                                        <td style="text-align: right !important; width:100px;">
+
+
+                                            <input type="text" id="DELIVERY_PER" name="DELIVERY_PER" style=" width:50px;text-align: right"
+                                                NumbersOnly readonly ng-model="DELIVERY_PER" value=" {{obj.DELIVERY_PER }}">
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <span *ngIf="obj.DELIVERY_PER === '0'" style="text-align: center;"> -- </span>
+
+
+                        </td>
+                        <td class="number_align">
+                            <span *ngIf="obj.DEL_PER_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                <input type="text" ngModel="{{obj.DEL_PER_AMOUNT }}" id="deleamt" style=" width:100px;text-align: right"
+                                    value="{{obj.DEL_PER_AMOUNT }}" NumbersOnly readonly />
+
+                            </span>
+                            <span *ngIf="obj.DEL_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>
+
+                        </td>
+
+                        <td class="number_align">
+                            <span *ngIf="obj.INSTALL_PER !== '0'">
+                                <table style="text-align: right !important;">
+                                    <tr>
+                                        <td style="text-align: right !important;">
+                                            <input type="checkbox"
+                                                (change)="onSelectionChange('3',obj.INSTALL_PER,obj.INS_PER_AMOUNT,obj.QUANTITY)"
+                                                style="cursor: pointer;text-align: right;" name="radio" id="rbtn3" ng-model="rbtn3"
+                                                value="0,{{ obj.SLNO }}" />
+                                        </td>
+                                        <td style="text-align: right !important;">
+
+
+                                            <input type="text" id="INSTALL_PER" name="INSTALL_PER" style=" width:50px;text-align: right"
+                                                NumbersOnly readonly ng-model="INSTALL_PER" value=" {{obj.INSTALL_PER }}">
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <span *ngIf="obj.INSTALL_PER === '0'" style="text-align: center;"> -- </span>
+
+                        </td>
+                        <td class="number_align">
+                            <span *ngIf="obj.INS_PER_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                <input type="text" ngModel="{{obj.INS_PER_AMOUNT }}" id="insamt" style="width:100px;text-align: right;"
+                                    value="{{obj.INS_PER_AMOUNT }}" NumbersOnly readonly />
+
+                            </span>
+                            <span *ngIf="obj.INS_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>
+
+
+                        </td>
+
+
+                        <td class="number_align">
+
+
+
+                            <span *ngIf="obj.FINAL_PER !== '0'">
+                                <table style="text-align: right !important;">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox"
+                                                (change)="onSelectionChange('4',obj.FINAL_PER,obj.FIN_PER_AMOUNT,obj.QUANTITY)"
+                                                style="cursor: pointer;" name="radio" id="rbtn4" ng-model="rbtn4"
+                                                value="0,{{ obj.SLNO }}" />
+                                        </td>
+                                        <td style="text-align: right !important;">
+
+
+                                            <input type="text" id="FINAL_PER" name="FINAL_PER" style=" width:50px;text-align: right"
+                                                NumbersOnly readonly ng-model="FINAL_PER" value=" {{obj.FINAL_PER }}">
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <span *ngIf="obj.FINAL_PER === '0'" style="text-align: center;"> -- </span>
+
+
+
+                        </td>
+                        <td class="number_align">
+                            <span *ngIf="obj.FIN_PER_AMOUNT !== '0'" style="cursor: pointer;" class="text-primary">
+
+                                <input type="text" ngModel="{{obj.FIN_PER_AMOUNT }}" id="finamt" style=" width:100px;text-align: right;"
+                                    value="{{obj.FIN_PER_AMOUNT  }}" NumbersOnly readonly />
+
+                            </span>
+                            <span *ngIf="obj.FIN_PER_AMOUNT === '0'" style="text-align: center;"> -- </span>
+
+                        </td>
+
+
+
+                    </tr>
+                </tbody>
+                <!-- <tfoot>
+              <tr>
+                  <td style="text-align: right;" colspan="2">Total:</td>
+                  <td style="text-align: right;"> {{ Totalobj.QUANTITY }}</td>
+                  <td  style="text-align: right;"> {{ Totalobj.AMOUNT }}</td>
+                  <td style="text-align: right;" colspan="7"></td>
+              </tr>
+          </tfoot>   -->
+
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="col-md-12 row" *ngIf="GridDataold?.length > 0">
+
+
+
+
+
+        <div class="col-md-1" style="text-align: right;">Qty </div>
+        <div class="col-md-2"><input type="text" id="Qty" [(ngModel)]="Qty" readonly class="form-control"> </div>
+
+        <div class="col-md-2" style="text-align: right;">Price </div>
+        <div class="col-md-2"><input type="text" id="PRICE" [(ngModel)]="PRICE" readonly class="form-control">
+
+            <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)" -->
+        </div>
+
+    </div>
+    <br />
+    <!-- <div class="col-md-12 row" >
+       
+      <div class="col-md-10" style="text-align: right;"  >Price </div>
+      <div class="col-md-2"><input type="text" id="PRICE"    [(ngModel)]="PRICE"  class="form-control"   onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"> </div> 
+    
+    </div>   -->
+
+
+
+
+
+
+    <div class="card-body" *ngIf="GridDataold?.length > 0">
+
+        <div class="col-md-12 row" style="display: none;">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="StampReceiptUpload"> Attach Stamp Receipt (PDF) <span style="color: red">*</span>
+                    </label>
+                    <input [(ngModel)]="StampReceiptUpload" type="file" class="form-control p-0" id="StampReceiptUpload"
+                        (change)="onStampReceipt($event)" accept="application/pdf" autocomplete="off" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="allotmentOrderUpload"> Attach Approvals (PDF) <span style="color: red">*</span>
+                    </label>
+                    <input [(ngModel)]="allotmentAlienationUpload" type="file" class="form-control p-0" id="allotmentAlienationUpload"
+                        (change)="onInvoiceChange($event)" accept="application/pdf" autocomplete="off" />
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4" *ngIf="PAYMODEID1">
+                <div class="form-group">
+                    <label for="bankguaranteeUpload"> Attach Bank Guarantee (PDF) <span style="color: red">*</span>
+                    </label>
+                    <input [(ngModel)]="bankguaranteeUpload" type="file" class="form-control p-0" id="bankguaranteeUpload"
+                        (change)="onbankguarantee($event)" accept="application/pdf" autocomplete="off" />
+                </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="PAYMODEID2">
+                <div class="form-group">
+                    <label for="WayBillUpload"> Attach Way Bill (PDF) <span style="color: red">*</span>
+                    </label>
+                    <input [(ngModel)]="WayBillUpload" type="file" class="form-control p-0" id="WayBillUpload" (change)="onWayBill($event)"
+                        accept="application/pdf" autocomplete="off" />
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <div class="col-md-12 row">
+            <div class="col-md-3">
+                <span *ngIf="Stamp === 'NA'">
+                    <button type="button" class="btn btn-danger" onclick="alert('No Advance Stamp Receipt Uploaded')"> Advance Stamp Receipt
+                    </button>
+                </span>
+                <span *ngIf="Stamp != 'NA'">
+                    <button type="button" class="btn btn-success btn-sm" (click)="btnVIEWPdf(1)"> Advance Stamp Receipt Download </button>
+                </span>
+            </div>
+
+            <div class="col-md-2">
+                <span *ngIf="WayBill === 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-danger" onclick="alert('No WayBill Uploaded')"> WayBill
+                    </button>
+                </span>
+                <span *ngIf="WayBill != 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-success btn-sm" (click)="btnVIEWPdf(3)"> WayBill Download
+                    </button>
+                </span>
+            </div>
+
+            <div class="col-md-3">
+                <span *ngIf="BankGuarantee === 'NA'">
+                    <button type="button" class="btn btn-danger" onclick="alert('No Advance Bank Guarantee Uploaded')"> Advance Bank
+                        Guarantee </button>
+                </span>
+                <span *ngIf="BankGuarantee != 'NA'">
+                    <button type="button" class="btn btn-success btn-sm" (click)="btnVIEWPdf(2)"> Advance Bank Guarantee Download </button>
+                </span>
+
+
+            </div>
+
+
+            <div class="col-md-3" style="display: none;">
+                <span *ngIf="Calibration === 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-danger" onclick="alert('No Calibration Uploaded')">
+                        Calibration </button>
+                </span>
+                <span *ngIf="Calibration != 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-success btn-sm" (click)="btnVIEWPdf(4)"> Calibration
+                        Download </button>
+                </span>
+
+
+            </div>
+
+
+            <div class="col-md-2">
+                <span *ngIf="invoicepath === 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-danger" onclick="alert('No Invoice Uploaded')"> Invoice
+                    </button>
+                </span>
+                <span *ngIf="invoicepath != 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-success btn-sm" (click)="btnVIEWPdf(5)"> Invoice Download
+                    </button>
+                </span>
+            </div>
+
+
+            <div class="col-md-2">
+                <span *ngIf="stockslip === 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-danger" onclick="alert('No Stock Slip Uploaded')"> Stock
+                        Slip </button>
+                </span>
+                <span *ngIf="stockslip != 'NA'">
+                    <button type="button" style="font-size: 14px;" class="btn btn-success btn-sm" (click)="btnVIEWPdf(6)"> Stock Slip
+                        Download </button>
+                </span>
+            </div>
+
+
+
+
+            <!-- </div>
+      <div class="col-md-12 row" > -->
+
+            <!-- *ngIf="PAYMODEID3" -->
+            <div class="col-md-4" *ngIf="PAYMODEID3">
+                <div class="form-group">
+                    <label for="CalibrationUpload"> Attach Calibration (PDF) <span style="color: red">*</span>
+                    </label>
+                    <input [(ngModel)]="CalibrationUpload" type="file" class="form-control p-0" id="CalibrationUpload"
+                        (change)="onCalibration($event)" accept="application/pdf" autocomplete="off" />
+                </div>
+            </div>
+
+
+            <div class="col-md-4" style="text-align: right;">
+                <input type="button" class="btn btn-primary btn-sm" id="btnsubmit" value="SUBMIT" style="width: 150px;"
+                    (click)="btnSubmitDetails()">
+            </div>
+
+        </div>
+
+    </div>

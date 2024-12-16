@@ -1,0 +1,547 @@
+
+<div class="card">
+  <div class="card-header p-2">
+    <h5 class="mb-0">PO/WO DETAILS </h5> 
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <h5 class="text-center font-weight-bold mb-3 border-bottom text-success" style="display: none;">
+        <span > Purchase Order </span>
+         <button type="button" style="margin-left: 970px;" (click)="orderDetails()" *ngIf="Details_div" class="btn btn-success btn-sm">Details</button>
+         <button type="button" style="margin-left: 970px;" (click)="orderDetails_back()" *ngIf="Details_div_back" class="btn btn-info btn-sm">Back</button>
+       </h5>
+      </div> 
+      
+      <div class="row align-items-center" *ngIf="PurchageorderIns_div">
+        <div class="col-md-12 row" >
+     
+         <div class="col-md-2"  style="text-align: right;" style="display: none;">  
+             <div class="form-group">
+               <label  >District Name  Deleted
+                 <span style="color: red">*</span></label> 
+               
+                </div>
+              </div>
+              <div class="col-md-4"   style="display: none;">
+                <div class="form-group">
+               <select   aria-sort="ascending"  
+               id="RBKDDSelected"
+               class="form-control"
+               [(ngModel)]="RBKDDSelected" 
+               
+             >
+             <!-- (change)="onDISTRICtChange()" -->
+               <option class="dropdown-item" disabled selected value="undefined">-- SELECT District Name--</option>
+               <option style="color: black;" value="{{ obj.DISTRICTID }}" *ngFor="let obj of districtListdata">
+                 {{ obj.DISTRICTNAME }} 
+               </option>
+             </select> 
+
+             </div>
+           </div>
+
+          
+           
+
+          <div class="col-md-1"   style="text-align: right;">
+            <label for="UninonId">TenderType
+              <span style="color: red">*</span></label>
+          </div> 
+        <div class="form-group col-md-2" >
+          <!-- Financialyeardetails     tendertypeChange-->
+        <select id="ttID"  class="form-control" [(ngModel)]="ttID"      (change)="Financialyeardetails();"   >                 
+          <option disabled selected value="undefined">--  Tender Type --</option>
+          <option  value="{{ obj.ID }}"   *ngFor="let obj of tendertypedata"    > {{ obj.PAYMODE }}  </option>
+        </select>
+          </div>
+          <div class="col-md-2"   style="text-align: right;">
+            <label for="UninonId">  Financial Year
+              <span style="color: red">*</span></label>
+          </div> 
+        <div class="form-group col-md-2" >
+         
+        <select id="fyID"  class="form-control" [(ngModel)]="fyID"     (change)="tendertypeChange();">                
+          <option disabled selected value="undefined">-- Financial Year --</option>
+          <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+        </select>
+          </div>
+           
+           <div class="col-md-2" style="text-align: right;">
+            <div class="form-group">
+              <label for="UninonId">Component Name
+                <span style="color: red">*</span></label>
+
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+              <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" >                
+                <option disabled selected value="undefined">-- Select Component Name --</option>
+                <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+              </select>
+            </div>
+          </div>
+
+
+
+           
+          <div class="col-md-12">
+          <HR style="height: 1px;color:brown;background-color: brown;">
+          </div>
+        </div>
+          <div class="col-md-12 row" >
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="POD"
+                    >PO/WO Date <span style="color: red">*</span></label
+                  > 
+
+              <app-date-picker
+              [PlaceHolder]="'Select PO/WO Date'"
+              [(selectedDate)]="POD"
+              [minDate]="minDate"
+              [maxDate]="maxDate"
+            ></app-date-picker>
+            </div>
+          </div>
+
+           
+           <div class="col-md-4"> 
+            <div class="form-group">
+              <label for="UninonId"> PO/WO Number
+                <span style="color: red">*</span></label>
+                <input
+                id="PONO"  onkeypress="return  (event.charCode == 45 || event.charCode == 47 || event.charCode == 92 || (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90)|| (event.charCode >= 97 && event.charCode <= 122)) "
+                type="text"
+                class="form-control"
+                [(ngModel)]="PurchaseOrderno"
+                placeholder=" PO/WO  NO"
+                maxlength="30"   
+                autocomplete="off"
+              />
+             
+            </div>
+          </div>
+    
+          <div class="col-md-4"  >
+            <div class="form-group">
+              <label for="UninonId">Firm Name
+                <span style="color: red">*</span></label>
+              <select id="FIRMID"  class="form-control" [(ngModel)]="FIRMID">                
+                <option disabled selected value="undefined">-- Select Firm Name--</option>
+                <option  value="{{ obj.FIRMID }}"   *ngFor="let obj of formdata"    > {{ obj.FIRMNAME }}  </option>
+              </select>
+            </div>
+          </div>  
+
+          <div class="col-md-4"  style="margin-left: 0px;">
+            <div class="form-group">
+              <label for="UninonId"> UOM  <span style="color: red">*</span></label> 
+              <!-- <input  id="Units"   type="text"   class="form-control"  [(ngModel)]="Units"   placeholder="Units"   maxlength="5" NumbersOnly style="width: 100px;"  autocomplete="off" />
+             -->
+              <select id="UOMID"  class="form-control" [(ngModel)]="UOMID" >                
+                <option disabled selected value="undefined">-- Select UOM--</option>
+                <option  value="{{ obj.UOMID }}"   *ngFor="let obj of uomListdata" > {{ obj.UOMNAME }}  </option>
+              </select>
+            
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label > Quantity  <span style="color: red">*</span></label> 
+                <input  id="Units"   type="text"   class="form-control"  [(ngModel)]="Units"   placeholder="QTY"   maxlength="6" NumbersOnly    autocomplete="off" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)" />
+             
+           
+            
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label > Total Amount  <span style="color: red">*</span></label>
+              <input
+              id="totalamount"
+              type="text"
+              class="form-control"
+              [(ngModel)]="totalamount" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Total Amount"
+              maxlength="10" NumbersOnly 
+              autocomplete="off"  (input)="onModeChange()" (change)="onModeChange()"
+            />
+            </div>
+          </div>
+
+          <div class="col-md-1" style="display: none;">
+            <div class="form-group">
+              <label  > Rate/Units   </label>
+              <input
+              id="perRate"
+              type="text"
+              class="form-control"
+              [(ngModel)]="perRate"
+              placeholder="Rate/Unit"
+              maxlength="10" style="width: 100px;"
+              autocomplete="off" NumbersOnly
+            />
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="col-md-12 row" >
+          <div class="col-md-4"  style="margin-left: 0px;">  
+            <div class="form-group">
+              <label for="UninonId">Payment On Advance
+                 </label> <br>
+                <label class="form-control ng-untouched ng-pristine ng-valid" style="height: 32px;">{{PAYMODEADVANCE}} </label> 
+
+              <!-- <select id="PAYMODEID"  class="form-control" [(ngModel)]="PAYMODEID">                
+                <option disabled selected value="undefined">-- Select Mode--</option>
+                <option  value="{{ obj.PAYMODEID }}"   *ngFor="let obj of paymodeListdata"    > {{ obj.PAYMODE }}  </option>
+              </select> -->
+            </div> 
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Payment Mode  %  <span style="color: red">*</span></label>
+              <input
+              id="paymodeamount1"
+              type="text"
+              class="form-control"
+              [(ngModel)]="paymodeamount1" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Payment Mode  Percentage"
+              maxlength="3" NumbersOnly  
+              autocomplete="off" (input)="onModeChange()" (change)="onModeChange()"
+             
+            />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Percentage Amount   </label>
+              <input
+              id="percentageamount1"
+              type="text"
+              class="form-control"
+              [(ngModel)]="percentageamount1" 
+              placeholder="Percentage Amount"
+              maxlength="10" NumbersOnly  
+              autocomplete="off" readonly 
+            />
+            </div>
+          </div> 
+        </div>
+
+
+        <div class="col-md-12 row" >
+          <div class="col-md-4"  style="margin-left: 0px;">  
+            <div class="form-group">
+              <label for="UninonId">Payment On Delivery
+                 </label> <br>
+                <label class="form-control ng-untouched ng-pristine ng-valid" style="height: 32px;">{{PAYMODEDELIVERY}} </label> 
+
+              <!-- <select id="PAYMODEID"  class="form-control" [(ngModel)]="PAYMODEID">                 
+                <option disabled selected value="undefined">-- Select Mode--</option>
+                <option  value="{{ obj.PAYMODEID }}"   *ngFor="let obj of paymodeListdata"    > {{ obj.PAYMODE }}  </option>
+              </select> -->
+            </div> 
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Payment Mode  %  <span style="color: red">*</span></label>
+              <input
+              id="paymodeamount2"
+              type="text"
+              class="form-control"
+              [(ngModel)]="paymodeamount2" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Payment Mode  Percentage"
+              maxlength="3" NumbersOnly  
+              autocomplete="off" (input)="onModeChange()" (change)="onModeChange()"
+             
+            />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Percentage Amount   </label>
+              <input
+              id="percentageamount2"
+              type="text"
+              class="form-control"
+              [(ngModel)]="percentageamount2" 
+              placeholder="Percentage Amount"
+              maxlength="10" NumbersOnly  
+              autocomplete="off" readonly 
+            />
+            </div>
+          </div> 
+        </div>
+
+
+
+        <div class="col-md-12 row" >
+          <div class="col-md-4"  style="margin-left: 0px;">  
+            <div class="form-group">
+              <label for="UninonId">Payment On Installation 
+                 </label> <br>
+                <label  class="form-control ng-untouched ng-pristine ng-valid" style="height: 32px;"> {{PAYMODEINSTALLATION}} </label> 
+ 
+            </div> 
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Payment Mode  %  <span style="color: red">*</span></label>
+              <input
+              id="paymodeamount3"
+              type="text"
+              class="form-control"
+              [(ngModel)]="paymodeamount3" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Payment Mode  Percentage"
+              maxlength="3" NumbersOnly  
+              autocomplete="off" (input)="onModeChange()" (change)="onModeChange()"
+             
+            />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Percentage Amount   </label>
+              <input
+              id="percentageamount3"
+              type="text"
+              class="form-control"
+              [(ngModel)]="percentageamount3" 
+              placeholder="Percentage Amount"
+              maxlength="10" NumbersOnly  
+              autocomplete="off" readonly 
+            />
+            </div>
+          </div> 
+        </div>
+
+
+        <div class="col-md-12 row" >
+          <div class="col-md-4"  style="margin-left: 0px;">  
+            <div class="form-group">
+              <label for="UninonId">Payment On Final Payment
+                 </label> <br>
+                <label class="form-control ng-untouched ng-pristine ng-valid" style="height: 32px;">{{PAYMODEFINALPAYMENT}} </label> 
+ 
+            </div> 
+          </div> 
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Payment Mode  %  <span style="color: red">*</span></label>
+              <input
+              id="paymodeamount4"
+              type="text"
+              class="form-control"
+              [(ngModel)]="paymodeamount4" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Payment Mode  Percentage"
+              maxlength="3" NumbersOnly  
+              autocomplete="off" (input)="onModeChange()" (change)="onModeChange()"
+             
+            />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label >  Percentage Amount   </label>
+              <input
+              id="percentageamount4"
+              type="text"
+              class="form-control"
+              [(ngModel)]="percentageamount4" 
+              placeholder="Percentage Amount"
+              maxlength="10" NumbersOnly  
+              autocomplete="off" readonly 
+            />
+            </div>
+          </div> 
+        </div>
+
+
+
+
+
+
+        
+
+          <div class="col-md-12  row">
+            <div class="col-md-4"   style="text-align:right ;">
+              <div class="form-group">
+                <label for="EPOPATH"
+                  > Attach PO (PDF) <span style="color: red">*</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-4"    >
+              <div class="form-group"> 
+                <input   [(ngModel)]="EPOPATH"
+                  type="file"
+                  class="form-control p-0"
+                  id="EPOPATH"
+                  (change)="EPOPATHchange($event)"
+                  accept="application/pdf"
+                  autocomplete="off" />
+              </div>
+            </div> 
+
+            <div class="col-md-1"  style="text-align: left;">            
+              <input type="button" class="btn btn-info fa fa-plus" value="Add" (click)="AddPacketDetails();" style="margin-top: 0px;width: 80px;" />
+             </div>
+
+           
+          <div class="col-md-12">
+            <HR style="height: 1px;color:brown;background-color: brown;">
+            </div>
+        </div>
+
+
+        <!-- <HR style="height: 5px;color:brown;background-color: brown;"> -->
+    <div  class="col-md-12 row"  *ngIf="AddDetailsview_div">
+             
+            <div class="table-responsive"  >
+                <table  class="table table-striped ah-table text-center"     >
+                    <thead style="height: 5px;">
+                        <tr class="bg-primary" style="color: white;">
+                            <th>S.No</th>
+                              <!-- <th>District Name </th> -->
+                              <th>Form Name </th>
+                              <th>Component Name </th> 
+                           <th> PO/WO  Date</th>                              
+                           <th> PO/WO No</th>
+                           <th>Total Quantity</th>
+                           <th>Total Rate</th>
+                           <th>Rate/Quantity</th>
+                           <th>Delete</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of purchasedetailsList; let i = index"  style="height: 40px;">
+                            <td>{{i+1}}</td>
+                            <!-- <td><b>{{objd.DISTRICTNAME}}</b></td> -->
+                            <td><b>{{objd.FIRMNAME}}</b></td>
+                            <td><b>{{objd.COMPNAME}}</b></td>
+
+                            <td><b>{{objd.PODATE}}</b></td>
+                            <td><b>{{objd.PONUMBER}}</b></td>
+                            <td><b>{{objd.UNITS}}</b></td>                            
+                            <td><b>{{objd.PRICES}}</b></td>
+                            <td><b>{{objd.PRICE_UNIT}}</b></td>
+                            <!-- POID,FORMID,formname,Districtid,districtname,podate,ponumber,units,prices,compname,compid -->
+                            
+                            <td><input type="button" class="fa fa-trash btn btn-danger" (click)="Deletepacket(objd.PONUMBER+','+objd.COMPID);" value="Remove"/></td>
+    
+    
+                        </tr> 
+                    </tbody>
+                </table>
+    
+            </div>
+          
+         
+    </div>
+        
+         
+         <div class="col-md-12  row">
+          <div class="col-md-4"   >
+            <div class="form-group">
+            </div>
+          </div>
+          <div class="col-md-4"    >
+            <div class="form-group">
+               
+            </div>
+          </div> 
+          
+
+          <div class="col-md-4"   >
+            <div class="form-group">
+         <div class=" justify-content-center" style="margin-top: 7%;">
+          <!-- class="popup-footer justify-content-center" *ngIf="submitbtn" -->
+             <button
+               type="button"
+               class="btn btn-success btn-sm"
+               (click)="btnSubmitDetails()"
+             >
+               SUBMIT
+             </button>
+           </div>
+
+          </div>
+        </div> 
+
+
+         </div>
+
+         
+       </div>
+    
+       <div class="container" *ngIf="OrderDetailsview_div">
+        <div class="row"   [hidden]="purchargeOrderList?.length < 1">
+        <div class="col-sm-12 mt-4"   [hidden]="purchargeOrderList?.length < 1">
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" style="width: 100%;">
+                    <thead>
+                        <tr class="bg-primary" style="color: white;">
+                            <th>Sno</th>
+                                  <th>District Name </th>
+                                 <th>Purchase Order Date</th>                              
+                                 <th>Purchase Order</th>
+                                 <th> Units</th>
+                                 <th>Total Rate</th>
+                                  
+    
+    
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of purchargeOrderList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td><b>{{objd.DISTRICT_NAME}}</b></td>
+                            <td><b>{{objd.PURCHASE_ORDER_DATE}}</b></td>
+                            <td><b>{{objd.PURCHASE_ORDER}}</b></td>
+                            <td><b>{{objd.UNITS}}</b></td>
+                            <td><b>{{objd.RATE}}</b></td>
+                            
+                           
+    
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+        
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+ 
+  
+
+ 
+
+    
+     
+ 
+    
+ 
+

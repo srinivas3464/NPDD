@@ -1,0 +1,91 @@
+
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Po District Summary</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="UninonId">Purchase Order No
+                    <span style="color: red">*</span></label>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="TRAININGID" class="form-control" [(ngModel)]="selectedPO" (change)="POIdchange()">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{obj.PMID}}" *ngFor="let obj of POList">{{obj.PONUMBER}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="col-md-12" [hidden]="POSummaryList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+
+        <div class="table-responsive" [hidden]="POSummaryList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="tableheader_color">S No</th>
+                        <th class="tableheader_color">District Name</th>
+                        <th class="tableheader_color">Initial Quantity</th>
+                        <th class="tableheader_color">Present Quantity</th>
+                        <th class="tableheader_color">Added Quantity </th>
+                        <th class="tableheader_color">Minus Quantity</th>
+                        <th class="tableheader_color">Invoice Quantity</th>
+                        <th class="tableheader_color">Balance Quantity</th>
+
+                    </tr>
+                    <tr>
+                        <th class="tableheader_color">(1)</th>
+                        <th class="tableheader_color">(2)</th>
+                        <th class="tableheader_color">(3)</th>
+                        <th class="tableheader_color">(4)</th>
+                        <th class="tableheader_color">(5)</th>
+                        <th class="tableheader_color">(6)</th>
+                        <th class="tableheader_color">(7)</th>
+                        <th class="tableheader_color">(8)</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <tr *ngFor="let objd of POSummaryList; let i = index">
+                        <td class="number_align">{{i+1}}</td>
+                        <td class="text_alignleft">{{objd.DISTRICTNAME}}</td>
+                        <td class="number_align"><b>{{objd.INITIAL_QUANTITY}}</b></td>
+                        <td class="number_align"><b>{{objd.QUANTITY}}</b></td>
+                        <td class="number_align"><b>{{objd.ADDED_QTY}}</b></td>
+                        <td class="number_align"><b>{{objd.MINUS_QTY}}</b></td>
+                        <td class="number_align"><b>{{objd.INV_QTY}}</b></td>
+                        <td class="number_align"><b>{{objd.BAL_QTY}}</b></td>
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <td class="font-weight-bold text_alignleft">--</td>
+                    <td class="font-weight-bold text_alignleft">
+                        <b>TOTAL</b>
+                    </td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_ACTUAL_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PRESENT_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.ADDED_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.MINUS_QUANTITY | indianNumber}}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INVENTORY_QUANTITY | indianNumber}}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.BALANCE_QUANTITY | indianNumber}}</td>
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+

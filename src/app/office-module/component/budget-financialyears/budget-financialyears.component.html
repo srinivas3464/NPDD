@@ -1,0 +1,131 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">FINANCIAL YEAR BUDGET </h5>
+    </div>
+    <div class="card-body">
+
+        <div class="col-md-12 row" >
+            
+            <div class="col-md-2"   >
+                <label for="UninonId">From Financial Year
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-3"  >
+             
+            <select id="fromfyID"  class="form-control" [(ngModel)]="fromfyID"  >                
+              <option disabled selected value="undefined">-- Select From Financial Year --</option>
+              <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+            </select>
+              </div>
+
+              <div class="col-md-2"   >
+                <label for="UninonId">To Financial Year
+                  <span style="color: red">*</span></label>
+              </div> 
+            <div class="form-group col-md-3" >
+             
+            <select id="tofyID"  class="form-control" [(ngModel)]="tofyID"    >                
+              <option disabled selected value="undefined">-- Select To Financial Year --</option>
+              <option  value="{{ obj.ID }}"   *ngFor="let obj of Financialyeardata"    > {{ obj.PAYMODE }}  </option>
+            </select>
+              </div>
+
+        </div> 
+
+
+        <div class="col-md-12 row" >
+            <div class="col-md-2"   >
+                <label for="UninonId">Component Name
+                  <span style="color: red">*</span></label>
+              </div> 
+
+          <div class="form-group col-md-3"  >
+           
+            <select id="COMPID"  class="form-control" [(ngModel)]="COMPID" (change)="componentChange();"  >                
+              <option disabled selected value="undefined">-- Select Component --</option>
+              <option  value="{{ obj.COMPID }}"   *ngFor="let obj of componentListdata"    > {{ obj.COMPNAME }}  </option>
+            </select>
+          </div>
+
+          <div class="col-md-2"   >
+            <label for="UninonId">Sub Component Name
+              <span style="color: red">*</span></label>
+          </div> 
+
+      <div class="form-group col-md-3"  >
+       
+        <select id="COMPID"  class="form-control" [(ngModel)]="SUBCOMPID"    >                
+          <option disabled selected value="undefined">-- Select SubComponent --</option>
+          <option  value="{{ obj.COMPID }}"   *ngFor="let obj of subcomponentListdata"    > {{ obj.COMPNAME }}  </option>
+        </select>
+      </div>
+
+        </div>
+
+        <div class="col-md-12 row" >
+
+
+            <div class="col-md-2"   >
+                <label for="Units">Units
+                  <span style="color: red">*</span></label>
+              </div> 
+
+          <div class="form-group col-md-3"  > 
+
+                <input
+                id="Units"
+                type="text"
+                class="form-control"  onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+                [(ngModel)]="Units"
+                placeholder=" Enter Units"
+                maxlength="21"
+                autocomplete="off"
+                NumbersOnly
+                [allowDecimals]="false"
+                [allowSign]="false"
+                regex=”^[0-9]{9,18}$”   OR regex=”^\d{9,18}$”
+              />
+
+                  
+           </div>
+
+
+           <div class="col-md-2"   >
+            <label for="Amount">Amount
+              <span style="color: red">*</span></label>
+          </div> 
+
+      <div class="form-group col-md-3"  > 
+
+            <input
+            id="Amount"
+            type="text"
+            class="form-control"  onkeypress="return(event.charCode >= 48 && event.charCode <= 57)"
+            [(ngModel)]="Amount"
+            placeholder=" Enter Amount"
+            maxlength="21"
+            autocomplete="off"
+            NumbersOnly
+            [allowDecimals]="false"
+            [allowSign]="false"
+            regex=”^[0-9]{9,18}$”   OR regex=”^\d{9,18}$”
+          />
+
+              
+       </div>
+
+        </div>
+
+        <div class="col-md-12"  style="text-align: right;">
+            <div    >
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  (click)="btnSubmitDetails()"
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+    </div>
+</div>

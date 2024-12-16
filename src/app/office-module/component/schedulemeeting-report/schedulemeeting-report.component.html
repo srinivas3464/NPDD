@@ -1,0 +1,33 @@
+
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Schedule Meeting Report</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-center"  >
+            <div class="col-md-12 row">
+                <div class="col-md-4" style="text-align: right;"> <label for="UninonId">Select Schedule Training
+                    <span style="color: red">*</span></label></div>
+                <div class="col-md-4">
+                 <div class="form-group"> 
+                    
+                   <select id="TRAININGID"  class="form-control" [(ngModel)]="TRAININGID"   (change)="onScheduleChange()">                
+                       <option disabled selected value="undefined">-- Select Schedule Testing --</option>
+                     <option  value="{{ obj.TRAININGID }}"    *ngFor="let obj of POlist"> {{ obj.TRAININGNAME }}  </option>  
+                   </select>
+                 </div>
+
+               </div>
+               <div class="col-md-4">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+    
+            </div>
+               <div class="col-md-4">.</div>
+              </div>
+        </div>
+    </div>
+</div>

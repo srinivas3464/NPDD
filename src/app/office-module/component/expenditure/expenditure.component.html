@@ -1,0 +1,84 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0" style="color: brown;text-align: center; ">EXPENDITURE COMPONENT</h5>
+    </div>
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;">
+                <label for="UninonId">From Financial Year
+                    <span style="color: red">*</span></label>
+            </div>
+            <div class="form-group col-md-6">
+                <select id="COMPID" class="form-control" [(ngModel)]="FinancialYears" (change)="LoadReport()">
+                    <option disabled selected value="undefined">-- SELECT FROM FINANCIAL YAER --</option>
+                    <option value="{{ obj.ID }}" *ngFor="let obj of componentListdata"> {{ obj.PAYMODE }} </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12 row">
+            <div class="col-md-12 table-responsive" [hidden]="DataList?.length < 1">
+                <table class="table table-striped ah-table text-center">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th class="tableheader_color">S.No</th>
+                            <th class="tableheader_color">Component Name</th>
+                            <th class="tableheader_color">Sub Component Name</th>
+                            <th class="tableheader_color">Units</th>
+                            <th class="tableheader_color">Amount</th>
+                            <th class="tableheader_color">Total</th>
+                            <th class="tableheader_color">Qty</th>
+                            <th class="tableheader_color">Price</th>
+                           <th>Total Price</th> 
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+                            <th class="tableheader_color">(6)</th>
+                            <th class="tableheader_color">(7)</th>
+                            <th class="tableheader_color">(8)</th>
+                             <th class="tableheader_color">(9)</th>  
+                        </tr>
+
+                    </thead>
+                    <tbody *ngIf="DataList?.length > 0">
+                        <tr *ngFor="let obj of DataList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td style="text-align: left;">{{ obj.COMPNAME }}</td>
+                            <td style="text-align: left;">{{ obj.PARTNAMES }}</td>
+                            <td style="text-align: right;">{{ obj.BUDGET_UNITS }}</td>
+                            <td style="text-align: right;">{{ obj.BUDGET_AMOUNT }}</td>
+                            <td style="text-align: right;">{{obj.BUDGET_UNITS * obj.BUDGET_AMOUNT }}</td>
+                            <td>
+                                <input type="text" (keypress)="decimalFilter($event)" (input)="updateResult()" [(ngModel)]="obj.QUANTITY" />
+                            </td>
+                            <td>
+                                <input type="text" (keypress)="decimalFilter($event)" (input)="updateResult()" [(ngModel)]="obj.PRICE" />
+                            </td>
+                            <td style="text-align: right;">{{ obj.TOTAL_PRICE }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div *ngIf="isButton">
+            <div class="col-md-12" style="text-align: right;">
+                <div class="popup-footer justify-content-center">
+                    <button type="button" class="btn btn-success btn-sm" (click)="btnSubmitDetails()">
+
+                        SUBMIT
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>

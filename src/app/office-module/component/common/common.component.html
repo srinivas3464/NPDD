@@ -1,0 +1,807 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient  headstick ">
+    <!-- Navbar brand -->
+    <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+      <img
+        class="brand-logo"
+        src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+        style="width: 50px"
+      />
+      <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+        Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+      </h5>
+    </a>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item text-right">
+          <a
+            class="navbar-brand d-flex align-items-center"
+            style="cursor: pointer"
+          >
+          <img
+          class="brand-logo"
+          src="https://apddcf.ap.gov.in/cdn/img/CM.png"
+          style="width: 50px"
+        />
+        <div class="text-center">
+          <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+            Sri Nara Chandrababu Naidu
+          </h6>
+              <p style="font-size: 12px; margin-bottom: 0; color: #fff">
+                Hon’ble Chief Minister, <br />
+                Andhra Pradesh
+              </p>
+            </div>  
+
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Collapsible content -->
+   
+  </nav>
+  <!--/.Navbar-->
+  
+  <!--Menu-Navbar -->
+  <nav 
+    class="
+      menu-navbar
+      navbar navbar-expand-lg navbar-dark
+      primary-color-dark
+      py-md-0
+      text-white    menustick"
+    style="margin-bottom: 50px;"
+  >
+
+
+  
+  
+  
+
+
+
+
+    <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto align-items-center" >
+
+        <li class="nav-item" routerLinkActive="active" >   
+          <a   routerLink="Homepage"
+          routerLinkActive="active"  style="color: white !important;"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >        <i class="fab Home"></i>  Home        </a> 
+        </li>
+
+
+        
+
+        
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownMenuLink-333"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="cursor: pointer"
+            ><i class="fab fa-wpforms"></i>  Menu
+          </a>
+
+          <!-- RAVI KAMESHWARI 301 start menu-->
+
+          <div *ngIf="menu0">
+          <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" 
+          
+          
+          > 
+            <a
+            class="dropdown-item"
+            routerLink="RegistrationApprovals"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >          REGISTARTIONS APPROVAL NEW UPDATES          </a> 
+            <!-- <a  
+            class="dropdown-item"
+            routerLink="comissionerupdate"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Commissioner Update</a>   -->
+          </div>
+        </div>
+
+
+         <!-- others 301 start menu-->
+         <div *ngIf="menu1">
+          <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+                
+
+            <a
+            class="dropdown-item"
+            routerLink="Budgetfinancialyear"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >    M1      Financial Year Budget         </a> 
+
+
+          <a
+          class="dropdown-item"
+          routerLink="ComponentTenderPrice"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >    M2     Component Sanctioned Price        </a> 
+
+
+        <a
+            class="dropdown-item"
+            routerLink="ComponentDetails"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >   M3       Component Wise Tender Process         </a> 
+
+          <a
+          class="dropdown-item"
+          routerLink="Tenders"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >  M4        Tenders         </a>  
+        
+        
+          
+          <a
+          class="dropdown-item"
+          routerLink="Nomination"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >    M5      Nomination  Details        </a>  
+
+
+
+          <a
+          class="dropdown-item"
+          routerLink="Quotations"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >     M6     Quotations         </a> 
+
+
+
+
+        <a
+        class="dropdown-item"
+        routerLink="podetails"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >      M7    Purchase Order Details         </a> 
+
+
+      <a
+      class="dropdown-item"
+      routerLink="PODistrictwiseDetails"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >     M8     PO District wise Details       </a>
+    
+
+    <a
+    class="dropdown-item"
+    routerLink="InvoiceDetails"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >    M9      Invoice Details         </a> 
+  
+  <a
+  class="dropdown-item"
+  routerLink="ProformaInvoice"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>    M10      Proforma Invoice  Details       </a> 
+
+
+
+<a
+class="dropdown-item" 
+routerLink="stockentrydetails"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>       M11    Stock Entry Details        </a>
+
+
+ 
+<a
+class="dropdown-item"
+routerLink="ApprovalsDetails"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>     M12      Approvals Details         </a> 
+
+
+<a
+class="dropdown-item"
+routerLink="ProceedingDetails"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>     M13      Proceeding Details        </a>  
+
+
+
+<a
+class="dropdown-item"
+routerLink="PaymentDetails"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M14     Payment Details        </a>
+
+
+
+
+
+
+
+<a
+class="dropdown-item"
+routerLink="PoDistrictQtyChanges"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M15     PO District Minus Qty Update         </a> 
+
+<a
+class="dropdown-item"
+routerLink="DistrictQtyAddition"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M16     PO District Add Qty Update         </a> 
+
+
+<a
+class="dropdown-item"
+routerLink="Budgetstatement"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M17     Budget Statement         </a>  
+
+
+
+<a
+class="dropdown-item"
+routerLink="Expenditure"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M18     Expenditure         </a> 
+
+<a
+class="dropdown-item"
+routerLink="BMCUApproval"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      M19    BMCU Approvals           </a> 
+
+
+
+
+
+
+
+
+          </div>
+
+       
+        </div>
+
+
+      </li>
+
+
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a
+          class="nav-link dropdown-toggle"   
+          id="navbarDropdownMenuLink-333"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="cursor: pointer; "
+          ><i class="fab fa-wpforms"></i> Master 
+        </a>
+  
+  
+        <div *ngIf="menu1">
+          <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+  
+           
+
+
+    
+            <a
+          class="dropdown-item"
+          routerLink="ComponentMaster"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        > MA1         Component Master         </a>   
+ 
+
+        <a
+        class="dropdown-item"
+        routerLink="FirmDetails"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >  MA2 Firm Registration Details          </a>             
+      
+      <a
+        class="dropdown-item"
+        routerLink="FirmSecuirtyDeposites"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      > MA3  Firm Security Deposit           </a>  
+
+      <a
+      class="dropdown-item"
+      routerLink="schedulemeeting"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >       MA4    Schedule Details        </a>
+  <a
+  class="dropdown-item"
+  routerLink="TenderDetails"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>      MA5     Tender Details           </a>
+  <a
+  class="dropdown-item"
+  routerLink="TenderDetailsEntry"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>    MA6      Tender Details Entry  old       </a>  
+
+
+
+
+<a
+class="dropdown-item"
+routerLink="InvoiceDetailsApprovals"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>    MA7      Invoice Details  Approvals       </a> 
+  
+  
+         </div>
+         </div> 
+    </li>
+
+
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDropdownMenuLink-333"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="cursor: pointer"
+          ><i class="fab fa-wpforms"></i> Reports
+        </a>
+ <!-- RAVI KAMESHWARI 301 start reports-->
+        <div *ngIf="menu0">
+          <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+            <a
+            class="dropdown-item"
+            routerLink=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >       R     Report         </a> 
+            <!-- <a  
+            class="dropdown-item"
+            routerLink="comissionerupdate"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Commissioner Update</a>   -->
+          </div>
+        </div>
+
+  <!-- others 301 start reports-->
+        <div *ngIf="menu1">
+          <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+
+
+
+            <a
+            class="dropdown-item"
+            routerLink="ComponentMasterReport"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >      R1    Component Master Report       </a>
+            
+            
+            <a
+            class="dropdown-item"
+            routerLink="FinancialYearBudgetReport"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >      R2    Financial YearBudget Report      </a>
+            
+            
+            <a
+            class="dropdown-item"
+            routerLink="TenderPriceReport"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >       R3   Sanctioned Price Report         </a>
+
+
+            
+            <a
+            class="dropdown-item"
+            routerLink="TenderDetailsReports"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >        R4  Tender Details Today Report         </a> 
+          <a
+          class="dropdown-item"
+          routerLink="TenderDetailsReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >        R5  Tender Details Report        </a>
+          <a
+          class="dropdown-item"
+          routerLink="PODetailsReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >        R6  PO Details Report         </a> 
+ 
+        <a
+        class="dropdown-item"
+        routerLink="FirmDetailsReport"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >      R7    Firm Details Report         </a>
+ 
+      <a
+        class="dropdown-item"
+        routerLink="FirmSecuDepositReport"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >       R8   Firm Security Deposite Report         </a>
+
+      <a
+      class="dropdown-item"
+      routerLink="FirmSecuDepositFromTodateReport"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >        R9  Firm Security Deposite FromDate ToDate Report         </a>
+      
+
+    
+
+    <a
+      class="dropdown-item"
+      routerLink="ExpenditureReport"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >      R10    Expenditure Report        </a>
+      
+    
+
+    <a
+    class="dropdown-item"
+    routerLink="NominationReport"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >       R11   Nomination Report        </a>
+
+
+    <a
+    class="dropdown-item"
+    routerLink="InvoiceReports"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >       R12   Invoice Report         </a>
+  
+  
+  <a
+    class="dropdown-item"
+    routerLink="InvoiceDocumentReport"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >       R13   Invoice Documents Report         </a>
+
+  <a
+    class="dropdown-item"
+    routerLink="ApprovalReports"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >      R14    Approval Details Reports         </a>
+
+  <a
+  class="dropdown-item"
+  routerLink="podistrictqtychangesreport"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>      R15    PO District Qty Minus Report         </a> 
+
+
+
+
+
+<a
+  class="dropdown-item"
+  routerLink="podistrictqtyAdditionreport"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>        R16  PO District Qty Addition Report         </a> 
+
+  <a
+    class="dropdown-item"
+    routerLink="BudgetslipReport"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >    R17      Budget Slip Report        </a> 
+  
+  <a
+    class="dropdown-item"
+    routerLink="ProceedingDetailsReport"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >      R18    Proceeding Details  Report        </a>
+
+  
+
+  <a
+  class="dropdown-item"
+  routerLink="PaymentDetailsReport"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>       R19   Payment Details  Report        </a>
+
+  <a
+  class="dropdown-item"
+  routerLink="scheduleMeetingReport"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>      R20    schedule Meeting Report        </a> 
+       
+
+<a
+class="dropdown-item"
+routerLink="StockDistrictwiseReport"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>      R21    Stock District Wise Report        </a>
+
+
+
+<a
+class="dropdown-item"
+routerLink="BmcuequipmentReport"
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>    R22      BMCU Equipment Report        </a>
+
+
+<a class="dropdown-item" routerLink="PODistrictSummary" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">R23 PO Dstrict Summary
+</a>
+
+<a class="dropdown-item" routerLink="PODateWiseSummary" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">R24 PO Date Wise Summary
+
+</a>
+<a class="dropdown-item" routerLink="TenderWiseSummary" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">R25 Tender Wise Summary
+
+</a>
+
+<a class="dropdown-item" routerLink="PODistrictPercentageSummary" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">R26 PO Dstrict Percentage Summary
+</a>
+
+
+
+
+<a class="dropdown-item" routerLink="PoWisePercentages" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">R27 PO Wise  Percentage 
+</a>
+
+
+          </div>  
+      </div>
+
+    </li>
+   
+
+    <li class="nav-item dropdown" routerLinkActive="active">
+      <a
+        class="nav-link dropdown-toggle"   
+        id="navbarDropdownMenuLink-333"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="cursor: pointer;width: 0px;"
+        ><i class="fab fa-wpforms"></i> Admin 
+      </a>
+
+
+      <div *ngIf="menu1">
+        <div  class="dropdown-menu dropdown-primary"    aria-labelledby="navbarDropdownMenuLink-333" > 
+
+          <a
+          class="dropdown-item"
+          routerLink="NewScreenEntry"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          New Screen Entry        </a> 
+
+          <a
+          class="dropdown-item"
+          routerLink="ScreenAssignment"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Screens Assignments         </a> 
+        
+        <a
+        class="dropdown-item"
+        routerLink="ScreenmenuUpdate"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >          Screens Menu Update         </a> 
+        <a
+          class="dropdown-item"
+          routerLink="officemenuReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Login wise Menu Details         </a> 
+
+
+        <a
+          class="dropdown-item"
+          routerLink="loginwisecomponents"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Login wise Components         </a> 
+
+
+        
+
+        <a
+          class="dropdown-item"
+          routerLink="FarmerDataPush"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >  Farmer Data Push  </a> 
+
+
+        <a
+          class="dropdown-item"
+          routerLink="FinancialBudgetAmounts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Financial Budget Amounts         </a> 
+
+
+        
+        <a
+          class="dropdown-item"
+          routerLink="VendorMonthlyProccess"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Vendor Monthly Proccess         </a> 
+
+        <a
+          class="dropdown-item"
+          routerLink="VenderMonthlyProcessReport"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >          Vendor Monthly Proccess Report     </a> 
+
+        
+
+
+       </div>
+       </div> 
+  </li>
+        
+  
+        <li  class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a *ngIf="mdssshowhide" class="nav-link" routerLink="comissionerupdate" 
+          > Commissioner Update</a
+        >
+      
+      </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown" routerLinkActive="active">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center"
+            id="navbarDropdownMenuLink-333" data-toggle="dropdown"  aria-haspopup="true"   aria-expanded="false"  style="cursor: pointer; "
+          >
+            <h6 class="mb-0 mr-1">
+              Welcome <b>{{ userName }}</b>
+            </h6>
+            <i class="fas fa-user"></i>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right dropdown-primary"
+            aria-labelledby="navbarDropdownMenuLink-333"
+          >
+            <!-- <a class="dropdown-item" href="#" routerLink="">Profile</a> -->
+            <!-- <a
+            class="dropdown-item"
+            style="cursor: pointer"
+            (click)="btnForgetPassword()"
+          >
+              <i class="fas fa-key"></i> Forget Password
+            </a> -->
+            <a
+            class="dropdown-item"
+            style="cursor: pointer"
+            routerLink="PasswordUpdate"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="btnForgetPassword()"
+            
+          >
+            <i class="fas fa-key"></i> Update Password
+          </a>
+          
+            <a class="dropdown-item" style="cursor: pointer" (click)="btnLogout()"
+            ><i class="fas fa-sign-out-alt"></i> Logout</a
+          >
+            <hr class="my-1" />
+            <a class="dropdown-item text-center" style="cursor: pointer">
+              <span
+                >Last logged in: <br />
+                <b class="text-danger">{{ lastLoginTime }}</b></span
+              >
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--/.Menu-Navbar -->
+  
+  <!--Main Content -->
+  <div id="page-container">
+    <div id="content-wrap">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-11 mx-auto" style="margin-top: 105px;margin-bottom: 100px;">
+            <router-outlet ></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!--Footer Content -->
+    <footer class="page-footer font-small blue footerstick">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center pt-3">
+        <a style="cursor: pointer; color: #fff">
+          <img
+            src="https://apddcf.ap.gov.in/cdn/img/apddcf-circle.png"
+            style="width: 30px"
+          />
+          Andhra Pradesh Dairy Development Cooperative Federation Limited (APDDCF)
+        </a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!--/.Footer-Content -->
+  </div>
+  <!--/.Main-Content -->
+  
+  

@@ -1,0 +1,739 @@
+<div class="container mt-4">
+    <div id="myAccordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+                        <b> 1. Tender Details</b>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="COMPID">Tender Component Name <span style="color: red">*</span></label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+
+                                <select id="COMPID" class="form-control" [(ngModel)]="COMPID" (change)="componentChange();">
+                                    <option disabled selected value="undefined">-- SELECT COMPONENT --</option>
+                                    <option value="{{ obj.COMPID }}" *ngFor="let obj of componentListdata"> {{ obj.COMPNAME }} </option>
+                                </select>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <hr style="background-color: brown;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TenderId">Tender ID <span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="TenderId" placeholder="Enter Tender ID" maxlength="40"
+                                    (keypress)="keyPressNumbers($event)" [(ngModel)]="TenderId">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="TenderDate">Tender Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select Tender Date'" [(selectedDate)]="TenderDate"></app-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TenderNoticeNumber">Tender Notice Number <span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="TenderNoticeNumber" placeholder="Enter Tender Notice Number"
+                                    maxlength="40" [(ngModel)]="TenderNoticeNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="col-md-3">
+                            <label for="NatureofWork">Nature of Work<span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="NatureofWork" placeholder="Enter Nature of Work"
+                                [(ngModel)]="NatureofWork">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="StartDateandTime">Bid Document Download Start Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select  Start Date'" [minDate]="minDate" [maxDate]="maxDate"
+                                    [(selectedDate)]="StartDateandTime"></app-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ClosingDateandTime">Bid Submission Closing Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select  Closing Date'" [minDate]="minDate"
+                                    [(selectedDate)]="ClosingDateandTime"></app-date-picker>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <hr style="background-color: brown;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label for="NameOfTheParticipants">Name of The Participants <span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="NameOfTheParticipants"
+                                    placeholder="Enter Name of The Participants" (keyup.enter)="addItem()"
+                                    [(ngModel)]="NameOfTheParticipants">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3"><br />
+                            <label for="Processingfeedetails"><b>Processing Fee Details</b></label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ProcessingModeofPayment">Mode of Payment <span style="color: red">*</span></label>
+                                <select class="form-control" id="ProcessingModeofPayment" [(ngModel)]="ProcessingModeofPaymentID">
+                                    <option value="">--Select--</option>
+                                    <option value="{{ obj.ID }}" *ngFor="let obj of ModeOfPaymentList.slice(0, 2)"> {{ obj.PAYMODE }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ProcessingPaymentDate">Payment Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select Payment Date'" [(selectedDate)]="ProcessingPaymentDate"
+                                    [minDate]="minDate1"></app-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ProcessingAmount">Amount <span style="color: red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" id="ProcessingAmount" placeholder="Enter DD Amount"
+                                    [(ngModel)]="ProcessingAmount" (keypress)="decimalFilter($event)">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-3"><br />
+                            <label for="EMDDetails"><b>EMD Details</b></label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="EMDModeofPayment">Mode of Payment <span style="color: red">*</span></label>
+                                <select class="form-select form-control" id="EMDModeofPayment" [(ngModel)]="EMDModeofPaymentID">
+                                    <option value="">--Select--</option>
+                                    <option value="{{ obj.ID }}" *ngFor="let obj of ModeOfPaymentList"> {{ obj.PAYMODE }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="EMDPaymentDate">Payment Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select Payment Date'" [(selectedDate)]="EMDPaymentDate"></app-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <label for="EMDAmount">Amount <span style="color: red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" id="EMDAmount" placeholder="Enter DD Amount" [(ngModel)]="EMDAmount"
+                                    (keypress)="decimalFilter($event)">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group"> <br />
+                                <button class="btn btn-success" (click)="addItem()">ADD</button>
+                                <!-- <i class="fa fa-plus"></i> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="selectTablesubTender">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <table class="table table-striped ah-table text-center">
+                                        <thead class="bg-success text-white" style="border: 1px solid white;">
+
+                                            <tr>
+                                                <th rowspan="2">Name of The Participants</th>
+                                                <th colspan="3">Processing Fee Details</th>
+                                                <th colspan="3">EMD Details</th>
+                                                <!-- <th rowspan="2">Action</th> -->
+                                            </tr>
+                                            <tr>
+                                                <th>Mode of Payment</th>
+                                                <th>Payment Date</th>
+                                                <th>Amount</th>
+                                                <th>Mode of Payment</th>
+                                                <th>Payment Date</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            
+                                            <tr *ngFor="let item of itemList; let i = index" style="height: 30px!important;">
+                                                <td class="text_align_color">{{ item.NameOfTheParticipants }}</td>
+                                                <td class="text_align_color">{{ item.ProcessPayment }}</td>
+                                                <td class="text_align_color">{{ item.ProcessingDate }}</td>
+                                                <td class="text_align_color">{{ item.ProcessingAmount }}</td>
+                                                <td class="text_align_color">{{ item.EmdPaymentName }}</td>
+                                                <td class="text_align_color">{{ item.EMDDate }}</td>
+                                                <td class="text_align_color">{{ item.EMDAmount }}</td>
+                                                <!-- <td style="width: 200px;" class="number_align">
+                                                     <button class="btn btn-danger" style="height: 30px!important;"
+                                                        (click)="removeItem(i)">Remove</button> 
+
+                                                </td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary" (click)="TenderDetails()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
+                        <b>2. Commercial Stage Details</b>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#myAccordion">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="NameoftheFirm ">Name of the Participants <span style="color: red">*</span></label>
+                                <select class="form-select form-control" id="NameoftheFirm" [(ngModel)]="PtidValue">
+                                    <option value="">--Select--</option>
+                                    <option value="{{obj.PT_ID}}" *ngFor="let obj of CommericalDataList">{{obj.PARTICIPANT_NAME}}</option>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="QuotePrice">Quote Price <span style="color: red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                        </path>
+                                    </svg>
+                                </span>
+
+                                <input type="text" class="form-control" id="QuotePrice" placeholder="Enter Quote Price"
+                                    [(ngModel)]="QuotePrice" (keypress)="decimalFilter($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Rating">Rating <span style="color: red">*</span></label>
+                                <!-- <input type="text" class="form-control" id="Rating" placeholder="Enter Rating" [(ngModel)]="Rating"> -->
+                                <select class="form-select form-control" id="Rating" [(ngModel)]="Rating">
+                                    <option value="">--Select--</option>
+                                    <option value="{{ obj.ID }}" *ngFor="let obj of RatingLevelList"> {{ obj.PAYMODE }} </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button id=buttonHC class="btn btn-primary" (click)="CommercialAdd()">Add</button>
+                        </div>
+                    </div>
+
+
+
+                    <div *ngIf="selectTablesub">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <table class="table table-striped ah-table text-center ">
+                                    <thead style="background-color: #28a745!important;  color: #fff!important;height: 50px;">
+                                        <tr>
+                                            <!-- <th>Select Participants</th> -->
+                                            <th>Name of the Select Participants</th>
+                                            <th>Quote Price</th>
+                                            <th>Rating</th>
+                                            <!-- <th>Actions</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of CommercialArray; let i = index">
+                                            <!-- <td class="text_align_color">{{ row.NameoftheFirm}}</td> -->
+                                            <td class="text_align_color">{{ row.Name}}</td>
+                                            <td class="number_align">{{ row.QuotePrice}}</td>
+                                            <td class="number_align">{{ row.RatingLevel}}</td>
+
+                                            <!-- <td class="number_align"><button class="btn btn-danger"
+                                                    (click)="CommercialremoveData(i)">Remove</button></td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary" (click)="CommercialSubmit()">Submit</button>
+                            </div>
+
+                            <div class="col-md-5"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree">
+                        <b>3. Reverse Auction Details</b>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <label for="ReverseAuctionDate"><b>Reverse Auction Date</b></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="StartDate">Start Date <span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select Start Date'" [(selectedDate)]="StartDate"></app-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <label for="EndDate">Start Time <span style="color: red">*</span></label>
+                            <input id="startTime" type="time" class="form-control" [(ngModel)]="startTime"
+                                placeholder="Please Enter Meeting Time" maxlength="8" autocomplete="off" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="EndDate">End Time <span style="color: red">*</span></label>
+
+                            <input id="endTime" type="time" class="form-control" [(ngModel)]="endTime"
+                                placeholder="Please Enter Meeting Time" maxlength="8" autocomplete="off" />
+                            <!-- <label for="EndDate">End Date <span style="color: red">*</span></label>
+                            <app-date-picker [PlaceHolder]="'Select End Date'" [(selectedDate)]="EndDate"></app-date-picker> -->
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+
+
+
+                            <label for="ReverseNameoftheFirm">Name of the Participants<span style="color: red">*</span></label>
+                            <select class="form-select form-control" id="ReverseNameoftheFirm" [(ngModel)]="ReverseNameoftheFirmID">
+                                <option value="">--Select--</option>
+                                <option value="{{obj.PT_ID}}" *ngFor="let obj of ReverseNameOftheList">{{obj.NAME_OF_THE_PARTICIPANT}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="FinalPriceDetails">Final Price Details <span style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                            <path
+                                                d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" class="form-control" id="FinalPriceDetails" placeholder="Enter Final Price Details"
+                                        [(ngModel)]="FinalPriceDetails" (keypress)="decimalFilter($event)">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+
+                            <label for="ReverseQuotePrice">Quote Price<span style="color: red">*</span></label>
+
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" id="ReverseQuotePrice" placeholder="Enter Quote Price"
+                                    [(ngModel)]="ReverseQuotePrice" (keypress)="decimalFilter($event)">
+                            </div>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="ReverseRating">Rating<span style="color: red">*</span></label>
+                                <!-- <input type="text" class="form-control" id="ReverseRating" placeholder="Enter Rating"
+                                    [(ngModel)]="ReverseRating"> -->
+                                <select class="form-select form-control" id="ReverseRating" [(ngModel)]="ReverseRating">
+                                    <option value="">--Select--</option>
+                                    <option value="{{ obj.ID }}" *ngFor="let obj of RatingLevelList"> {{ obj.PAYMODE }} </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" (click)="ReverseSubmit()">Submit</button>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
+                        <b>4. Tender Sanctioned Firm Selection</b>
+
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#myAccordion">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="TenderNameoftheFirm">Name of the Participants<span style="color: red">*</span></label>
+                                <select class="form-select form-control" id="TenderNameoftheFirm" [(ngModel)]="TenderNameoftheFirmID">
+                                    <option value="">--Select--</option>
+                                    <option value="{{obj.PT_ID}}" *ngFor="let obj of TenderSacntionedNameOftheList">
+                                        {{obj.NAME_OF_THE_PARTICIPANT}}
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="TenderQuotePrice">Quote Price <span style="color: red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" id="TenderQuotePrice" placeholder="Enter Quote Price"
+                                    [(ngModel)]="TenderQuotePrice" (keypress)="decimalFilter($event)">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TenderRating">Rating<span style="color: red">*</span></label>
+
+                                <select class="form-select form-control" id="TenderRating" [(ngModel)]="TenderRating">
+                                    <option value="">--Select--</option>
+                                    <option value="{{ obj.ID }}" *ngFor="let obj of RatingLevelList.slice(0, 5)"> {{ obj.PAYMODE }}
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+
+
+                        <div class="col-md-12 row">
+                            <div class="col-md-12 table-responsive">
+                                <!-- [hidden]="checkList?.length < 1" -->
+                                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                                    [dtTrigger]="dtTrigger" data-page-length='25'>
+                                    <thead class="bg-success text-white">
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Component ID</th>
+                                            <th>Component Name</th>
+                                            <th>Price</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let obj of checkList; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td style="text-align: center;" name="{{obj.COMPID}}" id="{{ i + 1 }}">{{ obj.COMPID }}</td>
+                                            <td style="text-align: left;">{{ obj.COMPNAME }}</td>
+
+
+
+                                            <td style="text-align: right;">
+                                                <input type="text" (keypress)="decimalFilter($event)" name="txt_{{obj.COMPID}}"
+                                                    id="txtprice_{{ i + 1 }}" />
+                                            </td>
+
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" (click)="TenderSacntioned()">Submit</button>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">
+                        <b>5. EMD Refund Details</b>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#myAccordion">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="EMDNameoftheFirm">Name of the Participants<span style="color: red">*</span></label>
+                                <select class="form-select form-control" id="EMDNameoftheFirm" [(ngModel)]="EMDNameoftheFirmID">
+                                    <option value="">--Select--</option>
+                                    <option value="{{obj.PT_ID}}" *ngFor="let obj of EMDNameOftheList">{{obj.NAME_OF_THE_PARTICIPANT}}
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="PaymentID">Payment ID<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="PaymentID" placeholder="Enter Payment ID"
+                                    (keypress)="keyPressAlphaNumericWithCharacters($event)" maxlength="40" [(ngModel)]="PaymentID">
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="BankName">Bank Name<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="BankName" placeholder="Enter Bank Name" [(ngModel)]="BankName"
+                                    (keypress)="keyPressCharacters($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="CreditAccountNumber">Credit Account Number<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="CreditAccountNumber" placeholder="Enter Credit AccountNumber"
+                                    [(ngModel)]="CreditAccountNumber" (keypress)="keyPressNumbers($event)">
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="CreditAccountName">Credit Account Name<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="CreditAccountName" placeholder="Enter Credit Account Name"
+                                    [(ngModel)]="CreditAccountName" (keypress)="keyPressCharacters($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="CreditIFSCCODE">Credit IFSC CODE<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="CreditIFSCCODE" placeholder="Enter Credit IFSC CODE"
+                                    [(ngModel)]="CreditIFSCCODE" (keypress)="keyPressAlphaNumericWithCharacters($event)">
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="RefundStatus">Refund Status<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="RefundStatus" placeholder="Enter Refund Status" maxlength="40"
+                                    [(ngModel)]="RefundStatus">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="RefundDate">Refund Date<span style="color: red">*</span></label>
+                                <app-date-picker [PlaceHolder]="'Select  Closing Refund Date'"
+                                    [(selectedDate)]="RefundDate"></app-date-picker>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="RefTransactionID">Ref Transaction ID<span style="color: red">*</span></label>
+                                <input type="text" class="form-control" id="RefTransactionID" placeholder="Enter Ref Transaction ID"
+                                    (keypress)="keyPressAlphaNumericWithCharacters($event)" maxlength="40" [(ngModel)]="RefTransactionID">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="Remarks">Remarks</label>
+                                <textarea class="form-control" id="Remarks" [(ngModel)]="Remarks"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" (click)="EMDSubmit()">Submit</button>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Add more accordion items here -->
+
+    </div>
+</div>

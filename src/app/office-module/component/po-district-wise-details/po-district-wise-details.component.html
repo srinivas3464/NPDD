@@ -1,0 +1,155 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Po District Wise Details</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="UninonId">PO
+                    <span style="color: red">*</span></label> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="TRAININGID" class="form-control" [(ngModel)]="selectedPO" (change)="POIdchange()">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option [ngValue]="obj" *ngFor="let obj of POList">{{obj.PONUMBER}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div *ngIf="isElementsHide">
+            <div class="col-md-12  row">
+                <div class="col-md-3">
+                    <label for="Component">
+                        COMPONENT :
+                        <span class="text-success">
+                            <b> {{ Component }}</b>
+                        </span>
+                    </label>
+                </div>
+                <div class="col-md-3">
+                    <label for="Firm">
+                        FIRM:
+                        <span class="text-success">
+                            <b> {{ Firmname }}</b>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="col-md-3"> <label for="Quantity">
+                        QUANTITY:
+                        <span class="text-success">
+                            <b> {{ Qty }}</b>
+                        </span>
+                    </label></div>
+                <div class="col-md-3">
+                    <label for="Amount">
+                        AMOUNT:
+                        <span class="text-success">
+                            <b> {{ Amount }}</b>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Amount">
+                        Balance QUANTITY:
+                        <span class="text-success">
+                            <b> {{ Balanceqty }}</b>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Amount">
+                        Balance Amount:
+                        <span class="text-success">
+                            <b> {{ Balanceamount }}</b>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12 row mt-5">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="State">State<span style="color: red">*</span></label>
+                        <select id="TRAININGID" class="form-control" [(ngModel)]="State" (change)="DistGet()">
+                            <option disabled selected value="undefined">-- Select--</option>
+                            <option value="{{ obj.STATEID}}" *ngFor="let obj of StateList">{{obj.STATENAME}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="District">District<span style="color: red">*</span></label>
+                        <select id="TRAININGID" class="form-control" [(ngModel)]="Dist">
+                            <option disabled selected value="undefined">-- Select--</option>
+                            <option value="{{ obj.DISTRICTID }}" *ngFor="let obj of DitsData">{{obj.DISTRICTNAME}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Quantity">Quantity<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="InputQuantity" (keypress)="keyPressNumbers($event)"    (change)="Calamount()">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Amount">Amount<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="InputAmount" (keypress)="keyPressNumbers($event)">
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                    <button type="button" class="btn btn-success btn-sm" (click)="DataSub()" style="margin-top: 31px;">
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+            <div class="mt-5">
+                <table class="table table-striped ah-table text-center" datatable>
+
+
+                    <thead class="bg-success text-white"   style="border: 1px solid white;">
+                        <tr  >
+                            <th class="tableheader_color">S.No.</th>
+                            <th class="tableheader_color">State</th>
+                            <th class="tableheader_color">District</th>
+                            <th class="tableheader_color">Quantity</th>
+                            <th class="tableheader_color">Amount</th>
+                        </tr>
+                        <tr>
+                            <th class="tableheader_color">(1)</th>
+                            <th class="tableheader_color">(2)</th>
+                            <th class="tableheader_color">(3)</th>
+                            <th class="tableheader_color">(4)</th>
+                            <th class="tableheader_color">(5)</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of GridData; let i=index;">
+                            <td class="number_align">{{ i + 1 }}</td>
+
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.STATENAME}}</td>
+                            <td style="text-align: left;" class="table_cells_borders">{{obj.DISTRICTNAME}}</td>
+                            <td class="number_align">{{obj.QUANTITY}}</td>
+                            <td class="number_align">{{obj.AMOUNT}}</td>
+
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

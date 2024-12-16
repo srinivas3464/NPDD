@@ -1,0 +1,183 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Prompt Farmer Data Push Status</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="SelectType">Select Type<span style="color: red">*</span></label>
+                    <select id="DataPushType" class="form-control" [(ngModel)]="DataPushType" (change)="LoadDistricts()">
+                        <option selected disabled value="undefined">--Select--</option>
+                        <option value="7">PROMPT</option>
+                        <option value="8">AKASH GANGA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="DistrictCode">District<span style="color: red">*</span></label>
+                    <!-- <input type="text" [(ngModel)]="DistrictCode" class="form-control" placeholder="Please Enter District Code"> -->
+                    <select id="DistrictCode" class="form-control" [(ngModel)]="DistrictCode" (change)="LoadSocietyCodes()">
+
+                         <option selected disabled value="undefined">--Select--</option>  
+                        <option value="{{obj.DISTRICT_CODE}}" *ngFor="let obj of DistrictList;">{{obj.DISTRICT}}</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+
+                <div class="form-group">
+                    <label for="SocietyCode">Society <span style="color: red">*</span></label>
+                    <!-- <input type="text" [(ngModel)]="SocietyCode" class="form-control" placeholder="Please Enter Society Code"> -->
+                    <select id="SocietyCode" class="form-control" [(ngModel)]="SocietyCode">
+                          <option selected   value="undefined">--Select--</option>  
+                        <option value="{{obj.SOCIETY_CODE}}" *ngFor="let obj of SocietyList">{{obj.SOCIETY_NAME}}</option>
+                    </select>
+
+                    <!-- <ng-select name="SocietyCode" id="SocietyCode" [(ngModel)]="SocietyCode" placeholder="--Select--/--Search--">
+                        <ng-option *ngFor="let option of  SocietyList" [value]="{{obj.SOCIETY_CODE}}">{{option.SOCIETY_NAME}}</ng-option>
+                    </ng-select> -->
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="FarmerCode">Farmer <span style="color: red">*</span></label>
+                    <!-- <input type="text" [(ngModel)]="FarmerCode" class="form-control" placeholder="Please Enter Farmer Code"> -->
+                    <select id="Farmer" class="form-control" [(ngModel)]="Farmer" (change)="FarmerDataChange()">
+                        <option selected disabled value="undefined">--Select--</option>
+                        <option value="0">ALL</option>
+                        <option value="1">FARMER</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-2" *ngIf="isFarmer">
+                <!-- <div *ngIf="isFarmer"> -->
+                <label for="FarmerCode">Farmer Code<span style="color: red">*</span></label>
+                <input type="text" [(ngModel)]="FarmerCode" class="form-control" placeholder="Please Enter Farmer Code">
+                <!-- </div> -->
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <button class="btn btn-primary" style="margin-top: 28px;" (click)="FindData()">Find</button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="IsHideDetails">
+            <div class="row">
+                 
+
+
+                            <div class="col-md-12 table-responsive"     >
+                                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger"   >
+                                <thead class="bg-success text-white" style="border: 1px solid white;">
+
+
+                            <tr>
+                                  <th>S No</th>  
+                                <th>VDCS Name</th>
+                                <th>VDCS Code</th>
+                                <th>Farmer Code</th>
+                                <th>Farmer Name</th>
+                                <th>Mobile Number</th>
+                                <th>Bank Pincode</th>
+                                <th>Bank Name</th>
+                                <th>Bank Branch</th>
+                                <th>IFSC Code</th>
+                                <th>Micr Code</th>
+                                <th>Account Number</th>
+                                <th>Pan Card</th>
+                                <th>Company Code</th>
+                                <th>Effecative Date</th>
+                                <th>Block Status</th>
+                                <th>Reason Code</th>
+                                <th>Remarks</th>
+                            </tr>
+                            <tr>
+                                  <th>(1)</th>  
+                                <th>(2)</th>
+                                <th>(3)</th>
+                                <th>(4)</th>
+                                <th>(5)</th>
+                                <th>(6)</th>
+                                <th>(7)</th>
+                                <th>(8)</th>
+                                <th>(9)</th>
+                                <th>(10)</th>
+                                <th>(11)</th>
+                                <th>(12)</th>
+                                <th>(13)</th>
+                                <th>(14)</th>
+                                <th>(15)</th>
+                                <th>(16)</th>
+                                <th>(17)</th>
+                                <th>(18)</th>
+                            </tr>
+
+                        </thead>
+                        <tbody  >
+
+                            <tr *ngFor="let obj of FarmerDataList  let i=index;">
+
+                                  <td class="number_align">{{ i + 1 }}</td>  
+
+                                <td class="text_align_color">{{obj.VDCSNAME}}</td>
+                                <td class="number_align">{{obj.VDCS_CODE}}</td>
+                                <td class="number_align">{{obj.FARMER_CODE}}</td>
+                                <td class="text_align_color">{{obj.FARMER_NAME}}</td>
+                                <td class="number_align">{{obj.MOBILE_NUMBER}}</td>
+                                <td class="number_align">{{obj.BANK_PINCODE}}</td>
+                                <td class="text_align_color">{{obj.BANK_NAME}}</td>
+
+                                <td class="text_align_color">{{obj.BANK_BRANCH}}</td>
+                                <td class="number_align">{{obj.IFSC_CODE}}</td>
+                                <td class="number_align">{{obj.MDAC_CODE}}</td>
+                                <td class="number_align">{{obj.ACCOUNT_NUMBER}}</td>
+                                <td class="text_align_color">{{obj.PAN_CARD}}</td>
+
+                                <td class="number_align">{{obj.COMPANY_CODE}}</td>
+                                <td class="number_align">{{obj.MILK_POURING_DATE}}</td>
+                                <td class="text_align_color">{{obj.MILK_POURING_STATUS}}</td>
+                                <td class="text_align_color">{{obj.MILK_POURING_REASON_ID}}</td>
+                                <td class="text_align_color">{{obj.MILK_POURING_REASON}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <!-- style="width: 800px;" -->
+            <div class="row mt-5">
+                <div class="col-md-1"></div>
+                <div class="form-group">
+                    <label for="Json">Json Data</label>
+                    <textarea class="form-control" [value]="jsonData" rows="25" cols="100" readonly></textarea>
+                </div>
+            </div>
+            <div class="row mt-5">
+
+                <div class="col-md-3"></div>
+                <div class="form-group">
+                    <button class="btn btn-success" (click)="SendFarmerData()">Submit</button>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="IsResult">
+            <div class="row mt-5">
+                <div class="col-md-1"></div>
+                <div class="form-group" style="width: 800px;">
+                    <label for="Json">Result</label>
+                    <textarea class="form-control" [(ngModel)]="OutPutRes" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

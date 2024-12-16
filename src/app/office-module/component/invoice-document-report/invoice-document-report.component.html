@@ -1,0 +1,291 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">Invoice Document Report</h5>
+    </div>
+    <div class="card-body">
+  
+        <div class="col-md-12 row" >
+            <div class="col-md-4">.</div>
+            <div class="col-md-4">
+             <div class="form-group">
+               <label for="UninonId">Select Po.No & Date
+                 <span style="color: red">*</span></label>
+               <select id="PMID"  class="form-control" [(ngModel)]="PMID"  (change)="poByID()" >                
+                 <option disabled selected value="undefined">-- Select PO NUMBER --</option>
+                 <option  value="{{ obj.PMID }}"    *ngFor="let obj of POlist"> {{ obj.PONUMBER }}  </option>
+               </select>
+             </div>
+           </div>
+           <div class="col-md-4">.</div>
+           <div class="col-md-12">
+           <HR style="height: 5px;color:brown;background-color: brown;">
+           </div>
+        </div>  
+
+       
+        <div  class="col-md-12 row"   >
+             
+          <div class="table-responsive"  >
+
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" data-page-length='25' >
+            <thead class="bg-success text-white">
+
+         
+                      <tr  >
+                          <th>S.NO</th>   <th> INVOICE NUMBER</th>                           <th> INVOICE DATE</th> 
+                            <th> PAYMENT MODE</th> 
+                          <th> ADVANCE BANK GUARANTEE</th>              <th> ADVANCE STAMP RECEIPT</th>  
+                                                   <th> PROFORMA INVOICE</th> 
+                          <th> WAYBILL </th>       
+                            <th> CALIBRATION </th>   
+                            <th> PROCEEDING </th> <th> INVOIC DOC </th>    <th *ngIf="VENDOR"> BUDGET SLIP </th>   
+                      </tr>
+                      <tr >             
+                        <th  class="tableheader_color" >(1)</th>
+                        <th  class="tableheader_color" >(2)</th>
+                        <th  class="tableheader_color" >(3)</th>
+                        <th  class="tableheader_color" >(4)</th>
+                        <th  class="tableheader_color" >(5)</th>
+                        <th  class="tableheader_color" >(6)</th>
+                        <th  class="tableheader_color" >(7)</th>
+                        <th  class="tableheader_color" >(8)</th>
+                        <th  class="tableheader_color" >(9)</th>
+                        <th  class="tableheader_color" >(10)</th>
+                        <th  class="tableheader_color" >(11)</th>
+                        <th  class="tableheader_color" *ngIf="VENDOR">(11)</th>
+
+                         
+                      </tr> 
+
+
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let objd of InvoiceReportsList; let i = index">
+                          <td  class="text_align_color">{{i+1}}</td>
+                           
+                          <td  class="text_align_color"><b>{{objd.INVOICENO}}</b></td>
+                          <td  class="text_align_color"><b>{{objd.INVOICEDATE}}</b></td> 
+                          <td  class="text_align_color"><b>{{objd.PAYMODE}}</b></td>
+                          
+                        <td  class="text_align_color">
+                            <button
+                              type="button"
+                              class="btn btn-sm btn-info block"
+                              *ngIf="
+                              objd.ADVANCE_BANK_GUARANTEE !== null &&
+                              objd.ADVANCE_BANK_GUARANTEE !== 'NA' &&
+                              objd.ADVANCE_BANK_GUARANTEE !== undefined
+                              "
+                              (click)="btnPdfView(objd.ADVANCE_BANK_GUARANTEE)"
+                            >
+                              VIEW
+                            </button>
+                            <span
+                              *ngIf="
+                              objd.ADVANCE_BANK_GUARANTEE === null ||
+                              objd.ADVANCE_BANK_GUARANTEE === 'NA' ||
+                              objd.ADVANCE_BANK_GUARANTEE === undefined
+                              "
+                              >--</span
+                            >
+                          </td>
+
+
+                          <td  class="text_align_color"><b>
+                            
+                            
+                            
+                            
+                        
+                        
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.ADVANCE_STAMP_RECEIPT !== null &&
+                            objd.ADVANCE_STAMP_RECEIPT !== 'NA' &&
+                            objd.ADVANCE_STAMP_RECEIPT !== undefined
+                            "
+                            (click)="btnPdfView(objd.ADVANCE_STAMP_RECEIPT)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.ADVANCE_STAMP_RECEIPT === null ||
+                            objd.ADVANCE_STAMP_RECEIPT === 'NA' ||
+                            objd.ADVANCE_STAMP_RECEIPT === undefined
+                            "
+                            >--</span
+                          >
+                        
+                        
+                        </b></td> 
+                          <td  class="text_align_color"><b> 
+
+
+
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.PROFORMA_INVOICE !== null &&
+                            objd.PROFORMA_INVOICE !== 'NA' &&
+                            objd.PROFORMA_INVOICE !== undefined
+                            "
+                            (click)="btnPdfView(objd.PROFORMA_INVOICE)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.PROFORMA_INVOICE === null ||
+                            objd.PROFORMA_INVOICE === 'NA' ||
+                            objd.PROFORMA_INVOICE === undefined
+                            "
+                            >--</span
+                          >
+                        
+
+
+
+                          </b></td> 
+                          <td  class="text_align_color"><b> 
+
+
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.WAYBILL !== null &&
+                            objd.WAYBILL !== 'NA' &&
+                            objd.WAYBILL !== undefined
+                            "
+                            (click)="btnPdfView(objd.WAYBILL)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.WAYBILL === null ||
+                            objd.WAYBILL === 'NA' ||
+                            objd.WAYBILL === undefined
+                            "
+                            >--</span
+                          >
+
+
+                          </b></td>   
+                          <td  class="text_align_color"><b>  
+
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.CALIBRATION_REPORT !== null &&
+                            objd.CALIBRATION_REPORT !== 'NA' &&
+                            objd.CALIBRATION_REPORT !== undefined
+                            "
+                            (click)="btnPdfView(objd.CALIBRATION_REPORT)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.CALIBRATION_REPORT === null ||
+                            objd.CALIBRATION_REPORT === 'NA' ||
+                            objd.CALIBRATION_REPORT === undefined
+                            "
+                            >--</span >
+                          </b></td> 
+                          
+                          
+
+                          <td  class="text_align_color"><b>  
+
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.PROCEEDINGDOCPATH !== null &&
+                            objd.PROCEEDINGDOCPATH !== 'NA' &&
+                            objd.PROCEEDINGDOCPATH !== undefined
+                            "
+                            (click)="btnPdfView(objd.PROCEEDINGDOCPATH)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.PROCEEDINGDOCPATH === null ||
+                            objd.PROCEEDINGDOCPATH === 'NA' ||
+                            objd.PROCEEDINGDOCPATH === undefined
+                            "
+                            >--</span >
+                          </b></td> 
+
+                          <td  class="text_align_color"><b>  
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.INVOICEPATH !== null &&
+                            objd.INVOICEPATH !== 'NA' &&
+                            objd.INVOICEPATH !== undefined
+                            "
+                            (click)="btnPdfView(objd.INVOICEPATH)"
+                          >
+                            VIEW
+                          </button>
+                          <span
+                            *ngIf="
+                            objd.INVOICEPATH === null ||
+                            objd.INVOICEPATH === 'NA' ||
+                            objd.INVOICEPATH === undefined
+                            "
+                            >--</span >
+                          </b></td> 
+
+
+
+
+
+                          <td  class="text_align_color" *ngIf="VENDOR"><b>  
+
+                            <button
+                            type="button"
+                            class="btn btn-sm btn-info block"
+                            *ngIf="
+                            objd.BUDGETSLIPDOCPATH !== null &&
+                            objd.BUDGETSLIPDOCPATH !== 'NA' &&
+                            objd.BUDGETSLIPDOCPATH !== undefined
+                            "
+                            (click)="btnPdfView(objd.BUDGETSLIPDOCPATH)"
+                          >
+                            VIEW
+                          </button> 
+                          <span
+                            *ngIf="
+                            objd.BUDGETSLIPDOCPATH === null ||
+                            objd.BUDGETSLIPDOCPATH === 'NA' ||
+                            objd.BUDGETSLIPDOCPATH === undefined
+                            "
+                            >--</span >
+                          </b></td> 
+
+
+
+                      </tr>
+                  </tbody>
+              </table>
+  
+          </div>
+        
+       
+  </div>
+
+
+
+    </div>
+</div>

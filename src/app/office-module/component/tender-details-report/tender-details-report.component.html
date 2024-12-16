@@ -1,0 +1,332 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Tender Details Report</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="UninonId">Tender Data
+                    <span style="color: red">*</span></label>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+
+                    <select id="Tender" class="form-control" (change)="changeTable()" [(ngModel)]="SLNO">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{ obj.S_NO }}" *ngFor="let obj of DropList">{{obj.DETAILS}}</option>
+
+                    </select>
+                </div> 
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleTender">
+            <div class="col-md-12" [hidden]="TenderDetailsList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+
+            </div>
+            <div class="col-md-12">
+                <!-- <div class="table-responsive"> -->
+                    <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                        <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Tender ID</th>
+                            <th class="borderwhitecolo">Tender_Date</th>
+                            <th class="borderwhitecolo">Tender Notice number</th>
+                            <th class="borderwhitecolo">Nature of Work</th>
+                            <th class="borderwhitecolo">Name of the participants</th>
+                            <th class="borderwhitecolo">Bid Document DownloadStart Date</th>
+                            <th class="borderwhitecolo">Bid Submission ClosingDate</th>
+                            <th class="borderwhitecolo">Processing fee payment</th>
+                            <th class="borderwhitecolo">Processing online/DD/No</th>
+                            <th class="borderwhitecolo">Processing DD: Amount</th>
+                            <th class="borderwhitecolo">EMD Details payment </th>
+                            <th class="borderwhitecolo">EMD Details online/DD/No </th>
+                            <th class="borderwhitecolo">EMD Details DD: Amount</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                            <th class="borderwhitecolo">(4)</th>
+                            <th class="borderwhitecolo">(5)</th>
+                            <th class="borderwhitecolo">(6)</th>
+                            <th class="borderwhitecolo">(7)</th>
+                            <th class="borderwhitecolo">(8)</th>
+                            <th class="borderwhitecolo">(9)</th>
+                            <th class="borderwhitecolo">(10)</th>
+                            <th class="borderwhitecolo">(11)</th>
+                            <th class="borderwhitecolo">(12)</th>
+                            <th class="borderwhitecolo">(13)</th>
+                            <th class="borderwhitecolo">(14)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of TenderDetailsList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="text_alignleft">{{obj.TENDER_ID}}</td>
+                            <td class="text_alignleft">{{obj.TENDER_DATE .substring(0, 10) }}</td>
+                            <td class="number_align">{{obj.TENDER_NOTICE_NO}}</td>
+                            <td class="text_alignleft">{{obj.NATURE_OF_WORK}}</td>
+                            <td class="text_alignleft">{{obj.NAME_OF_THE_PARTICIPANTS}}</td>
+                            <td class="text_alignleft">{{obj.BID_START_DOC.substring(0, 10) }}</td>
+                            <td class="text_alignleft">{{obj.BID_CLOSE_DOC.substring(0, 10) }}</td>
+                            <td class="text_alignleft">{{obj.PROCESSING_PAYMODE}}</td>
+                            <td class="text_alignleft">
+                                <span *ngIf="obj.PROCESSING_PAYDATE!=null">{{obj.PROCESSING_PAYDATE.substring(0, 10) }}</span>
+                                <span *ngIf="obj.PROCESSING_PAYDATE==null">{{obj.PROCESSING_PAYDATE }}</span>
+                            </td>
+                            <td class="number_align">{{obj.PROCESSING_AMOUNT}}</td>
+                            <td class="text_alignleft">{{obj.EMD_PAYMODE}}</td>
+                            <td class="text_alignleft">{{obj.EMD_PAYDATE}}</td>
+                            <td class="number_align">{{obj.EMD_AMOUNT}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleCommercial">
+
+            <div class="col-md-12" [hidden]="CommercialList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExceltwo()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+
+            </div>
+            <div class="col-md-12">
+
+
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Name of the Firm</th>
+                            <th class="borderwhitecolo">Quote Price</th>
+                            <th class="borderwhitecolo">Rating</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                            <th class="borderwhitecolo">(4)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of CommercialList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="text_alignleft">{{obj.NAME_OF_THE_FIRM}}</td>
+                            <td class="number_align">{{obj.QUOTE_PRICE}}</td>
+                            <td class="text_alignleft">{{obj.RATING}}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleReverse">
+            <div class="col-md-12 ">
+
+                <div class="col-md-12" [hidden]="ReverseList?.length < 1">
+                    <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcelthree()">
+                        <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                        Download Excel
+                    </button>
+
+                </div>
+
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Reverse Auction date starting time</th>
+                            <th class="borderwhitecolo">Reverse Auction date End time</th>
+                            <th class="borderwhitecolo">Final price details</th>
+                            <th class="borderwhitecolo">Name of the Firm</th>
+                            <th class="borderwhitecolo">Quote Price</th>
+                            <th class="borderwhitecolo">Rating</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                            <th class="borderwhitecolo">(4)</th>
+                            <th class="borderwhitecolo">(5)</th>
+                            <th class="borderwhitecolo">(6)</th>
+                            <th class="borderwhitecolo">(7)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of ReverseList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="text_alignleft">{{obj.REVERSE_STARTING_TIME}}</td>
+                            <td class="text_alignleft">{{obj.REVERSE_END_TIME}}</td>
+                            <td class="number_align">{{obj.FINAL_PRICE_DETAILS}}</td>
+                            <td class="text_alignleft">{{obj.NAME_OF_THE_FIRM}}</td>
+                            <td class="number_align">{{obj.QUOTE_PRICE}}</td>
+                            <td class="text_alignleft">{{obj.RATING}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleTenderSacntioned">
+            <div class="col-md-12" [hidden]="TenderSacntionedList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcelfour()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+
+            </div>
+            <div class="col-md-12 ">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Name of the Firm</th>
+                            <th class="borderwhitecolo">Quote Price</th>
+                            <th class="borderwhitecolo">Rating</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                            <th class="borderwhitecolo">(4)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of TenderSacntionedList; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td class="text_alignleft">{{obj.NAME_OF_THE_FIRM}}</td>
+                            <td class="number_align">{{obj.QUOTE_PRICE}}</td>
+                            <td class="text_alignleft">{{obj.RATING}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleEMD">
+            <div class="col-md-12" [hidden]="EMDList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcelfive()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+
+            </div>
+            <div class="col-md-12 ">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Name of the Firm</th>
+                            <th class="borderwhitecolo">PaymentID</th>
+                            <th class="borderwhitecolo">Bank Name</th>
+                            <th class="borderwhitecolo">Credit AccountNumber</th>
+                            <th class="borderwhitecolo">Credit Account Name</th>
+                            <th class="borderwhitecolo">Credit IFSCCODE</th>
+                            <th class="borderwhitecolo">RefundStatus</th>
+                            <th class="borderwhitecolo">Refund Date </th>
+                            <th class="borderwhitecolo">Ref Transaction ID</th>
+                            <th class="borderwhitecolo">Remarks</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                            <th class="borderwhitecolo">(4)</th>
+                            <th class="borderwhitecolo">(5)</th>
+                            <th class="borderwhitecolo">(6)</th>
+                            <th class="borderwhitecolo">(7)</th>
+                            <th class="borderwhitecolo">(8)</th>
+                            <th class="borderwhitecolo">(9)</th>
+                            <th class="borderwhitecolo">(10)</th>
+                            <th class="borderwhitecolo">(11)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of EMDList; let i=index;">
+                            <td class="number_align">{{i+1}}</td>
+                            <td class="text_alignleft">{{obj.NAME_OF_THE_FIRM}}</td>
+                            <td class="text_alignleft">{{obj.PAYMENTID}}</td>
+                            <td class="text_alignleft">{{obj.BANK_NAME}}</td>
+                            <td class="number_align">{{obj.CREDIT_ACCOUNT_NUMBER}}</td>
+                            <td class="text_alignleft">{{obj.CREDIT_ACCOUNT_NAME}}</td>
+                            <td class="text_alignleft">{{obj.CREDIT_IFSCCODE}}</td>
+                            <td class="text_alignleft">{{obj.REFUND_STATUS}}</td>
+                            <td class="number_align">{{obj.REFUND_DATE.substring(0, 10) }}</td>
+                            <td class="text_alignleft">{{obj.REF_TRANSACTION_ID}}</td>
+                            <td class="text_alignleft">{{obj.REMARKS}}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 row" *ngIf="isContentVisibleProceeding">
+            <div class="col-md-12" [hidden]="TenderDetailsList?.length < 1">
+                <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcelsix()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                    Download Excel
+                </button>
+
+            </div>
+            <div class="col-md-12 ">
+                <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                    <thead class="bg-success text-white" style="border: 1px solid white;">
+                        <tr>
+                            <th class="borderwhitecolo">S.No</th>
+                            <th class="borderwhitecolo">Proceding Remarks</th>
+                            <th class="borderwhitecolo">Proceding File</th>
+                        </tr>
+                        <tr>
+                            <th class="borderwhitecolo">(1)</th>
+                            <th class="borderwhitecolo">(2)</th>
+                            <th class="borderwhitecolo">(3)</th>
+                        </tr>
+                    </thead>
+                    <tbody calss="table_cells_borders">
+                        <tr *ngFor="let obj of TenderDetailsList; let i=index;">
+                            <td class="number_align" *ngIf="obj.PROCEDING_REMARKS">{{i+1}}</td>
+                            <td class="text_alignleft" *ngIf="obj.PROCEDING_REMARKS">{{obj.PROCEDING_REMARKS}}</td>
+                            <!-- <td class="text_alignleft" *ngIf="obj.PROCEDING_FILE_IMAGE_PATH">{{obj.PROCEDING_FILE_IMAGE_PATH}}</td> -->
+                            <td class="number_align" *ngIf="obj.PROCEDING_FILE_IMAGE_PATH">
+                                <button class="btn btn-primary mt-4" (click)="btnPdfView(obj.PROCEDING_FILE_IMAGE_PATH)">VIEW</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

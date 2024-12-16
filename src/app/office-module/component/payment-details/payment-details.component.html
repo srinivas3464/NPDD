@@ -1,0 +1,309 @@
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0">PAYMENT DETAILS  </h5>
+    </div>
+    <div class="card-body">
+  
+        <div class="col-md-12 row" >
+             
+            <div class="col-md-3">
+             <div class="form-group" style="text-align: right;">
+               <label for="UninonId">Select Proceeding & Date
+                 <span style="color: red">*</span></label>
+                </div>
+            </div> 
+                <div class="col-md-3"> 
+                  <div class="form-group">  
+               <select id="PMID1"  class="form-control" [(ngModel)]="PMID" (change)="InvoiceByID()"  [tabIndex]="1">                
+                <option disabled selected value="undefined">-- Select Proceeding & Date --</option>
+                <option  value="{{ obj.PROCEDINGNO }}"   *ngFor="let obj of Podetailslist"    > {{ obj.PROCEDING_DATE }}  </option>
+              </select> 
+  
+  
+  
+             </div>
+               </div>
+
+           <!-- <div class="col-md-2">
+            <div class="form-group"  style="text-align: right;">
+              <label for="UninonId">Select Invoice & Date
+                <span style="color: red">*</span></label>
+            </div>
+        </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+              <select id="INVID"  class="form-control" [(ngModel)]="INVID"  (change)="InvoiceByID()"  [tabIndex]="2">                
+                <option disabled selected value="undefined">-- Select Invoice --</option>
+                <option  value="{{ obj.INVID }}"    *ngFor="let obj of invdetailslist"> {{ obj.INVOICENO }}  </option>
+              </select>
+            </div>
+          </div> -->
+
+           
+           <div class="col-md-12">
+           <HR style="height: 1px;color:brown;background-color: brown;">
+           </div>
+        </div>
+
+        <div  class="col-md-12 row"   >
+             
+            <div class="table-responsive"   [hidden]="InvoiceReportsList?.length < 1"  >
+  
+              <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger" data-page-length='25' >
+              <thead class="bg-success text-white">
+  
+                 
+                        <tr>
+                            <th  class="tableheader_color" >Sno</th>    <th  class="tableheader_color" > PROCEDING NO</th>    
+                             <th  class="tableheader_color" > QTY</th>    <th  class="tableheader_color" > PAYMENT AMOUNT</th> 
+                               <th  class="tableheader_color" >PERCENTAGE</th>  <th  class="tableheader_color" > PROCEEDING NO</th> 
+                             <th  class="tableheader_color" > BUDGET SLIP</th> <th  class="tableheader_color" > DISTRICT NAME</th>  
+                            <th  class="tableheader_color" >  INVOICE NO</th> <th  class="tableheader_color" > INVOICE DATE</th> 
+                            <th  class="tableheader_color" >PO DATE</th> <th  class="tableheader_color" >PO NUMBER</th> 
+                            <th  class="tableheader_color" >ADVANCE PERCENTAGE</th> <th  class="tableheader_color" > ADVANCE PERCENTAGE AMOUNT</th> 
+                            <th  class="tableheader_color" >DELIVERY PERCENTAGE</th>  <th  class="tableheader_color" > DELIVERY PERCENTAGE AMOUNT</th>
+                            <th  class="tableheader_color" > INSTALLATION PERCENTAGE</th><th  class="tableheader_color" > INSTALLATION PERCENTAGE AMOUNT</th> 
+                             <th  class="tableheader_color" >FINAL PERCENTAGE</th> <th  class="tableheader_color" > FINAL PERCENTAGE AMOUNT</th>
+
+
+ 
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let objd of InvoiceReportsList; let i = index">  
+                            <td   class="number_align">{{i+1}}</td>                             
+                            <td  class="number_align">{{objd.PROCEDINGNO}}</td>   
+                            <td  class="number_align">{{objd.QTY}}</td>  
+                             <td  class="number_align">{{objd.PAYMENTAMOUNT}}</td> 
+                                   <td  class="number_align">{{objd.PAYMENTPER}}</td>
+                            <td  class="number_align">
+                              <button class="btn btn-sm btn-info block"
+                              (click)="btnAllPdf(objd.PROCEEDINGDOCPATH)">
+                              <i>VIEW</i></button> 
+                              
+                               </td>  <td  class="number_align"> 
+                              
+                                <button class="btn btn-sm btn-info block"
+                                (click)="btnAllPdf(objd.BUDGETSLIPDOCPATH)">
+                                <i>VIEW</i></button> 
+                              </td> 
+                            
+                            <td  class="number_align">{{objd.DISTRICTNAME }}</td>
+                            <td  class="number_align">{{objd.INVOICENO}}</td> <td  class="number_align">{{objd.INVOICEDATE}}</td> 
+                            <td  class="number_align">{{objd.PODATE}}</td> <td  class="number_align">{{objd.PONUMBER}}</td>                              
+                            <td  class="number_align">{{objd.ADV_PER}}</td>   <td  class="number_align">{{objd.ADV_PER_AMOUNT}}</td>
+                            <td  class="number_align">{{objd.DELIVERY_PER}}</td>  <td  class="number_align">{{objd.DELIVERY_PER_AMOUNT}}</td>
+                            <td  class="number_align">{{objd. INSTALL_PER}}</td>  <td  class="number_align">{{objd.INSTALL_PER_AMOUNT}}</td>
+                            <td  class="number_align">{{objd.FINAL_PER}}</td> <td  class="number_align">{{objd.FINAL_PER_AMOUNT}}</td>
+
+                            
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+          
+         
+         </div>
+
+
+         <div  class="col-md-12 row"   >
+
+            <div  class="col-md-6" style="color:brown;font-size: 18px;"  ><u>Invoice Details</u></div>
+
+            <div  class="col-md-6"  style="color:brown;font-size: 18px;"  ><u>Payment Details</u></div>
+
+         </div>
+
+         <div  class="col-md-12 row"   >
+              <div class="col-md-3" style="text-align: right;" > Invoice Amount:</div><div class="col-md-3" >                
+                <input  id="invamount"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="3"
+                [(ngModel)]="invamount" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                placeholder="Invoice Amount"    maxlength="10" NumbersOnly  autocomplete="off"  (change)="calc()" />
+            </div> 
+
+            <div class="col-md-3" style="text-align: right;" >Payment Cheque No:</div><div class="col-md-3" >                
+                <input  id="chequeno"   type="text"   class="form-control" [tabIndex]="10"
+                [(ngModel)]="chequeno" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+                placeholder="Cheque No"    maxlength="10" NumbersOnly  autocomplete="off"      />
+            </div> 
+         </div>
+
+
+         <div  class="col-md-12 row"   >
+            <div class="col-md-3" style="text-align: right;" > Deductions:</div><div class="col-md-3" >                
+              <input  id="Deductions"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="4"
+              [(ngModel)]="Deductions" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+              placeholder="Deductions Amount"    maxlength="10" NumbersOnly  autocomplete="off" (change)="calc()"  />
+          </div> 
+
+          <div class="col-md-3" style="text-align: right;" >Cheque Date:</div><div class="col-md-3" >                
+               
+
+              <app-date-picker
+              [PlaceHolder]="'Select Cheque Date'"
+              [(selectedDate)]="chequedate"
+              [minDate]="minDate"
+              [maxDate]="maxDate"  [tabIndex]="11"
+            ></app-date-picker>
+          </div> 
+       </div>
+
+
+
+
+
+       
+       <div  class="col-md-12 row"   >
+        <div class="col-md-3" style="text-align: right;" > Cgst :</div><div class="col-md-3" >                
+          <input  id="CGST"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="5"
+          [(ngModel)]="CGST" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+          placeholder="Cgst Amount"    maxlength="10" NumbersOnly  autocomplete="off"  (change)="calc()" />
+      </div> 
+
+      <div class="col-md-3" style="text-align: right;" >Utr No :</div><div class="col-md-3" >                
+          <input  id="UTRNO"   type="text"   class="form-control"  [tabIndex]="12"
+          [(ngModel)]="UTRNO" 
+          placeholder="Utr No"    maxlength="22"    autocomplete="off"      />
+          <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)" -->
+      </div> 
+   </div>
+
+
+
+   <div  class="col-md-12 row"   >
+    <div class="col-md-3" style="text-align: right;" > Sgst :</div><div class="col-md-3" >                
+      <input  id="SGST"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="6"
+      [(ngModel)]="SGST" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+      placeholder="Sgst Amount"    maxlength="10" NumbersOnly  autocomplete="off" (change)="calc()"  />
+  </div> 
+
+  <div class="col-md-3" style="text-align: right;" >Upload Tds:</div><div class="col-md-3" >                
+     
+
+
+      <input   [(ngModel)]="uploadtds"
+      type="file"
+      class="form-control p-0"
+      id="uploadtds"
+      (change)="onbudgetslip($event)"
+      accept="application/pdf"
+      autocomplete="off"  [tabIndex]="13"/>     
+
+  </div> 
+</div>
+
+
+
+<div  class="col-md-12 row"   >
+    <div class="col-md-3" style="text-align: right;" > Igst :</div><div class="col-md-3" >                
+      <input  id="IGST"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="7"
+      [(ngModel)]="IGST" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+      placeholder="Igst Amount"    maxlength="10" NumbersOnly  autocomplete="off"  (change)="calc()"  />
+  </div> 
+
+  <div class="col-md-3" > </div><div class="col-md-3" >  
+     
+  </div> 
+</div>
+
+
+<div  class="col-md-12 row"   >
+    <div class="col-md-3" style="text-align: right;" > Tds :</div><div class="col-md-3" >                
+      <input  id="Tds"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="8"
+      [(ngModel)]="Tds" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+      placeholder="Tds Amount"    maxlength="10" NumbersOnly  autocomplete="off"   (change)="calc()"  />
+  </div> 
+
+  <div class="col-md-3" > </div><div class="col-md-3" >  
+     
+  </div> 
+</div>
+
+
+<div  class="col-md-12 row"   >
+    <div class="col-md-3" style="text-align: right;" > Net Amount:</div><div class="col-md-3" >                
+      <input  id="netamount"   type="text"  class="form-control" style="text-align: right;" [tabIndex]="9"
+      [(ngModel)]="netamount" onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)  || (event.charCode >= 48 && event.charCode <= 57)"
+      placeholder="Net Amount"    maxlength="10" NumbersOnly  autocomplete="off"  />
+  </div> 
+  <div class="col-md-3">  </div><div class="col-md-3" >  
+    <button
+    type="button"
+    class="btn btn-success btn-sm"  [tabIndex]="14"  (click)="btnSubmitDetails()">
+    SUBMIT
+  </button>
+</div> 
+</div>
+
+
+
+
+
+
+<div class="col-md-12">
+    <HR style="height: 1px;color:brown;background-color: brown;">
+    </div>
+
+
+<div  class="col-md-12 row"   >
+             
+    <div class="table-responsive"    [hidden]="Paymentdetailslist?.length < 1" >
+
+      <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger" data-page-length='25' >
+      <thead class="bg-success text-white">
+
+         
+                <tr  >
+                    <th>Sno</th>                  <th> PO.NO</th>                           <th> PODATE</th> 
+                    <th> INVOICE NO</th>          <th> INVOICE DATE</th>                           <th> INVOICE AMOUNT</th> 
+                    <th> DEDUCTIONS</th>              <th> CGST</th>                           <th> SGST</th> 
+                    <th> IGST </th>         <th> TDS </th>                        <th>NET AMOUNT  </th>   
+                    <th> CHEQUE NO </th>  <th> CHEQUE DATE </th> <th> UTR NO </th>   <th> TDS DOCS </th>  <th> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let objd of Paymentdetailslist; let i = index">
+                    <td>{{i+1}}</td>
+                     
+                    <td>{{objd.PONUMBER}}</td>
+                    <td>{{objd.PODATE}}</td>
+                    <td>{{objd.INVOICENO}}</td>
+                    <td>{{objd.INVOICEDATE}} </td>
+                    <td>{{objd.GROSSINVOICEVAL }}</td>  
+                    <td>{{objd.DEDUCTION }}</td>
+                    <td>{{objd.CGST }}</td>                                                   
+                    <td>{{objd.SGST}}</td>
+                    <td>{{objd.IGST}}</td>
+                    <td>{{objd.TDS}}</td>
+                    <td>{{objd.NETPAYMENT}}</td>
+                    <td>{{objd.CHEQUENO}}</td>
+                    <td>{{objd.CHEQUEDATE}}</td>
+                    <td>{{objd.UTR}}</td>
+                    <td> 
+
+                        <button class="btn btn-sm btn-info block"
+                        (click)="btnAllPdf(objd.UPLOADTDSDOC)">
+                        <i>VIEW</i></button> 
+                    </td>
+                     
+                    
+                     
+                    <td><input type="button" class="fa fa-trash btn btn-danger" (click)="DeletePAYID(objd.PAYID);" value="Remove"/></td>
+    
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+  
+ 
+ </div>
+
+    </div>
+</div>

@@ -1,0 +1,164 @@
+<div class="card" >
+    <div class="card-header p-2">
+      <h5 class="mb-0" style="color: brown;text-align: center; ">DISTRICT BALANCE QUANTITY REDUCED PROCESS</h5>
+    </div>
+    <div class="card-body">
+       
+        <div   class="col-md-12 row">
+           
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="UninonId">SELECT PO/WO No AND DATE
+                    <span style="color: red">*</span></label>
+                   </div>
+                   </div>
+                   <div class="col-md-3">
+                     <div class="form-group"> 
+     
+                  <select id="PMID"  class="form-control" [(ngModel)]="PMID" (change)="POBYPONUMBER()">                 
+                   <option disabled selected value="undefined">-- Select PO/WO No AND DATE --</option>
+                   <option  value="{{ obj.PMID }}"   *ngFor="let obj of Podetailslist"    > {{ obj.PONUMBER }}  </option>
+                 </select> 
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="UninonId">District Wise Details
+                    <span style="color: red">*</span></label>
+                   </div>
+                   </div>
+
+              <div class="col-md-4" > 
+                <div class="form-group"> 
+                   
+             <select id="SLNO"  class="form-control" [(ngModel)]="SLNO" (change)="onDistrictwiseqtyChange()" >                
+              <option disabled selected value="undefined">-- Select PO/WO District Wise Details --</option>
+              <option  value="{{ obj.SLNO }}"   *ngFor="let obj of GridData"    > {{ obj.STATENAME +" - "+ obj.DISTRICTNAME   }}  </option>
+            </select>
+      
+      
+      
+          </div>
+         </div>
+
+
+        </div>
+ <div   class="col-md-12">
+        <table class="table table-striped ah-table text-center"  *ngIf="GridDataold?.length > 0">
+    
+    
+          <thead class="bg-success text-white" style="border: 1px solid white;">
+                <tr  >
+                    <th class="tableheader_color">SNo.</th>
+                    <th class="tableheader_color">PM ID</th>
+                    <th class="tableheader_color">SLNO</th>  
+                    <th class="tableheader_color">DISTRICT NAME</th>
+                    <th class="tableheader_color"  >QUANTITY</th>
+                    <th class="tableheader_color"  >AMOUNT</th>
+                    <th class="tableheader_color"  >INVOICE QUANTITY</th>
+                    <th class="tableheader_color"   >INVOICE AMOUNT</th>
+                    <th class="tableheader_color" >BALANCE QUANTITY</th>
+                    <th class="tableheader_color"  >BALANCE AMOUNT</th>
+
+                    <th class="tableheader_color"  >TOTAL PO BALANCE QUANTITY</th>
+                    <th class="tableheader_color"  >TOTAL PO BALANCE AMOUNT</th> 
+
+                    <th class="tableheader_color"  >UPDATE QUANTITY</th>
+                    <th class="tableheader_color"   >UPDATE AMOUNT</th> 
+                </tr>
+                <tr>
+                    <th class="tableheader_color">(1)</th>
+                    <th class="tableheader_color">(2)</th>
+                    <th class="tableheader_color">(3)</th>
+                    <th class="tableheader_color">(4)</th>
+                    <th class="tableheader_color">(5)</th>
+                    <th class="tableheader_color">(6)</th>
+                    <th class="tableheader_color">(7)</th>
+                    <th class="tableheader_color">(8)</th>
+                    <th class="tableheader_color">(9)</th>
+                    <th class="tableheader_color">(10)</th>
+                    <th class="tableheader_color"  >(11)</th>
+                    <th class="tableheader_color"  >(12)</th>
+                    <th class="tableheader_color"  >(13)</th>
+                    <th class="tableheader_color"  >(14)</th>
+                     
+    
+                </tr>
+            </thead>
+            <tbody calss="table_cells_borders">
+                <tr *ngFor="let obj of GridDataold; let i=index;">
+                    <td class="number_align">{{ i + 1 }}</td>
+                    <td class="number_align">{{obj.PM_ID}}</td>
+                    <td class="number_align">{{obj.SLNO}}</td>
+                    <td  class="text_alignleft" >{{obj.DISTRICTNAME}}</td>
+                    <td class="number_align">{{obj.QUANTITY}}</td>
+                    <td class="number_align">{{obj.AMOUNT}}</td> 
+                    <td class="number_align">{{obj.INVOICE_QUANTITY}}</td> 
+                    <td class="number_align">{{obj.INVOICE_AMOUNT}}</td> 
+                    <td class="number_align">{{obj.BALANCE_QUANTITY}}</td> 
+                    <td class="number_align">{{obj.BALANCE_INVOICE}}</td> 
+
+
+                    <td class="number_align">{{obj.PO_BALANCE_QUANTITY}}</td> 
+                    <td class="number_align">{{obj.PO_BALANCE_AMOUNT}}</td> 
+
+                     <!-- <td>
+                     <button
+                        type="button"
+                        class="btn btn-link btn-sm"
+                        *ngIf="
+                          obj.BALANCE_QUANTITY !== null &&
+                          obj.BALANCE_QUANTITY !== '' &&
+                          obj.BALANCE_QUANTITY !== undefined
+                        "
+                         
+                      >
+                        VIEW
+                      </button> 
+                      
+                    </td>-->
+
+                      <td   class="number_align" >  
+                        <input type="text" id="Updateqty"  class="form-control"    name="Updateqty" style=" width:150px;text-align: right"     NumbersOnly   (change)="Calamount()"   [(ngModel)]="Updateqty"  >
+                        </td>  
+                        <td   class="number_align">  
+                            <input type="text" id="Updateamt"  class="form-control"    name="Updateamt" style=" width:150px;text-align: right"    NumbersOnly  (change)="Calamount()"    [(ngModel)]="Updateamt" >
+                            </td>
+
+ 
+                   
+                </tr>
+            </tbody>
+              <!-- <tfoot>
+              <tr>
+                  <td style="text-align: right;" colspan="2">Total:</td>
+                  <td style="text-align: right;"> {{ Totalobj.QUANTITY }}</td>
+                  <td  style="text-align: right;"> {{ Totalobj.AMOUNT }}</td>
+                  <td style="text-align: right;" colspan="7"></td>
+              </tr>
+          </tfoot>   -->
+    
+        </table>
+    </div>
+
+    <div   class="col-md-12 row">
+    <div class="col-md-10"   style="text-align: right;"> 
+         
+        <input type="button" style="text-align: center; "
+        class="btn btn-success btn-sm" id="btnsubmit"   value="MinusQTY"  (click)="btnSubmitDetails()">   
+       
+
+        </div>
+
+        <div class="col-md-2"   style="text-align: right;display: none; "> 
+         
+          <input type="button" style="text-align: center;"
+          class="btn btn-success btn-sm" id="btnAddqty"   value="AddQty"  (click)="btnAddQty()">   
+         
+  
+          </div>
+        </div>
+
+    </div>
+</div>

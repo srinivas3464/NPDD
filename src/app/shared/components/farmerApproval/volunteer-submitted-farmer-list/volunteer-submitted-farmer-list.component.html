@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col mb-2">
+    <div
+      class="stats-card success"
+      (click)="btnDashboardDetails('1', dashboardDetails.TOTAL_COMPLETED)"
+      [ngClass]="reportType === '1' ? 'active' : ''"
+    >
+      <div class="overlay"></div>
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="stats-text">
+            <p class="text-uppercase text-muted mb-1">
+              <small>COMPLETED</small>
+            </p>
+            <h5 class="font-weight-bold mb-0">
+              {{ dashboardDetails.TOTAL_COMPLETED }}
+            </h5>
+          </div>
+          <div class="circle">
+            <i class="fas fa-check-double"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col mb-2">
+    <div
+      class="stats-card pending"
+      (click)="btnDashboardDetails('2', dashboardDetails.TOTAL_PENDING)"
+      [ngClass]="reportType === '2' ? 'active' : ''"
+    >
+      <div class="overlay"></div>
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="stats-text">
+            <p class="text-uppercase text-muted mb-1"><small>PENDING</small></p>
+            <h5 class="font-weight-bold mb-0">
+              {{ dashboardDetails.TOTAL_PENDING }}
+            </h5>
+          </div>
+          <div class="circle">
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="row mt-3" [hidden]="pendingList?.length < 1">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0 secondary-heading pb-0">{{headingText}} VOLUNTEER REGISTERED FARMER LIST</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 table-responsive">
+            <table
+              class="table table-striped ah-table text-center"
+              datatable
+              [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger"
+            >
+              <thead class="bg-success text-white">
+                <tr>
+                  <th>S.No.</th>
+                  <th>VILLAGE NAME</th>
+                  <th>CLUSTER ID</th>
+                  <th>FARMER NAME</th>
+                  <th>MOBILE NUMBER</th>
+                  <th>AADHAAR NUMBER</th>
+                  <th>VERIFY</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="pendingList?.length > 0">
+                <tr *ngFor="let obj of pendingList; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ obj.VILLAGE_NAME }}</td>
+                  <td>{{ obj.CLUSTER_ID }}</td>
+                  <td>
+                    <b>{{ obj.FARMER_NAME }}</b>
+                  </td>
+                  <td>{{ obj.MOBILE_NUMBER }}</td>
+                  <td>XXXX-XXXX-{{ obj.UID_NUM | slice: -4 }}</td>
+                  <td>
+                    <span *ngIf="obj.STATUS === '1'" class="text-success"
+                      >Approved</span
+                    >
+                    <span *ngIf="obj.STATUS === '2'" class="text-danger"
+                      >Rejected</span
+                    >
+                    <span *ngIf="obj.STATUS === '3'" class="text-primary"
+                      >Farmer Already Registered</span
+                    >
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm"
+                      (click)="btnVerify(obj)"
+                      *ngIf="obj.STATUS === '0'"
+                    >
+                      VERIFY
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-12" *ngIf="pendingList?.length < 1">
+            <h5 class="text-center">
+              Volunteer Not Registered Any Farmer Details.
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

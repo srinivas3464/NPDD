@@ -1,0 +1,127 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Tender Wise Summary</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 row">
+            <div class="col-md-4" style="text-align: right;"> <label for="TenderNo">Tender No
+                    <span style="color: red">*</span></label>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select id="TenderNo" class="form-control" [(ngModel)]="TenderNo" (change)="TenderNochange()">
+                        <option disabled selected value="undefined">-- Select--</option>
+                        <option value="{{obj.NEWTENDER_ID}}" *ngFor="let obj of TenderNoList">{{obj.TENDER_NO}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="col-md-12" [hidden]="TenderSummarList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+
+        <div class="table-responsive" [hidden]="TenderSummarList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="borderwhitecolo" rowspan="2">S No</th>
+                        <th class="borderwhitecolo" colspan="2">Tender</th>
+                        <th class="borderwhitecolo" colspan="2">PO</th>
+                        <th class="borderwhitecolo" colspan="12">Invoice</th>
+                    </tr>
+                    <tr>
+
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Advance%</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Delivery%</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Install%</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Final%</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+
+                    </tr>
+                    <tr>
+                        <th class="borderwhitecolo">(1)</th>
+                        <th class="borderwhitecolo">(2)</th>
+                        <th class="borderwhitecolo">(3)</th>
+                        <th class="borderwhitecolo">(4)</th>
+                        <th class="borderwhitecolo">(5)</th>
+                        <th class="borderwhitecolo">(6)</th>
+                        <th class="borderwhitecolo">(7)</th>
+                        <th class="borderwhitecolo">(8)</th>
+                        <th class="borderwhitecolo">(9)</th>
+                        <th class="borderwhitecolo">(10)</th>
+                        <th class="borderwhitecolo">(11)</th>
+                        <th class="borderwhitecolo">(12)</th>
+                        <th class="borderwhitecolo">(13)</th>
+                        <th class="borderwhitecolo">(14)</th>
+                        <th class="borderwhitecolo">(15)</th>
+                        <th class="borderwhitecolo">(16)</th>
+                        <th class="borderwhitecolo">(17)</th>
+
+
+                    </tr>
+                </thead>
+                <tbody *ngIf="TenderSummarList?.length > 0">
+                    <tr *ngFor="let obj of TenderSummarList; let i = index">
+                        <td class="number_align">{{i+1}}</td>
+                        <td class="number_align">{{obj.TENDER_QTY}}</td>
+                        <td class="number_align">{{obj.TENDER_AMOUNT}}</td>
+                        <td class="number_align">{{obj.PO_QTY}}</td>
+                        <td class="number_align">{{obj.PO_AMOUNT}}</td>
+                        <td class="number_align">{{obj.ADV_PER}}</td>
+                        <td class="number_align">{{obj.ADV_QTY}}</td>
+                        <td class="number_align">{{obj.ADV_PER_AMOUNT}}</td>
+                        <td class="number_align">{{obj.DELIVERY_PER}}</td>
+                        <td class="number_align">{{obj.DELIVERY_QTY}}</td>
+                        <td class="number_align">{{obj.DELIVERY_PER_AMOUNT}}</td>
+                        <td class="number_align">{{obj.INSTALL_PER}}</td>
+                        <td class="number_align">{{obj.INSTALL_QTY}}</td>
+                        <td class="number_align">{{obj.INSTALL_PER_AMOUNT}}</td>
+                        <td class="number_align">{{obj.FINAL_PER}}</td>
+                        <td class="number_align">{{obj.FINAL_QTY}}</td>
+                        <td class="number_align">{{obj.FINAL_PER_AMOUNT}}</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="TenderSummarList?.length > 0">
+                    <td class="font-weight-bold text_alignleft">
+                        <b>TOTAL</b>
+                    </td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.TENDER_QUANTITY| indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.TENDER_AMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.PO_AMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.ADV_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.ADV_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.ADV_PER_AMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.DELIVERY_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.DELIVERY_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.DELIVERY_PER_AMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INSTALL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INSTALL_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INSTALL_PER_AMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.FINAL_PER | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.FINAL_QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.FINAL_PER_AMOUNT | indianNumber }}</td>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

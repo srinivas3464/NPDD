@@ -1,0 +1,122 @@
+<div class="card">
+    <div class="card-header p-2">
+        <h5 class="mb-0">Po Date Wise Summary</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-center">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="fromDate">From Date : <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select From Date'" [(selectedDate)]="fromDate"></app-date-picker>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="toDate">To Date : <span style="color: red">*</span></label>
+                    <app-date-picker [PlaceHolder]="'Please Select To Date'" [(selectedDate)]="toDate"></app-date-picker>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn-sm mt-3" (click)="btnLoadReport()">
+                    <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i>
+                    GO
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12" [hidden]="POSummaryList?.length < 1">
+            <button type="button" class="btn btn-success btn-sm pull-right" (click)="btnExcel()">
+                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                Download Excel
+            </button>
+
+        </div>
+
+        <div class="table-responsive" [hidden]="POSummaryList?.length < 1">
+            <table class="table table-striped ah-table text-center" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead class="bg-success text-white" style="border: 1px solid white;">
+                    <tr>
+                        <th class="borderwhitecolo" rowspan="2">SlNo</th>
+                        <th class="borderwhitecolo" colspan="4">Purchase Order / Work Order </th>
+                        <th class="borderwhitecolo" colspan="2">Invoice</th>
+                        <th class="borderwhitecolo" colspan="2">Approval</th>
+                        <th class="borderwhitecolo" colspan="2">Proforma Invoice Approval</th>
+
+
+
+
+                    </tr>
+                    <tr>
+                        <th class="borderwhitecolo">Date</th>
+                        <th class="borderwhitecolo">NO</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+                        <th class="borderwhitecolo">Quantity</th>
+                        <th class="borderwhitecolo">Amount</th>
+
+                    </tr>
+                    <tr>
+                        <th class="borderwhitecolo">(1)</th>
+                        <th class="borderwhitecolo">(2)</th>
+                        <th class="borderwhitecolo">(3)</th>
+                        <th class="borderwhitecolo">(4)</th>
+                        <th class="borderwhitecolo">(5)</th>
+                        <th class="borderwhitecolo">(6)</th>
+                        <th class="borderwhitecolo">(7)</th>
+                        <th class="borderwhitecolo">(8)</th>
+                        <th class="borderwhitecolo">(9)</th>
+                        <th class="borderwhitecolo">(10)</th> 
+                        <th class="borderwhitecolo">(11)</th>
+
+
+                    </tr>
+                </thead>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <tr *ngFor="let obj of POSummaryList; let i = index">
+                        <td class="number_align">{{i+1}}</td>
+                        <td class="number_align">{{obj.PODATE}}</td>
+                        <td class="number_align">{{obj.PONUMBER}}</td>
+                        <td class="number_align">{{obj.UNITS}}</td>
+                        <td class="number_align">{{obj.PRICES}}</td>
+                        <td class="number_align">{{obj.INV_UNITS}}</td>
+                        <td class="number_align">{{obj.INV_AMOUNT}}</td>
+                        <td class="number_align">{{obj.APP_QTY}}</td>
+                        <td class="number_align">{{obj.APP_AMOUNT}}</td>
+                        <td class="number_align">{{obj.QTY}}</td>
+                        <td class="number_align">{{obj.AMOUNT}}</td>
+
+
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="POSummaryList?.length > 0">
+                    <td>--</td>
+                    <td class="font-weight-bold text_alignleft">
+                        <b>TOTAL</b>
+                    </td>
+                    <td>--</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.POQUANTITY| indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.POAMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INVOICEQUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.INVOICEAMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.APPROVALQUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.APPROVALAMOUNT | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.QUANTITY | indianNumber }}</td>
+                    <td class="font-weight-bold number_align">{{ reportTotal.AMOUNT | indianNumber }}</td>
+
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
